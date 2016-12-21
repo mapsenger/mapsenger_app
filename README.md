@@ -48,18 +48,3 @@ $ npm run test:watch
 $ npm run cover
 ```
 
-#### Connecting to remote APIs
-
-Both the devmode and production servers provide a way to proxy requests to
-remote HTTP APIs.  This can be useful for working around CORS issues when
-developing your software.
-
-Edit [this file](server/proxy-config.js) to mount such APIs at a given path.
-
-## License
-
-Copyright (c) 2016 rangle.io
-
-[MIT License][MIT]
-
-[MIT]: ./LICENSE "Mit License"
