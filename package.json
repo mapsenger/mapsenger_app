@@ -1,7 +1,7 @@
 {
   "name": "Mapsenger",
   "author": "June Punkasem",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "The integration of map and messenger",
   "engines": {
     "node": "4.x"
