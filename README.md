@@ -1,10 +1,6 @@
-# pubnub-react
+# Mapsenger
 
-> A chat application written in React using PubNub API
 
-## Getting Started
-
-Clone this repo.
 
 ## npm scripts
 
