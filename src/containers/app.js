@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ChatInput from '../components/ChatInput';
 import ChatHistory from '../components/ChatHistory';
+import MapView from '../components/MapView';
 
 function mapStateToProps(/* state */) {
   return {
@@ -25,8 +26,10 @@ class App extends React.Component {
 
   componentDidMount() {
     this.PubNub = PUBNUB.init({
-      publish_key: '',
-      subscribe_key: '',
+      publish_key: 'pub-c-a21b783d-ac31-4e63-b4f4-d85df580cb54',
+      subscribe_key: 'sub-c-0aaf63fc-c4ca-11e6-90ff-0619f8945a4f',
+      // publish_key: 'pub-c-a21b783d-ac31-4e63-b4f4-d85df580cb54',
+      // subscribe_key: 'sub-c-0aaf63fc-c4ca-11e6-90ff-0619f8945a4f',
       ssl: (location.protocol.toLowerCase() === 'https:'),
     });
     this.PubNub.subscribe({
@@ -41,6 +44,7 @@ class App extends React.Component {
     const {sendMessage, state} = this;
     return (
       <div>
+        <MapView/>
         <ChatHistory history={ state.history }/>
         <ChatInput userID={ state.userID } sendMessage={ sendMessage }/>
       </div>

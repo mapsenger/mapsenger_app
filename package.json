@@ -3,33 +3,16 @@
   "author": "June Punkasem",
   "version": "0.1.0",
   "description": "The integration of map and messenger",
-  "license": "MIT",
   "engines": {
     "node": "4.x"
   },
   "scripts": {
-    "prebuild": "npm run clean",
     "build": "cross-env NODE_ENV=production webpack -p",
-    "clean": "rimraf dist/",
     "dev": "cross-env NODE_ENV=development webpack-dev-server -d --inline --hot --progress --no-info",
-    "lint": "npm run lint-js",
-    "lint-js": "eslint '**/*.js' --ignore-path .gitignore",
     "postinstall": "npm run build",
     "start": "cross-env NODE_ENV=production node server/node-server.js",
-    "pretest": "npm run clean coverage/ & npm run lint",
     "test": "nyc --reporter=lcov --reporter=text-summary mocha",
-    "posttest": "nyc check-coverage",
     "test:watch": "mocha --watch"
-  },
-  "nyc": {
-    "exclude": [
-      "**/*.test.js",
-      "test/entry.js"
-    ],
-    "lines": 80,
-    "statements": 80,
-    "branches": 80,
-    "functions": 80
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -80,7 +63,8 @@
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.6.4",
-    "webpack-split-by-path": "0.0.8"
+    "webpack-split-by-path": "0.0.8",
+    "react-map-gl": "*"
   },
   "dependencies": {
     "express": "^4.13.3",
@@ -91,6 +75,8 @@
   "keywords": [
     "react",
     "pubnub",
-    "chat"
+    "chat",
+    "Mapbox",
+    "Map"
   ]
 }

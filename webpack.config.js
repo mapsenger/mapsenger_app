@@ -19,7 +19,7 @@ const basePlugins = [
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
   }),
   new SplitByPathPlugin([
-    { name: 'vendor', path: [__dirname + '/node_modules/'] },
+    {name: 'vendor', path: [__dirname + '/node_modules/']},
   ]),
   new HtmlWebpackPlugin({
     template: './src/index.html',
@@ -49,6 +49,14 @@ module.exports = {
   entry: {
     app: getEntrySources(['./src/index.js']),
   },
+  resolve: {
+    extensions: ['', '.js'],
+    alias: {
+      webworkify: 'webworkify-webpack',
+      'mapbox-gl/js/geo/transform': path.join(__dirname, "/node_modules/mapbox-gl/js/geo/transform"),
+      'mapbox-gl': path.join(__dirname, "/node_modules/mapbox-gl/dist/mapbox-gl.js")
+    }
+  },
 
   output: {
     path: path.join(__dirname, 'dist'),
@@ -62,21 +70,38 @@ module.exports = {
   plugins: plugins,
 
   devServer: {
-    historyApiFallback: { index: '/' },
+    historyApiFallback: {index: '/'},
     proxy: proxy(),
   },
 
   module: {
     preLoaders: [
-      { test: /\.js$/, loader: 'source-map-loader' },
-      { test: /\.js$/, loader: 'eslint-loader' },
+      {test: /\.js$/, loader: 'source-map-loader'},
+      {test: /\.js$/, loader: 'eslint-loader'},
     ],
     loaders: [
-      { test: /\.css$/, loader: 'style-loader!raw-loader' },
-      { test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-      { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?prefix=img/&limit=5000' },
-      { test: /\.(woff|woff2|ttf|eot)$/, loader: 'url-loader?prefix=font/&limit=5000' },
+      {test: /\.css$/, loader: 'style-loader!raw-loader'},
+      {test: /\.js$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
+      {test: /\.json$/, loader: 'json-loader'},
+      {test: /\.(png|jpg|jpeg|gif|svg)$/, loader: 'url-loader?prefix=img/&limit=5000'},
+      {test: /\.(woff|woff2|ttf|eot)$/, loader: 'url-loader?prefix=font/&limit=5000'},
+      {test: /\.worker.js$/, loader: 'worker', query: {inline: true}},
+      {test: /\.glsl$/, loader: 'shader'},
+      {
+        test: /mapbox-gl.+\.js$/,
+        loader: 'transform/cacheable?brfs'
+      },
     ],
+    postLoaders: [
+      {
+        include: /node_modules\/mapbox-gl/,
+        loader: 'transform',
+        query: 'brfs'
+      }
+    ]
   },
+  node: {
+    console: true,
+    fs: 'empty'
+  }
 };
