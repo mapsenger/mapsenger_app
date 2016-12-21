@@ -1,7 +1,8 @@
 {
-  "name": "pubnub-react",
+  "name": "Mapsenger",
+  "author": "June Punkasem",
   "version": "0.1.0",
-  "description": "A boiler-plate setup for React PubNub chat application",
+  "description": "The integration of map and messenger",
   "license": "MIT",
   "engines": {
     "node": "4.x"
@@ -91,12 +92,5 @@
     "react",
     "pubnub",
     "chat"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/rangle/pubnub-react.git"
-  },
-  "bugs": {
-    "url": "https://github.com/rangle/pubnub-react/issues"
-  }
+  ]
 }
