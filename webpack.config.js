@@ -92,7 +92,7 @@ module.exports = {
         loader: 'transform/cacheable?brfs'
       },
     ],
-    
+
     postLoaders: [
       {
         include: /node_modules\/mapbox-gl/,
