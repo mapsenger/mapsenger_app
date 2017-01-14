@@ -18,6 +18,12 @@ function mapDispatchToProps(/* dispatch */) {
 
 class App extends React.Component {
 
+  static propTypes = {
+    userName: React.PropTypes.string,
+    sendMessage: React.PropTypes.number,
+  };
+
+
   state = {
     userID: Math.round(Math.random() * 1000000).toString(),
     history: [],

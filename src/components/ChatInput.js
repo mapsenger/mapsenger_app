@@ -32,7 +32,7 @@ export default class ChatInput extends React.Component {
 
   render() {
     const {props, onSubmit} = this;
-    const imgURL = 'http://image.flaticon.com/icons/svg/149/149074.svg';
+    const imgURL = 'https://api.adorable.io/avatars/92/' + props.userID;
     // Check if the message is empty
     return (<footer className="teal">
       <form className="container" onSubmit={ onSubmit }>

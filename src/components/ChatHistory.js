@@ -11,7 +11,7 @@ export default class ChatHistory extends React.Component {
     const {props} = this;
     return (<ul className="collection">
       { props.history.map((messageObj) => {
-        const imgURL = 'http://image.flaticon.com/icons/svg/149/149074.svg';
+        const imgURL = 'https://api.adorable.io/avatars/92/' + messageObj.Who;
         const messageDate = new Date(messageObj.When);
         const messageDateTime = messageDate.toLocaleDateString() + ' at ' + messageDate.toLocaleTimeString();
         return (

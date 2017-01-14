@@ -64,7 +64,14 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.6.4",
     "webpack-split-by-path": "0.0.8",
-    "react-map-gl": "*"
+    "webworkify-webpack": "^1.0.6",
+    "transform-loader": "^0.2.3",
+    "react-map-gl": "*",
+    "formsy-react": "^0.18.0",
+    "formsy-material-ui": "*",
+    "material-ui": "0.16.0",
+    "react-tap-event-plugin": "^1.0.0"
+
   },
   "dependencies": {
     "express": "^4.13.3",

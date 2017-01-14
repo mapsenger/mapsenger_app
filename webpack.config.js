@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const proxy = require('./server/webpack-dev-proxy');
 const SplitByPathPlugin = require('webpack-split-by-path');
+var transform = require("transform-loader");
 
 function getEntrySources(sources) {
   if (process.env.NODE_ENV !== 'production') {
@@ -91,15 +92,15 @@ module.exports = {
         test: /mapbox-gl.+\.js$/,
         loader: 'transform/cacheable?brfs'
       },
-    ],
 
-    postLoaders: [
       {
-        include: /node_modules\/mapbox-gl/,
-        loader: 'transform',
-        query: 'brfs'
+        test: /\.js$/,
+        include: path.resolve(__dirname, 'node_modules/webworkify/index.js'),
+        loader: 'worker'
       }
+
     ]
+
   },
   node: {
     console: true,

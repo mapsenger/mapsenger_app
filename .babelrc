@@ -3,7 +3,8 @@
   "env": {
     "test": {
       "plugins": [
-        ["__coverage__", { "ignore": "" }]
+        ["__coverage__", { "ignore": "" }],
+        "transform-flow-strip-types"
       ]
     }
   }
