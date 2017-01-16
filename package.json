@@ -66,10 +66,7 @@
     "webpack-split-by-path": "0.0.8",
     "webworkify-webpack": "^1.0.6",
     "transform-loader": "^0.2.3",
-    "react-map-gl": "*",
-    "formsy-react": "^0.18.0",
-    "formsy-material-ui": "*",
-    "material-ui": "0.16.0",
+    "react-mapbox-gl": "*",
     "react-tap-event-plugin": "^1.0.0"
 
   },
