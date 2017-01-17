@@ -15,9 +15,11 @@ const markerContainer = document.createElement('div');
 markerContainer.style.width = '400px';
 markerContainer.style.position = 'absolute';
 
-export default class AllShapes extends Component {
+export default class MapView extends Component {
   static propTypes = {
-    others: React.PropTypes.array,
+    markers: React.PropTypes.array,
+    userID: React.PropTypes.number,
+    sendMarker: React.PropTypes.func,
   };
 
   _markerClick() {
@@ -37,33 +39,26 @@ export default class AllShapes extends Component {
     this.state = {
       popup: null,
       marker: [-120.3035, 50.655],
+      markers: props.markers,
       center: [-122.3035, 47.6553],
       othersFriends: null,
     };
   }
 
   componentWillMount() {
-    navigator.geolocation.watchPosition((position) => {
-      console.log(position.coords);
+    navigator.geolocation.getCurrentPosition((position) => {
       this.setState({
         center: [position.coords.longitude, position.coords.latitude],
         marker: [position.coords.longitude, position.coords.latitude],
       });
     });
-    this.PubNub = PUBNUB.init({
-      subscribe_key: 'sub-c-d92f9bda-c4c9-11e6-b2ab-0619f8945a4f',
-    });
-    this.PubNub.here_now({
-      channel: 'ReactChat',
-      state: true,
-      uuids: true,
-      callback: function(m) {
-        console.log(m);
-      },
-    });
+    console.log(this.state.center);
   }
 
   componentDidMount() {
+    this.PubNub = PUBNUB.init({
+      subscribe_key: 'sub-c-d92f9bda-c4c9-11e6-b2ab-0619f8945a4f',
+    });
   }
 
   _onClickMarker = ({feature}) => {
@@ -74,6 +69,7 @@ export default class AllShapes extends Component {
 
   _onClickMap(map) {
     console.log('Clicked on the map : ', map);
+    // this.props.sendMarker('hi');
   }
 
   _onStyleLoad(map) {
@@ -115,19 +111,19 @@ export default class AllShapes extends Component {
             onClick={this._onClickMarker}/>
         </Layer>
 
-
-        <Marker
-          onClick={this._markerClick}
-          onMouseEnter={this._markerMouseEnter}
-          onMouseLeave={this._markerMouseLeave}
-          container={markerContainer}
-          coordinates={this.state.marker}
-          anchor="bottom"
-        >
-          <img src={'https://api.adorable.io/avatars/92/666'}/>
-          <h1>TEST</h1>
-        </Marker>
-
+        { this.props.markers.map((marker, index) => {
+          return (<Marker
+            onClick={this._markerClick}
+            onMouseEnter={this._markerMouseEnter}
+            onMouseLeave={this._markerMouseLeave}
+            container={markerContainer}
+            coordinates={[0.1 * index + marker.lng, marker.lat]}
+            anchor="bottom"
+          >
+            <img src={'https://api.adorable.io/avatars/92/666'}/>
+            <h1>TEST</h1>
+          </Marker>);
+        })}
 
       </ReactMapboxGl>
     );

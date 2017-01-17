@@ -1,4 +1,4 @@
-import { ADD_MESSAGE, SET_CURRENT_USERID, ADD_USER, REMOVE_USER } from '../constants';
+import { ADD_MESSAGE, SET_CURRENT_USERID, ADD_USER, REMOVE_USER, ADD_MARKER } from '../constants';
 
 export function setCurrentUserID(userID) {
   return {
@@ -28,3 +28,16 @@ export function removeUser(userID) {
   };
 }
 
+export function addMarker(userData) {
+  return {
+    type: ADD_MARKER,
+    payload: userData,
+  };
+}
+
+// export function sendMarker(marker) {
+//  return {
+//    type: SEND_MARKER,
+//    payload: marker
+//  }
+// }

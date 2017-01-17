@@ -21,9 +21,10 @@ Open `http://localhost:8080` in your browser.
 
 ### Production
 
-```bash
+```bash using these two command to access to the localhost
+$ change ip address by running ifconfig en0 -> inet [] copy and paste it in noder-server.js
 $ npm run build
-$ npm start
+$ npm run start
 ```
 
 This runs a production-ready express server that serves up a bundled and

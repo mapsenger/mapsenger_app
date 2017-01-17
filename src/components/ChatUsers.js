@@ -17,8 +17,8 @@ class ChatUsers extends React.Component {
         </div>
         <ul>{
           users.map((userID) => {
-            const name = 'Anonymous Robot #' + userID[0];
-            const imgURL = 'https://api.adorable.io/avatars/92/' + userID[0];
+            const name = 'Anonymous Robot #' + userID;
+            const imgURL = 'https://api.adorable.io/avatars/92/' + userID;
             return (
               <li key={ userID }>
                 <img title={ name } alt={ name } src={ imgURL } className="circle" />
