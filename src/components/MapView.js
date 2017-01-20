@@ -56,9 +56,6 @@ export default class MapView extends Component {
   }
 
   componentDidMount() {
-    this.PubNub = PUBNUB.init({
-      subscribe_key: 'sub-c-d92f9bda-c4c9-11e6-b2ab-0619f8945a4f',
-    });
   }
 
   _onClickMarker = ({feature}) => {
@@ -69,7 +66,7 @@ export default class MapView extends Component {
 
   _onClickMap(map) {
     console.log('Clicked on the map : ', map);
-    // this.props.sendMarker('hi');
+    this.props.sendMarker('hi');
   }
 
   _onStyleLoad(map) {
@@ -92,7 +89,7 @@ export default class MapView extends Component {
     return (
       <ReactMapboxGl
         style={style}
-        onClick={this._onClickMap}
+        onClick={this._onClickMap.bind(this)}
         onZoom={this._onZoom}
         onStyleLoad={this._onStyleLoad}
         accessToken={accessToken}

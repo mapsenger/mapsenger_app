@@ -8,8 +8,8 @@ import MapView from '../components/MapView';
 
 const ID = Math.round(Math.random() * 1000000);
 const pubnub = PUBNUB.init({
-  publish_key: 'pub-c-58ff4ec1-ecb8-43d0-8d37-6bf092817234',
-  subscribe_key: 'sub-c-d92f9bda-c4c9-11e6-b2ab-0619f8945a4f',
+  publish_key: 'pub-c-a21b783d-ac31-4e63-b4f4-d85df580cb54',
+  subscribe_key: 'sub-c-0aaf63fc-c4ca-11e6-90ff-0619f8945a4f',
   uuid: ID,
   ssl: (location.protocol.toLowerCase() === 'https:'),
 });
@@ -56,8 +56,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: '',
-      lng: '',
+      active: 'FIRST',
     };
   }
 
@@ -82,8 +81,8 @@ class App extends React.Component {
     navigator.geolocation.getCurrentPosition((position) => {
       pubnub.subscribe({
         channel: 'ReactChat',
-          message: this.props.addMessage,
-          presence: this.onPresenceChange,
+        message: this.props.addMessage,
+        presence: this.onPresenceChange,
         state: {
           id: ID,
           lat: position.coords.latitude,
@@ -97,7 +96,6 @@ class App extends React.Component {
       state: true,
       uuids: true,
       callback: function(response) {
-        console.log(response);
         response.uuids.map((uuid) => {
           self.props.addMarker(uuid.state);
         });
@@ -119,7 +117,6 @@ class App extends React.Component {
   }
 
   onPresenceChange = (presenceData) => {
-    console.log(presenceData);
     switch (presenceData.action) {
       case 'join':
         // this.props.addUser([presenceData.uuid, presenceData.data.lat, presenceData.data.lng]);
@@ -140,19 +137,35 @@ class App extends React.Component {
   }
 
   render() {
-    const {props, sendMessage} = this;
+    const {props, sendMessage, state} = this;
+    const active = state.active;
     return (
       <div>
-        <ChatUsers users={ props.users }/>
-        <MapView markers={ props.markers } userID={ props.userID } sendMarker={ this.sendMarker } />
-        <ChatHistory history={ props.history }/>
-        <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
+        <ChatUsers users={ props.users } current={active} toggleFunction={this.handleClick.bind(this)}/>
+        {active === 'FIRST' ? (
+          <div>
+            <ChatHistory history={ props.history }/>
+            <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
+          </div>
+        ) : active === 'SECOND' ? (
+          <div>
+            <MapView markers={ props.markers } userID={ props.userID } sendMarker={ this.sendMarker.bind(this) }/>
+          </div>
+        ) : null}
       </div>
     );
   }
 
   sendMarker(marker) {
-    sendMessage(marker);
+    console.log(marker);
+  }
+
+  handleClick(clickButton) {
+    const active = clickButton;
+    console.log('handle Click :', active);
+    this.setState({
+      active: clickButton,
+    });
   }
 
   leaveChat = () => {
