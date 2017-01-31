@@ -19,7 +19,7 @@ module.exports = {
     changeOrigin: true,
   },
     '/yelp': {
-    target: 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyDYKbeRei9ZxDKWeUxFq2IOyO8YMjDnj3w&query=thai+restaurant&location=47.658350, -122.313782&radius=1000',
+    target: 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBE3jdNsLmUq78SkdSLpDj8FhDr7oEXF2c&query=thai+restaurant+Seattle+University+District&location=47.658350, -122.313782&radius=3000',
     changeOrigin: true,
     },
 };

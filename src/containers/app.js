@@ -7,6 +7,7 @@ import ChatUsers from '../components/ChatUsers';
 import GoogleMap from '../components/GoogleMap';
 import SearchFunction from '../components/SearchFunction';
 import SearchCard from '../components/SearchCard';
+import places from '../components/places';
 const consumerKey = 'IwiVdMcfJ68gEJp3N8y4pQ';
 const consumerSecret = 'qG5EKwoMK8b2SmvKnKI04TNGjVw';
 const token = 'lYLlyWdVd_UM8ZxyKyMOru0WoNbytcMK';
@@ -153,6 +154,7 @@ class App extends React.Component {
           <div>
             <GoogleMap
               markers={ props.markers }
+              POI={state.searchedPOI}
               userID={ props.userID }
               sendMarker={ this.sendMarker.bind(this) }
             />
@@ -163,12 +165,12 @@ class App extends React.Component {
           </div>
         )
           : active === 'SEARCH_ENTER' ? (
-           <div>
+          <div>
             <SearchCard
               textSearch={searchPOI}
               POI={state.searchedPOI}
             />
-           </div>
+          </div>
         )
           : null}
       </div>
@@ -176,13 +178,13 @@ class App extends React.Component {
   }
 
   fetchData() {
+    // this.setState({
+    //  searchedPOI: places,
+    // });
      const url = '/yelp';
-     fetch(url, {
-      method: 'GET',
-     }).then(function(response) {
+     fetch(url, {method: 'GET'}).then(function(response) {
       return response.json();
      }).then(json => {
-      console.log(json.results);
       this.setState({
         searchedPOI: json.results,
       });

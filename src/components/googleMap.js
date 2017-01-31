@@ -9,6 +9,7 @@ export default class GoogleMap extends Component {
     markers: React.PropTypes.array,
     userID: React.PropTypes.number,
     sendMarker: React.PropTypes.func,
+    POI: React.PropTypes.array,
   };
 
   constructor(props) {

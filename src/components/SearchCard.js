@@ -11,6 +11,7 @@ export default class SearchCard extends Component {
     textSearch: React.PropTypes.string,
     POI: React.PropTypes.array,
   };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -63,7 +64,6 @@ export default class SearchCard extends Component {
               <TeamMemberCard {...person} />
             </Card>
           )}
-
         </CardStack>
       </div>
     );
@@ -119,13 +119,11 @@ const TeamMemberCard = (props) => (
         <h3 style={styles.headerTitle} className="icon ion-ios-arrow-down">{props.distance}</h3>
       </div>
     </header>
-
     <div style={{color: 'black'}}>
       <DetailsRow
         icon="ion-ios-telephone-outline"
         title={props.address}
       />
-
       <DetailsRow
         icon="ion-ios-location-outline"
         title={props.rating}
