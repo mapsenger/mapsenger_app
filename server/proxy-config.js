@@ -14,10 +14,12 @@
 module.exports = {
   // Calls to /api/foo will get routed to
   // http://jsonplaceholder.typicode.com/foo.
-  /*
   '/api/': {
     target: 'http://jsonplaceholder.typicode.com',
     changeOrigin: true,
   },
-  */
+    '/yelp': {
+    target: 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyDYKbeRei9ZxDKWeUxFq2IOyO8YMjDnj3w&query=thai+restaurant&location=47.658350, -122.313782&radius=1000',
+    changeOrigin: true,
+    },
 };

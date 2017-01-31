@@ -6,28 +6,32 @@ class ChatUsers extends React.Component {
   static propTypes = {
     users: React.PropTypes.array,
     toggleFunction: React.PropTypes.func,
-    current: React.PropTypes.func,
+    focusModal: React.PropTypes.func,
+    searchText: React.PropTypes.func,
   }
 
   constructor(props) {
     super(props);
     this.state = {
       toggleFunction: props.toggleFunction,
-      current: props.current,
-      focus: 'None',
+      focus: props.focusModal,
     };
   }
 
   _onClickButton() {
-    const active = this.state.current;
-    console.log('User active ,', active);
-    const newActive = active === 'FIRST' ? 'SECOND' : 'FIRST';
-    console.log('User new active ,', newActive);
-    this.props.toggleFunction(newActive);
+    this.props.toggleFunction();
   }
 
   _onFocus() {
-    console.log('yes');
+    this.props.focusModal('SEARCH');
+  }
+
+  _onSubmit(e) {
+    if (e.key === 'Enter') {
+      const message = this.refs.txtMessage.value;
+      this.props.focusModal('SEARCH_ENTER');
+      this.props.searchText(message);
+    }
   }
 
   render() {
@@ -51,7 +55,11 @@ class ChatUsers extends React.Component {
           })
         }
         </ul>
-        <input ref="txtMessage" type="text" onFocus={ this._onFocus } placeholder="Type your message"/>
+        <input ref="txtMessage"
+               type="text"
+               onFocus={ this._onFocus.bind(this) }
+               onKeyPress={this._onSubmit.bind(this)}
+               placeholder="Type your message"/>
         <button type="button" onClick={this._onClickButton.bind(this)}>
           Toggle
         </button>

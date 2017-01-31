@@ -42,6 +42,7 @@ export default class MapView extends Component {
       markers: props.markers,
       center: [-122.3035, 47.6553],
       othersFriends: null,
+      popupShowLabel: true
     };
   }
 
@@ -85,6 +86,10 @@ export default class MapView extends Component {
     map.getCanvas().style.cursor = '';
   }
 
+  _popupChange(popupShowLabel) {
+    this.setState({ popupShowLabel });
+  }
+
   render() {
     return (
       <ReactMapboxGl
@@ -107,18 +112,18 @@ export default class MapView extends Component {
             onEndHover={this._onEndHover}
             onClick={this._onClickMarker}/>
         </Layer>
-
         { this.props.markers.map((marker, index) => {
-          return (<Marker
+          return (
+            <Marker
             onClick={this._markerClick}
             onMouseEnter={this._markerMouseEnter}
             onMouseLeave={this._markerMouseLeave}
             container={markerContainer}
-            coordinates={[0.1 * index + marker.lng, marker.lat]}
+            coordinates={[0.01 * index + marker.lng, marker.lat]}
             anchor="bottom"
           >
             <img src={'https://api.adorable.io/avatars/92/666'}/>
-            <h1>TEST</h1>
+            <p>WTF</p>
           </Marker>);
         })}
 

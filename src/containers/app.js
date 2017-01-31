@@ -4,7 +4,13 @@ import {setCurrentUserID, addMessage, addUser, removeUser, addMarker} from '../a
 import ChatInput from '../components/ChatInput';
 import ChatHistory from '../components/ChatHistory';
 import ChatUsers from '../components/ChatUsers';
-import MapView from '../components/MapView';
+import GoogleMap from '../components/GoogleMap';
+import SearchFunction from '../components/SearchFunction';
+import SearchCard from '../components/SearchCard';
+const consumerKey = 'IwiVdMcfJ68gEJp3N8y4pQ';
+const consumerSecret = 'qG5EKwoMK8b2SmvKnKI04TNGjVw';
+const token = 'lYLlyWdVd_UM8ZxyKyMOru0WoNbytcMK';
+const tokenSecret = 'V5I3DF2WzQ70vqXNmf3gRmzxYSY';
 
 const ID = Math.round(Math.random() * 1000000);
 const pubnub = PUBNUB.init({
@@ -13,7 +19,6 @@ const pubnub = PUBNUB.init({
   uuid: ID,
   ssl: (location.protocol.toLowerCase() === 'https:'),
 });
-
 
 function mapStateToProps(state) {
   console.log(state.app.get('markers').toJS());
@@ -57,27 +62,19 @@ class App extends React.Component {
     super(props);
     this.state = {
       active: 'FIRST',
+      searchBar: '',
+      searchedPOI: '',
     };
   }
 
   componentWillMount() {
+    this.fetchData();
   }
 
   componentDidMount() {
+    console.log(this.state.searchedPOI);
     // No geo location here you said?
     this.props.setUserID(ID);
-    // pubnub.subscribe({
-    //  channel: 'ReactChat',
-    //  message: this.props.addMessage,
-    //  presence: this.onPresenceChange,
-    //  uuid: ID,
-    //  state: {
-    //    id: ID,
-    //    lat: position.coords.latitude,
-    //    lng: position.coords.longitude,
-    //  },
-    // });
-
     navigator.geolocation.getCurrentPosition((position) => {
       pubnub.subscribe({
         channel: 'ReactChat',
@@ -101,14 +98,6 @@ class App extends React.Component {
         });
       },
     });
-    // this.PubNub.subscribe({
-    //   channel: 'ReactChat',
-    //   message: this.props.addMessage,
-    //   presence: this.onPresenceChange,
-    //   state: {
-    //     location: userLoc,
-    //   },
-    // });
     window.addEventListener('beforeunload', this.leaveChat);
   }
 
@@ -136,12 +125,25 @@ class App extends React.Component {
     }
   }
 
+  getText(infoSearch) {
+    this.setState({searchBar: infoSearch});
+  }
+
   render() {
     const {props, sendMessage, state} = this;
     const active = state.active;
+    const searchPOI = state.searchBar;
     return (
       <div>
-        <ChatUsers users={ props.users } current={active} toggleFunction={this.handleClick.bind(this)}/>
+        <button
+          onClick={this.fetchData.bind(this)}
+        >
+        </button>
+        <ChatUsers users={ props.users }
+                   searchText={this.getText.bind(this)}
+                   focusModal={this.openModal.bind(this)}
+                   toggleFunction={this.handleClick.bind(this)}
+        />
         {active === 'FIRST' ? (
           <div>
             <ChatHistory history={ props.history }/>
@@ -149,22 +151,58 @@ class App extends React.Component {
           </div>
         ) : active === 'SECOND' ? (
           <div>
-            <MapView markers={ props.markers } userID={ props.userID } sendMarker={ this.sendMarker.bind(this) }/>
+            <GoogleMap
+              markers={ props.markers }
+              userID={ props.userID }
+              sendMarker={ this.sendMarker.bind(this) }
+            />
           </div>
-        ) : null}
+        ) : active === 'SEARCH' ? (
+          <div>
+            <SearchFunction/>
+          </div>
+        )
+          : active === 'SEARCH_ENTER' ? (
+           <div>
+            <SearchCard
+              textSearch={searchPOI}
+              POI={state.searchedPOI}
+            />
+           </div>
+        )
+          : null}
       </div>
     );
+  }
+
+  fetchData() {
+     const url = '/yelp';
+     fetch(url, {
+      method: 'GET',
+     }).then(function(response) {
+      return response.json();
+     }).then(json => {
+      console.log(json.results);
+      this.setState({
+        searchedPOI: json.results,
+      });
+     }).catch(function(error) {
+      console.log('Error:', error);
+     });
   }
 
   sendMarker(marker) {
     console.log(marker);
   }
 
-  handleClick(clickButton) {
-    const active = clickButton;
-    console.log('handle Click :', active);
+  handleClick() {
+    const active = this.state.active;
+    console.log(active);
+    // Switch case here
+    const newActive = active === 'FIRST' ? 'SECOND' : 'FIRST';
+    console.log(newActive);
     this.setState({
-      active: clickButton,
+      active: newActive,
     });
   }
 
@@ -178,6 +216,12 @@ class App extends React.Component {
       message: message,
     });
   };
+
+//  For Modals
+  openModal(dat) {
+    console.log(dat);
+    this.setState({active: dat});
+  }
 
 }
 
