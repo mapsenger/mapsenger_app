@@ -7,6 +7,8 @@ import ChatUsers from '../components/ChatUsers';
 import GoogleMap from '../components/GoogleMap';
 import SearchFunction from '../components/SearchFunction';
 import SearchCard from '../components/SearchCard';
+import SearchNavBar from '../components/SearchNavBar';
+import SearchMap from '../components/SearchMap';
 import places from '../components/places';
 const consumerKey = 'IwiVdMcfJ68gEJp3N8y4pQ';
 const consumerSecret = 'qG5EKwoMK8b2SmvKnKI04TNGjVw';
@@ -65,11 +67,18 @@ class App extends React.Component {
       active: 'FIRST',
       searchBar: '',
       searchedPOI: '',
+      mainNav: 'ORIGIN',
+      currentLoc: ''
     };
   }
 
   componentWillMount() {
     this.fetchData();
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        currentLoc: [position.coords.latitude, position.coords.longitude]
+      });
+    });
   }
 
   componentDidMount() {
@@ -126,6 +135,15 @@ class App extends React.Component {
     }
   }
 
+  //  Toggle Nav Bar
+  onToggleNav(dat) {
+    console.log(dat);
+    this.setState({
+      mainNav: dat,
+      active: 'SEARCH',
+    });
+  }
+
   getText(infoSearch) {
     this.setState({searchBar: infoSearch});
   }
@@ -133,18 +151,23 @@ class App extends React.Component {
   render() {
     const {props, sendMessage, state} = this;
     const active = state.active;
+    const mainNav = state.mainNav;
     const searchPOI = state.searchBar;
     return (
       <div>
-        <button
-          onClick={this.fetchData.bind(this)}
-        >
-        </button>
-        <ChatUsers users={ props.users }
-                   searchText={this.getText.bind(this)}
-                   focusModal={this.openModal.bind(this)}
-                   toggleFunction={this.handleClick.bind(this)}
-        />
+        {mainNav === 'ORIGIN' ? (
+          <ChatUsers users={ props.users }
+                     focusModal={this.onToggleNav.bind(this)}
+                     toggleFunction={this.handleClick.bind(this)}
+          />
+        ) : mainNav === 'DESTINATION' ? (
+          <SearchNavBar users={ props.users }
+                     backButton={this.goBackButton.bind(this)}
+                     searchText={this.getText.bind(this)}
+                     focusModal={this.openModal.bind(this)}
+                     toggleFunction={this.handleClick.bind(this)}
+          />
+        ) : null}
         {active === 'FIRST' ? (
           <div>
             <ChatHistory history={ props.history }/>
@@ -154,7 +177,6 @@ class App extends React.Component {
           <div>
             <GoogleMap
               markers={ props.markers }
-              POI={state.searchedPOI}
               userID={ props.userID }
               sendMarker={ this.sendMarker.bind(this) }
             />
@@ -172,25 +194,37 @@ class App extends React.Component {
             />
           </div>
         )
+          : active === 'SEARCH_MAP' ? (
+          <div>
+            <SearchMap
+              markers={ props.markers }
+              POI={state.searchedPOI}
+              userID={ props.userID }
+              currentLoc={state.currentLoc}
+              sendMarker={ this.sendMarker.bind(this)
+              }
+            />
+          </div>
+        )
           : null}
       </div>
     );
   }
 
   fetchData() {
-    // this.setState({
-    //  searchedPOI: places,
-    // });
-     const url = '/yelp';
-     fetch(url, {method: 'GET'}).then(function(response) {
-      return response.json();
-     }).then(json => {
-      this.setState({
-        searchedPOI: json.results,
-      });
-     }).catch(function(error) {
-      console.log('Error:', error);
-     });
+       this.setState({
+       searchedPOI: places.thai,
+       });
+      // const url = '/yelp' + '&query=thai+restaurant+Seattle+University+District&location=47.658350, -122.313782&radius=3000';
+      // fetch(url, {method: 'GET'}).then(function(response) {
+      // return response.json();
+      // }).then(json => {
+      // this.setState({
+      //  searchedPOI: json.results,
+      // });
+      // }).catch(function(error) {
+      // console.log('Error:', error);
+      // });
   }
 
   sendMarker(marker) {
@@ -199,12 +233,30 @@ class App extends React.Component {
 
   handleClick() {
     const active = this.state.active;
-    console.log(active);
+    console.log('handle toggle', active);
+
     // Switch case here
-    const newActive = active === 'FIRST' ? 'SECOND' : 'FIRST';
-    console.log(newActive);
+    let newActive;
+    switch (active) {
+      case 'FIRST': // foo is 0 so criteria met here so this block will run
+        newActive = 'SECOND';
+        break;
+      case 'SECOND': // no break statement in 'case 0:' so this case will run as well
+        newActive = 'FIRST';
+        break; // it encounters this break so will not continue into 'case 2:'
+      case 'SEARCH_ENTER':
+        console.log('ok search enter');
+        newActive = 'SEARCH_MAP';
+        break;
+      case 'SEARCH_MAP':
+        newActive = 'SEARCH_ENTER';
+        break;
+      default:
+        console.log('default');
+        newActive = 'SECOND';
+    }
     this.setState({
-      active: newActive,
+      active: newActive
     });
   }
 
@@ -223,6 +275,14 @@ class App extends React.Component {
   openModal(dat) {
     console.log(dat);
     this.setState({active: dat});
+  }
+  //  Toggle Nav Bar
+  goBackButton() {
+    console.log();
+    this.setState(
+      {mainNav: 'ORIGIN',
+        active: 'FIRST'}
+    );
   }
 
 }

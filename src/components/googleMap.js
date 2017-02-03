@@ -9,7 +9,6 @@ export default class GoogleMap extends Component {
     markers: React.PropTypes.array,
     userID: React.PropTypes.number,
     sendMarker: React.PropTypes.func,
-    POI: React.PropTypes.array,
   };
 
   constructor(props) {
@@ -20,7 +19,7 @@ export default class GoogleMap extends Component {
       center: [47.6553, -122.3035],
       lat: 47.658350,
       lng: -122.313782,
-      zoom: 5,
+      zoom: 13,
     };
   }
 
@@ -53,7 +52,7 @@ export default class GoogleMap extends Component {
       <Map
         style={{height: '100vh'}}
         center={position}
-        zoom={10}>
+        zoom={this.state.zoom}>
         <TileLayer
           url="https://api.mapbox.com/styles/v1/junep1009/ciyjx3eah000i2skuw54czps9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoianVuZXAxMDA5IiwiYSI6ImNpaTFpbXZhMjAwYXFzd2txaWhwZWg0MGkifQ.zVbpTuEmpLzyRasVFfkysQ"
           attribution="<attribution>"/>

@@ -35,7 +35,7 @@ export default class SearchCard extends Component {
         address: obj.formatted_address,
         background: '#ffffff',
         imgBorderColor: 'black',
-        distance: String(distanceInMiles) + 'meters',
+        distance: String(distanceInMiles) + 'Miles',
       };
       return robj;
     });

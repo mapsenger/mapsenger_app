@@ -6,8 +6,7 @@ class ChatUsers extends React.Component {
   static propTypes = {
     users: React.PropTypes.array,
     toggleFunction: React.PropTypes.func,
-    focusModal: React.PropTypes.func,
-    searchText: React.PropTypes.func,
+    focusModal: React.PropTypes.func
   }
 
   constructor(props) {
@@ -23,15 +22,7 @@ class ChatUsers extends React.Component {
   }
 
   _onFocus() {
-    this.props.focusModal('SEARCH');
-  }
-
-  _onSubmit(e) {
-    if (e.key === 'Enter') {
-      const message = this.refs.txtMessage.value;
-      this.props.focusModal('SEARCH_ENTER');
-      this.props.searchText(message);
-    }
+    this.props.focusModal('DESTINATION');
   }
 
   render() {
@@ -58,8 +49,7 @@ class ChatUsers extends React.Component {
         <input ref="txtMessage"
                type="text"
                onFocus={ this._onFocus.bind(this) }
-               onKeyPress={this._onSubmit.bind(this)}
-               placeholder="Type your message"/>
+               placeholder="Search"/>
         <button type="button" onClick={this._onClickButton.bind(this)}>
           Toggle
         </button>

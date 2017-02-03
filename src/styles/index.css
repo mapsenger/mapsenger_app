@@ -1,4 +1,22 @@
 /* Application specific CSS */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.current-user-div-icon{
+  width: 12px;
+  height: 12px;
+  background-color: #5a43c8;
+  border-radius: 25px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
+  border: solid 1px #ffffff;
+}
+
+.my-div-icon{
+  /*background:url('http://i.imgur.com/fSL4zE3.png') center no-repeat;*/
+}
 
 footer {
   color: white;
@@ -72,7 +90,7 @@ body {
 .online-user-list {
   margin: 0;
   height: 68px;
-  background-color: #009688 !important;
+  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
 }
 .online-user-list ul {
   flex: 1;
