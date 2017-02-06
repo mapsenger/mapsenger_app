@@ -13,11 +13,17 @@ export default class SearchMap extends Component {
     sendMarker: React.PropTypes.func,
     POI: React.PropTypes.array,
     currentLoc: React.PropTypes.array,
+    sendMessage: React.PropTypes.func,
   };
 
   _shareMarker(marker) {
-    console.log(this.props.userID);
-    console.log(marker);
+    const messageObj = {
+      Who: this.props.userID,
+      // What: message,
+      Where: marker,
+      Type: 'marker',
+    };
+    this.props.sendMessage(messageObj);
   }
 
 

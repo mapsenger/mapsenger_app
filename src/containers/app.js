@@ -9,6 +9,7 @@ import SearchFunction from '../components/SearchFunction';
 import SearchCard from '../components/SearchCard';
 import SearchNavBar from '../components/SearchNavBar';
 import SearchMap from '../components/SearchMap';
+import SearchList from '../components/SearchList';
 import places from '../components/places';
 const consumerKey = 'IwiVdMcfJ68gEJp3N8y4pQ';
 const consumerSecret = 'qG5EKwoMK8b2SmvKnKI04TNGjVw';
@@ -68,7 +69,9 @@ class App extends React.Component {
       searchBar: '',
       searchedPOI: '',
       mainNav: 'ORIGIN',
-      currentLoc: ''
+      currentLoc: '',
+      goToMarker: '',
+      fromWhereToMap: '',
     };
   }
 
@@ -103,6 +106,7 @@ class App extends React.Component {
       state: true,
       uuids: true,
       callback: function(response) {
+        console.log(response);
         response.uuids.map((uuid) => {
           self.props.addMarker(uuid.state);
         });
@@ -145,8 +149,34 @@ class App extends React.Component {
   }
 
   getText(infoSearch) {
-    this.setState({searchBar: infoSearch});
+     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=47.658350, -122.313782&radius=3000';
+     fetch(url, {method: 'GET'}).then(function(response) {
+     return response.json();
+     }).then(json => {
+     this.setState({
+      searchedPOI: json.results,
+       searchBar: infoSearch,
+       active: 'SEARCH_ENTER'
+     });
+     }).catch(function(error) {
+     console.log('Error:', error);
+     });
+    console.log(infoSearch);
+  //  this.setState({
+  //    searchBar: infoSearch,
+  //    active: 'SEARCH_ENTER'
+  // });
   }
+
+  getMarker(marker) {
+    console.log(marker);
+     this.setState({
+      goToMarker: marker,
+      fromWhereToMap: 'marker',
+       active: 'SECOND'
+     });
+  }
+
 
   render() {
     const {props, sendMessage, state} = this;
@@ -170,7 +200,10 @@ class App extends React.Component {
         ) : null}
         {active === 'FIRST' ? (
           <div>
-            <ChatHistory history={ props.history }/>
+            <ChatHistory
+              history={ props.history }
+              getMarker={this.getMarker.bind(this)}
+            />
             <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
           </div>
         ) : active === 'SECOND' ? (
@@ -179,18 +212,25 @@ class App extends React.Component {
               markers={ props.markers }
               userID={ props.userID }
               sendMarker={ this.sendMarker.bind(this) }
+              allPOI={props.history}
+              fromWHere={state.fromWhereToMap}
+              markerFromHistory={state.goToMarker}
             />
           </div>
         ) : active === 'SEARCH' ? (
           <div>
-            <SearchFunction/>
+            <SearchFunction
+              searchText={this.getText.bind(this)}
+            />
           </div>
         )
           : active === 'SEARCH_ENTER' ? (
           <div>
-            <SearchCard
+            <SearchList
               textSearch={searchPOI}
               POI={state.searchedPOI}
+              sendMessage={ sendMessage }
+              userID={ props.userID }
             />
           </div>
         )
@@ -201,6 +241,7 @@ class App extends React.Component {
               POI={state.searchedPOI}
               userID={ props.userID }
               currentLoc={state.currentLoc}
+              sendMessage={ sendMessage }
               sendMarker={ this.sendMarker.bind(this)
               }
             />
@@ -212,9 +253,9 @@ class App extends React.Component {
   }
 
   fetchData() {
-       this.setState({
-       searchedPOI: places.thai,
-       });
+       // this.setState({
+       // searchedPOI: places.thai,
+       // });
       // const url = '/yelp' + '&query=thai+restaurant+Seattle+University+District&location=47.658350, -122.313782&radius=3000';
       // fetch(url, {method: 'GET'}).then(function(response) {
       // return response.json();
@@ -234,7 +275,6 @@ class App extends React.Component {
   handleClick() {
     const active = this.state.active;
     console.log('handle toggle', active);
-
     // Switch case here
     let newActive;
     switch (active) {
@@ -256,7 +296,8 @@ class App extends React.Component {
         newActive = 'SECOND';
     }
     this.setState({
-      active: newActive
+      active: newActive,
+      fromWhereToMap: 'main'
     });
   }
 

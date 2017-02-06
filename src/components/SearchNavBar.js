@@ -36,7 +36,6 @@ class SearchNavBar extends React.Component {
   _onSubmit(e) {
     if (e.key === 'Enter') {
       const message = this.refs.txtMessage.value;
-      this.props.focusModal('SEARCH_ENTER');
       this.props.searchText(message);
     }
   }
