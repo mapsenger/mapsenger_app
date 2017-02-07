@@ -6,7 +6,8 @@ class ChatUsers extends React.Component {
   static propTypes = {
     users: React.PropTypes.array,
     toggleFunction: React.PropTypes.func,
-    focusModal: React.PropTypes.func
+    focusModal: React.PropTypes.func,
+    currentPage: React.PropTypes.string
   }
 
   constructor(props) {
@@ -26,33 +27,30 @@ class ChatUsers extends React.Component {
   }
 
   render() {
-    const { users } = this.props;
+    const { users, currentPage } = this.props;
     return (
-      <div className="online-user-list lg-col-12">
-        <div className="online-users-number valign-wrapper lg-col-10">
-          <i className="material-icons">people</i>
-          <span className="valign">{ users.length } online</span>
+      <div className="mui-container-fluid">
+        <div className="mui-row online-user-list">
+          <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-2 mui-col-lg-1">
+            <span className="valign">{ users.length } online</span>
+          </div>
+          <div className="textSearch mui-col-md-10 mui-col-xs-7 mui-col-lg-10">
+            <input ref="txtMessage"
+                   type="text"
+                   onFocus={ this._onFocus.bind(this) }
+                   placeholder="Search"/>
+          </div>
+          <div className="toggle-button-col mui-col-md-1 mui-col-xs-2 mui-col-lg-1">
+            {currentPage === 'FIRST' ? (
+              <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
+              </button>
+            ) : currentPage === 'SEARCH' ? (
+              <button className="toggle-button-div" onClick={this._onClickButton.bind(this)}>
+              </button>
+            ) : null
+            }
+          </div>
         </div>
-
-        <ul>{
-          users.map((userID) => {
-            const name = 'Anonymous Robot #' + userID;
-            const imgURL = 'https://api.adorable.io/avatars/92/' + userID;
-            return (
-              <li key={ userID }>
-                <img title={ name } alt={ name } src={ imgURL } className="circle"/>
-              </li>
-            );
-          })
-        }
-        </ul>
-        <input ref="txtMessage"
-               type="text"
-               onFocus={ this._onFocus.bind(this) }
-               placeholder="Search"/>
-        <button type="button" onClick={this._onClickButton.bind(this)}>
-          Toggle
-        </button>
       </div>
     );
   }

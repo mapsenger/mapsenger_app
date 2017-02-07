@@ -188,6 +188,7 @@ class App extends React.Component {
         {mainNav === 'ORIGIN' ? (
           <ChatUsers users={ props.users }
                      focusModal={this.onToggleNav.bind(this)}
+                     currentPage={active}
                      toggleFunction={this.handleClick.bind(this)}
           />
         ) : mainNav === 'DESTINATION' ? (

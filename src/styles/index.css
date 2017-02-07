@@ -84,34 +84,52 @@ body {
   border-bottom: 0.1em solid #DCDCDC;
 }
 /* -------- Online user list ---------- */
-.online-user-list, .online-user-list ul {
-  display: flex;
-}
+/* For Chat User*/
 .online-user-list {
-  margin: 0;
   height: 68px;
+  display:flex;
+  align-items:center;
   background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
 }
-.online-user-list ul {
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin: 5px;
-}
-.online-user-list li{
-  display: inline-block;
-}
-.online-user-list img{
-  margin: 4px;
-  width: 50px;
-}
+
 .online-users-number{
   color: white;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 .online-users-number i{
   font-size: 50px;
   padding-right: 10px;
+}
+
+.toggle-button-col{
+  padding-left:30px;
+}
+
+.toggle-button-div-chat{
+  background-image: url('http://i.imgur.com/kVE8DIZ.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #6359df;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.toggle-button-div-map{
+  background-image: url('http://i.imgur.com/kVE8DIZ.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background-color: #6359df;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+
+.textSearch{
+  border-radius: 50px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
+  padding: -5px;
 }
 

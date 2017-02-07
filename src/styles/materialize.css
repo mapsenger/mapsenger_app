@@ -2557,19 +2557,6 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-.valign-wrapper {
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.valign-wrapper .valign {
-  display: block;
-}
-
 .clearfix {
   clear: both;
 }
