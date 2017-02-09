@@ -175,10 +175,11 @@ body {
 
 .talk-bubble-me {
   float: right;
+  position: absolute;
   display: inline-block;
-  position: relative;
+  right: 11px;
   height: auto;
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   background-color: white;
 }
 
@@ -206,6 +207,10 @@ body {
   border-color: white transparent transparent transparent;
 }
 
+.chat-button{
+  background: royalblue
+}
+
 /* for my chat*/
 .tri-right.border.right-in:before {
   content: ' ';
@@ -226,9 +231,9 @@ body {
   height: 0;
   left: auto;
   right: -12px;
-  top: 15px;
+  top: 2px;
   bottom: auto;
-  border: 6px solid;
+  border: 8px solid;
   border-color: transparent transparent transparent white;
 }
 

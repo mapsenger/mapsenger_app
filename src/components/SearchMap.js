@@ -19,7 +19,7 @@ export default class SearchMap extends Component {
   _shareMarker(marker) {
     const messageObj = {
       Who: this.props.userID,
-      // What: message,
+      When: new Date().valueOf(),
       Where: marker,
       Type: 'marker',
     };

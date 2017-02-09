@@ -19,7 +19,7 @@ module.exports = {
     changeOrigin: true,
   },
     '/yelp': {
-    target: 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyCu0Vt3723asBwzqyH5SDu2--U0vG11Tvk&',
+    target: 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBE3jdNsLmUq78SkdSLpDj8FhDr7oEXF2c&',
     changeOrigin: true,
     },
 };

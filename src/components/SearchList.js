@@ -20,6 +20,7 @@ export default class SearchList extends Component {
     const messageObj = {
       Who: this.props.userID,
       // What: message,
+      When: new Date().valueOf(),
       Where: marker,
       Type: 'marker',
     };

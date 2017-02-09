@@ -23,6 +23,7 @@ export default class ChatInput extends React.Component {
     const messageObj = {
       Who: this.props.userID,
       What: message,
+      When: new Date().valueOf(),
       Type: 'message'
     };
     this.props.sendMessage(messageObj);

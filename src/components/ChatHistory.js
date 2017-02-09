@@ -19,32 +19,33 @@ export default class ChatHistory extends React.Component {
       { props.history.map((messageObj) => {
         const imgURL = 'https://api.adorable.io/avatars/92/' + messageObj.Who;
         return (
-          <li className="collection-item avatar" style={{backgroundColor : "#eeeeee"}} key={ messageObj.When }>
+          <div>
             {String(props.me) === String(messageObj.Who) ? (
-              <div>
-                <span className="title"> </span>
-                <p>
+              <li className="collection-item avatar" style={{backgroundColor : "#eeeeee"}} key={ messageObj.When }>
+                <div>
+                  <span className="title"> </span>
                   {messageObj.Where ? (
                     <div className="talk-bubble-me tri-right right-in">
-                  <span style={{fontSize:15}}> I think this one is great <br/>
+                  <span style={{fontSize:15}}>
                     {messageObj.Where.name}
                     <br/>
-                 <button
-                   onClick={() => this._onClickButton(messageObj.Where)}
-                 >
-                   Go to marker
-                 </button>
                   </span>
+                      <button
+                        className="chat-button"
+                        onClick={() => this._onClickButton(messageObj.Where)}
+                      >
+                        Go to marker
+                      </button>
                     </div>
                   ) : (
                     <div className="talk-bubble-me tri-right right-in">
                       <span style={{fontSize:15}}>{ messageObj.What }</span>
                     </div>
                   )}
-                </p>
-              </div>
+                </div>
+              </li>
             ) : (
-              <div>
+              <li className="collection-item avatar" style={{backgroundColor : "#eeeeee"}} key={ messageObj.When }>
                 <img src={ imgURL } alt={ messageObj.Who } className="circle"/>
                 <span className="title"> </span>
                 <p>
@@ -66,10 +67,10 @@ export default class ChatHistory extends React.Component {
                     </div>
                   )}
                 </p>
-              </div>
+              </li>
             )
             }
-          </li>
+          </div>
         );
       })
       }
