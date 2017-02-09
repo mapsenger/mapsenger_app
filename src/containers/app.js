@@ -11,10 +11,6 @@ import SearchNavBar from '../components/SearchNavBar';
 import SearchMap from '../components/SearchMap';
 import SearchList from '../components/SearchList';
 import places from '../components/places';
-const consumerKey = 'IwiVdMcfJ68gEJp3N8y4pQ';
-const consumerSecret = 'qG5EKwoMK8b2SmvKnKI04TNGjVw';
-const token = 'lYLlyWdVd_UM8ZxyKyMOru0WoNbytcMK';
-const tokenSecret = 'V5I3DF2WzQ70vqXNmf3gRmzxYSY';
 
 const ID = Math.round(Math.random() * 1000000);
 const pubnub = PUBNUB.init({
@@ -151,7 +147,7 @@ class App extends React.Component {
   getText(infoSearch) {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
-     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
+     const url = '/yelp' + '&query=' + infoSearch + '&location=' + lat + "," + lng + '&radius=3000';
      fetch(url, {method: 'GET'}).then(function(response) {
      return response.json();
      }).then(json => {
