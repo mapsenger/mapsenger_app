@@ -42,7 +42,7 @@ class ChatUsers extends React.Component {
           </div>
           <div className="toggle-button-col mui-col-md-1 mui-col-xs-2 mui-col-lg-1">
             {currentPage === 'FIRST' ? (
-              <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
+              <button className="toggle-button-div-map" onClick={this._onClickButton.bind(this)}>
               </button>
             ) : currentPage === 'SECOND' ? (
               <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>

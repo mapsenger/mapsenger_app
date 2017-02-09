@@ -18,10 +18,10 @@ const tokenSecret = 'V5I3DF2WzQ70vqXNmf3gRmzxYSY';
 
 const ID = Math.round(Math.random() * 1000000);
 const pubnub = PUBNUB.init({
-  publish_key: 'pub-c-a21b783d-ac31-4e63-b4f4-d85df580cb54',
-  subscribe_key: 'sub-c-0aaf63fc-c4ca-11e6-90ff-0619f8945a4f',
+  publish_key: 'pub-c-ec19e776-9092-4b9c-af3c-1d9528bdfcd8',
+  subscribe_key: 'sub-c-65b524aa-ee99-11e6-a5f4-02ee2ddab7fe',
   uuid: ID,
-  ssl: true,
+  ssl: (location.protocol.toLowerCase() === 'https:'), // encrypt the channel
 });
 
 function mapStateToProps(state) {
@@ -149,7 +149,9 @@ class App extends React.Component {
   }
 
   getText(infoSearch) {
-     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=47.658350, -122.313782&radius=3000';
+    const lat = this.state.currentLoc[0];
+    const lng = this.state.currentLoc[1];
+     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
      fetch(url, {method: 'GET'}).then(function(response) {
      return response.json();
      }).then(json => {
@@ -196,6 +198,7 @@ class App extends React.Component {
                      backButton={this.goBackButton.bind(this)}
                      searchText={this.getText.bind(this)}
                      focusModal={this.openModal.bind(this)}
+                        currentPage={active}
                      toggleFunction={this.handleClick.bind(this)}
           />
         ) : null}
@@ -204,6 +207,7 @@ class App extends React.Component {
             <ChatHistory
               history={ props.history }
               getMarker={this.getMarker.bind(this)}
+              me={ props.userID }
             />
             <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
           </div>

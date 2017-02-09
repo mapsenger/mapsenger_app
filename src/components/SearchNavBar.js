@@ -12,6 +12,7 @@ class SearchNavBar extends React.Component {
     toggleFunction: React.PropTypes.func,
     focusModal: React.PropTypes.func,
     searchText: React.PropTypes.func,
+    currentPage: React.PropTypes.string
   }
 
   constructor(props) {
@@ -41,20 +42,73 @@ class SearchNavBar extends React.Component {
   }
 
   render() {
+    const { currentPage } = this.props;
     return (
-      <div className="online-user-list lg-col-12">
-        <button type="button" onClick={this._onClickBackButton.bind(this)}>
-          Back
-        </button>
-        <input autoFocus
-          ref="txtMessage"
-          type="text"
-          onFocus={ this._onFocus.bind(this) }
-          onKeyPress={this._onSubmit.bind(this)}
-          placeholder="Search"/>
-        <button type="button" onClick={this._onClickButton.bind(this)}>
-          Toggle
-        </button>
+      <div className="mui-container-fluid">
+        {currentPage === 'SEARCH_ENTER' ? (
+          <div className="mui-row online-user-list">
+            <div className="online-users-number valign-wrapper mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+              <button className="button-back"
+                      onClick={this._onClickBackButton.bind(this)}>
+              </button>
+            </div>
+            <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+              <input autoFocus
+                     ref="txtMessage"
+                     type="text"
+                     onFocus={ this._onFocus.bind(this) }
+                     onKeyPress={this._onSubmit.bind(this)}
+                     placeholder="Search"/>
+            </div>
+            <div className="mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+              <button className="search-button-div-map"
+                      type="button" onClick={this._onClickButton.bind(this)}>
+              </button>
+            </div>
+          </div>
+        ) : currentPage === 'SEARCH' ?
+          (
+            <div className="mui-row online-user-list">
+              <div className="online-users-number valign-wrapper mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+                <button className="button-back"
+                        onClick={this._onClickBackButton.bind(this)}>
+                </button>
+              </div>
+              <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+                <input autoFocus
+                       ref="txtMessage"
+                       type="text"
+                       onFocus={ this._onFocus.bind(this) }
+                       onKeyPress={this._onSubmit.bind(this)}
+                       placeholder="Search"/>
+              </div>
+            </div>
+          ) : currentPage === 'SEARCH_MAP' ?
+          (
+            <div className="mui-row online-user-list">
+              <div className="online-users-number valign-wrapper mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+                <button className="button-back"
+                        onClick={this._onClickBackButton.bind(this)}>
+                </button>
+              </div>
+              <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+                <input autoFocus
+                       ref="txtMessage"
+                       type="text"
+                       onFocus={ this._onFocus.bind(this) }
+                       onKeyPress={this._onSubmit.bind(this)}
+                       placeholder="Search"/>
+              </div>
+              <div className="mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+                <button
+                  className="search-button-div-list"
+                  type="button" onClick={this._onClickButton.bind(this)}>
+                </button>
+              </div>
+            </div>
+          ) : null
+        }
+
       </div>
     );
   }

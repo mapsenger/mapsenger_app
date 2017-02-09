@@ -28,8 +28,7 @@ footer {
   height: 130px;
 }
 
-footer .input-field input,
-button {
+footer .input-field input{
   border-color: #FFFFFF;
 }
 
@@ -80,8 +79,8 @@ body {
 .mdi-communication-chat {
   color: white;
 }
-.collection .collection-item:last-child {
-  border-bottom: 0.1em solid #DCDCDC;
+.collection .collection-item {
+  border-color: #EEEEEE
 }
 /* -------- Online user list ---------- */
 /* For Chat User*/
@@ -100,6 +99,7 @@ body {
   padding-right: 10px;
 }
 
+/*Button for Navbar*/
 .toggle-button-col{
   padding-left:30px;
 }
@@ -116,7 +116,18 @@ body {
 }
 
 .toggle-button-div-map{
-  background-image: url('http://i.imgur.com/kVE8DIZ.png');
+   background-image: url('http://i.imgur.com/kVE8DIZ.png');
+   background-repeat: no-repeat;
+   background-position: center;
+   border-radius: 50%;
+   width: 50px;
+   height: 50px;
+   background-color: #6359df;
+   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+ }
+
+.toggle-button-div-chat{
+  background-image: url('http://i.imgur.com/xI1lvXE.png');
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
@@ -126,15 +137,44 @@ body {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
 
+.search-button-div-map{
+  border: none;
+  background-image: url('http://i.imgur.com/kVE8DIZ.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+}
+
+.search-button-div-list{
+  border: none;
+  background-image: url('http://i.imgur.com/Ji6wdWH.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+}
+
 .textSearch{
-  border-radius: 50px;
+  border-radius: 30px;
   background-color: #ffffff;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
-  padding: -5px;
+  padding: -20px;
 }
 
 /* For Chat Message*/
 .talk-bubble {
+  display: inline-block;
+  position: relative;
+  height: auto;
+  padding: 10px 10px 10px 10px;
+  background-color: white;
+}
+
+.talk-bubble-me {
+  float: right;
   display: inline-block;
   position: relative;
   height: auto;
@@ -166,6 +206,32 @@ body {
   border-color: white transparent transparent transparent;
 }
 
+/* for my chat*/
+.tri-right.border.right-in:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: auto;
+  right: -40px;
+  top: 30px;
+  bottom: auto;
+  border: 20px solid;
+  border-color: transparent transparent transparent white;
+}
+.tri-right.right-in:after{
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: auto;
+  right: -12px;
+  top: 15px;
+  bottom: auto;
+  border: 6px solid;
+  border-color: transparent transparent transparent white;
+}
+
 /* talk bubble contents */
 .talktext{
   padding: 1em;
@@ -176,4 +242,18 @@ body {
   /* remove webkit p margins */
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
+}
+
+.button-back{
+  border: none;
+  background-image: url('http://i.imgur.com/JSIFLni.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+}
+
+.font-searchlist{
+  color: white;
 }

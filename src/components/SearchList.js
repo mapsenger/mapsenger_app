@@ -47,10 +47,10 @@ export default class SearchList extends Component {
         name: obj.name,
         pic: obj.icon,
         rating: obj.rating,
-        address: obj.formatted_address,
+        address: obj.formatted_address.split(",")[0],
         background: '#ffffff',
         imgBorderColor: 'black',
-        distance: String(distanceInMiles) + 'Miles',
+        distance: String(distanceInMiles.toFixed(2)) + ' Miles',
         lat: disLat,
         lng: disLng,
       };
@@ -74,7 +74,14 @@ export default class SearchList extends Component {
               <Card>
                 <CardHeader
                   title={place.name}
-                  subtitle={"Rating: " + place.rating}
+                  label="This toggle controls the expanded state of the component."
+                  subtitle={
+                  <div>
+                  <div>{"Rating: " + place.rating}</div>
+                  <div>{"Address: " + place.address}</div>
+                  <div>{"Distance: " + place.distance}</div>
+                  </div>
+                  }
                   actAsExpander={true}
                 />
                 <CardActions>

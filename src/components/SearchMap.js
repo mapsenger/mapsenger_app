@@ -42,6 +42,14 @@ export default class SearchMap extends Component {
   }
 
   componentWillMount() {
+    const us =  this.props.markers;
+    const me = this.props.userID;
+    const friends = us.filter(function(el) {
+      return el.id !== me;
+    });
+    const myMarker = us.filter(function(el) {
+      return el.id === me;
+    });
     const userCurrentLoc = this.props.currentLoc;
     // User Marker
     const mIcon = divIcon({
@@ -62,8 +70,8 @@ export default class SearchMap extends Component {
         markerID: obj.id,
         markerIcon: divIcon({
           className: 'my-div-icon',
-          html: '<img src="http://i.imgur.com/fSL4zE3.png"/>' +  '<br><span style="text-align: center;">' + obj.name + '</span>',
-          iconSize: [100, 100]
+          html: '<img src="http://i.imgur.com/fSL4zE3.png"/>',
+          iconSize: [25, 25]
         }),
         lat: disLat,
         lng: disLng,
@@ -73,13 +81,15 @@ export default class SearchMap extends Component {
         address: obj.formatted_address,
         background: '#ffffff',
         imgBorderColor: 'black',
-        distance: String(distanceInMiles) + 'meters',
+        distance: String(distanceInMiles.toFixed(2)) + ' Miles',
       };
       return robj;
     });
     this.setState({
       myMarkerCSS: mIcon,
       poiMarkers: reformedPlaces,
+      selfMarker: [myMarker[0].lat, myMarker[0].lng],
+      othersMarkers: friends,
     });
   }
 
@@ -120,9 +130,11 @@ export default class SearchMap extends Component {
             position={[marker.lat, marker.lng]}>
             <Popup>
               <span>
-                Name: <b>{marker.name}</b><br/>
-                Rating: <b>{marker.rating}</b><br/>
+                <b>{marker.name}</b><br/>
+                <b>Rating: </b>{marker.rating}<br/>
+                <b>Distance: </b>{marker.distance}<br/>
                 <button
+                  className="search-map-button"
                   onClick={() => this._shareMarker(marker)}
                 >
                   Share
