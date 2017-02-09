@@ -21,7 +21,7 @@ const pubnub = PUBNUB.init({
   publish_key: 'pub-c-a21b783d-ac31-4e63-b4f4-d85df580cb54',
   subscribe_key: 'sub-c-0aaf63fc-c4ca-11e6-90ff-0619f8945a4f',
   uuid: ID,
-  ssl: (location.protocol.toLowerCase() === 'https:'),
+  ssl: true,
 });
 
 function mapStateToProps(state) {

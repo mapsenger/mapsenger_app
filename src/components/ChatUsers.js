@@ -44,8 +44,8 @@ class ChatUsers extends React.Component {
             {currentPage === 'FIRST' ? (
               <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
               </button>
-            ) : currentPage === 'SEARCH' ? (
-              <button className="toggle-button-div" onClick={this._onClickButton.bind(this)}>
+            ) : currentPage === 'SECOND' ? (
+              <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
               </button>
             ) : null
             }

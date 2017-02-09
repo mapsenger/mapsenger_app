@@ -6,6 +6,7 @@ export default class ChatHistory extends React.Component {
   static propTypes = {
     history: React.PropTypes.array,
     getMarker: React.PropTypes.func,
+    me: React.PropTypes.number
   };
 
   _onClickButton(location) {
@@ -18,23 +19,26 @@ export default class ChatHistory extends React.Component {
       { props.history.map((messageObj) => {
         const imgURL = 'https://api.adorable.io/avatars/92/' + messageObj.Who;
         return (
-          <li className="collection-item avatar" key={ messageObj.When }>
+          <li className="collection-item avatar" style={{backgroundColor : "#eeeeee"}} key={ messageObj.When }>
             <img src={ imgURL } alt={ messageObj.Who } className="circle"/>
-            <span className="title">Anonymous robot #{ messageObj.Who }</span>
+            <span className="title"> </span>
             <p>
               {messageObj.Where ? (
-                <span>
-                  <p>I think this one is great</p>
-                  <b>{messageObj.Where.name}</b>
-                   <br/>
-                <button
-                  onClick={() => this._onClickButton(messageObj.Where)}
-                >
+                <div className="talk-bubble tri-right left-in">
+                  <span style={{fontSize:15}}> I think this one is great <br/>
+                    {messageObj.Where.name}
+                    <br/>
+                 <button
+                    onClick={() => this._onClickButton(messageObj.Where)}
+                 >
                   Go to marker
-                </button>
-              </span>
+                  </button>
+                  </span>
+                </div>
               ) : (
-                  <span>{ messageObj.What }</span>
+                <div className="talk-bubble tri-right left-in">
+                  <span style={{fontSize:15}}>{ messageObj.What }</span>
+                </div>
               )}
             </p>
           </li>

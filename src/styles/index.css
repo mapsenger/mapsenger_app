@@ -133,3 +133,47 @@ body {
   padding: -5px;
 }
 
+/* For Chat Message*/
+.talk-bubble {
+  display: inline-block;
+  position: relative;
+  height: auto;
+  padding: 10px 10px 10px 10px;
+  background-color: white;
+}
+
+.tri-right.border.left-in:before {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -40px;
+  right: auto;
+  top: 30px;
+  bottom: auto;
+  border: 20px solid;
+  border-color: #666 transparent transparent transparent;
+}
+.tri-right.left-in:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -12px;
+  right: auto;
+  bottom: auto;
+  border: 11px solid;
+  border-color: white transparent transparent transparent;
+}
+
+/* talk bubble contents */
+.talktext{
+  padding: 1em;
+  text-align: left;
+  line-height: 1.5em;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
