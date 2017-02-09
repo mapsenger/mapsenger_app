@@ -147,7 +147,7 @@ class App extends React.Component {
   getText(infoSearch) {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
-     const url = '/yelp' + '&query=' + infoSearch + '&location=' + lat + "," + lng + '&radius=3000';
+     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
      fetch(url, {method: 'GET'}).then(function(response) {
      return response.json();
      }).then(json => {
