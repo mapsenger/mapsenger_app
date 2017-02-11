@@ -1,5 +1,5 @@
 # Mapsenger
-
+Mapsenger is a map-based instant messaging application that allows users to discuss, search, and share information about places to meet and activities to do. This app eliminates the pain point of having to alternate between apps by having everything you need to arrange a hang out built right into it. 
 
 
 ## npm scripts
