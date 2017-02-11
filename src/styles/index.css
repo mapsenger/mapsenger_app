@@ -1,8 +1,11 @@
 /* Application specific CSS */
+/* Map Component */
 .leaflet-container {
+  position: absolute;
   height: 100%;
   width: 100%;
   margin: 0 auto;
+  z-index: -1;
 }
 
 .current-user-div-icon{
@@ -14,10 +17,32 @@
   border: solid 1px #ffffff;
 }
 
+.friend-div-icon{
+  width: 55px;
+  height: 55px;
+  border-radius: 27.5px;
+  box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
+}
+
+.wrapper {
+  height: 100%;
+}
+
+.navbar-map{
+  position: relative;
+  height: 100%;
+  z-index: 0;
+}
+
 .my-div-icon{
   /*background:url('http://i.imgur.com/fSL4zE3.png') center no-repeat;*/
 }
 
+.leaflet-left{
+  margin-top: 70px;
+}
+
+/* Chat Input*/
 footer {
   color: white;
   position: fixed;
@@ -38,6 +63,10 @@ footer .input-field input{
 
 /* ChatHistory styles */
 
+body {
+  background: #EEEEEE;
+}
+
 .collection {
   margin-bottom: 130px;
   margin-top: -1px;
@@ -45,10 +74,6 @@ footer .input-field input{
 
 .message-date {
   color: #585858;
-}
-
-body {
-  background: #EEEEEE;
 }
 
 .message-container {
@@ -85,10 +110,17 @@ body {
 /* -------- Online user list ---------- */
 /* For Chat User*/
 .online-user-list {
+   height: 68px;
+   display:flex;
+   align-items:center;
+   background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
+ }
+
+.online-user-map {
   height: 68px;
   display:flex;
   align-items:center;
-  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
+  background: transparent !important;
 }
 
 .online-users-number{
@@ -160,8 +192,17 @@ body {
 .textSearch{
   border-radius: 30px;
   background-color: #ffffff;
+  height:70%;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
   padding: -20px;
+}
+
+.textSearch-map{
+  border-radius: 30px;
+  background-color: #ffffff;
+  margin-left: 30px;
+  height:70%;
+  box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
 }
 
 /* For Chat Message*/

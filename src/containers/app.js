@@ -17,7 +17,7 @@ const pubnub = PUBNUB.init({
   publish_key: 'pub-c-ec19e776-9092-4b9c-af3c-1d9528bdfcd8',
   subscribe_key: 'sub-c-65b524aa-ee99-11e6-a5f4-02ee2ddab7fe',
   uuid: ID,
-  ssl: (location.protocol.toLowerCase() === 'https:'), // encrypt the channel
+  ssl: true, // encrypt the channel
 });
 
 function mapStateToProps(state) {
@@ -147,32 +147,32 @@ class App extends React.Component {
   getText(infoSearch) {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
-     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
-     fetch(url, {method: 'GET'}).then(function(response) {
-     return response.json();
-     }).then(json => {
-     this.setState({
-      searchedPOI: json.results,
-       searchBar: infoSearch,
-       active: 'SEARCH_ENTER'
-     });
-     }).catch(function(error) {
-     console.log('Error:', error);
-     });
+    const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
+    fetch(url, {method: 'GET'}).then(function(response) {
+      return response.json();
+    }).then(json => {
+      this.setState({
+        searchedPOI: json.results,
+        searchBar: infoSearch,
+        active: 'SEARCH_ENTER'
+      });
+    }).catch(function(error) {
+      console.log('Error:', error);
+    });
     console.log(infoSearch);
-  //  this.setState({
-  //    searchBar: infoSearch,
-  //    active: 'SEARCH_ENTER'
-  // });
+    //  this.setState({
+    //    searchBar: infoSearch,
+    //    active: 'SEARCH_ENTER'
+    // });
   }
 
   getMarker(marker) {
     console.log(marker);
-     this.setState({
+    this.setState({
       goToMarker: marker,
       fromWhereToMap: 'marker',
-       active: 'SECOND'
-     });
+      active: 'SECOND'
+    });
   }
 
 
@@ -191,11 +191,11 @@ class App extends React.Component {
           />
         ) : mainNav === 'DESTINATION' ? (
           <SearchNavBar users={ props.users }
-                     backButton={this.goBackButton.bind(this)}
-                     searchText={this.getText.bind(this)}
-                     focusModal={this.openModal.bind(this)}
+                        backButton={this.goBackButton.bind(this)}
+                        searchText={this.getText.bind(this)}
+                        focusModal={this.openModal.bind(this)}
                         currentPage={active}
-                     toggleFunction={this.handleClick.bind(this)}
+                        toggleFunction={this.handleClick.bind(this)}
           />
         ) : null}
         {active === 'FIRST' ? (
@@ -210,6 +210,8 @@ class App extends React.Component {
         ) : active === 'SECOND' ? (
           <div>
             <GoogleMap
+              focusModal={this.onToggleNav.bind(this)}
+              toggleFunction={this.handleClick.bind(this)}
               markers={ props.markers }
               userID={ props.userID }
               sendMarker={ this.sendMarker.bind(this) }
@@ -254,19 +256,19 @@ class App extends React.Component {
   }
 
   fetchData() {
-       // this.setState({
-       // searchedPOI: places.thai,
-       // });
-      // const url = '/yelp' + '&query=thai+restaurant+Seattle+University+District&location=47.658350, -122.313782&radius=3000';
-      // fetch(url, {method: 'GET'}).then(function(response) {
-      // return response.json();
-      // }).then(json => {
-      // this.setState({
-      //  searchedPOI: json.results,
-      // });
-      // }).catch(function(error) {
-      // console.log('Error:', error);
-      // });
+    // this.setState({
+    // searchedPOI: places.thai,
+    // });
+    // const url = '/yelp' + '&query=thai+restaurant+Seattle+University+District&location=47.658350, -122.313782&radius=3000';
+    // fetch(url, {method: 'GET'}).then(function(response) {
+    // return response.json();
+    // }).then(json => {
+    // this.setState({
+    //  searchedPOI: json.results,
+    // });
+    // }).catch(function(error) {
+    // console.log('Error:', error);
+    // });
   }
 
   sendMarker(marker) {

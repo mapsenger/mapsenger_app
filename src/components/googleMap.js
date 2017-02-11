@@ -13,7 +13,9 @@ export default class GoogleMap extends Component {
     sendMarker: React.PropTypes.func,
     allPOI: React.PropTypes.array,
     markerFromHistory: React.PropTypes.array,
-    fromWHere: React.PropTypes.string
+    fromWHere: React.PropTypes.string,
+    toggleFunction: React.PropTypes.func,
+    focusModal: React.PropTypes.func,
   };
 
   constructor(props) {
@@ -21,6 +23,7 @@ export default class GoogleMap extends Component {
     this.state = {
       selfMarker: '',
       myMarkerCSS: '',
+      friendsCustomMarkers: '',
       othersMarkers: props.markers,
       center: [47.6553, -122.3035],
       lat: 47.658350,
@@ -31,17 +34,33 @@ export default class GoogleMap extends Component {
   }
 
   componentWillMount() {
-    const us =  this.props.markers;
+    const us = this.props.markers;
     const me = this.props.userID;
     const markerHistory = this.props.allPOI;
     // Get all friends locations
     const friends = us.filter(function(el) {
+      console.log(el.id);
       return el.id !== me;
     });
     // User Marker
     const mIcon = divIcon({
       className: 'current-user-div-icon',
       iconSize: [15, 15]
+    });
+    // Friends Markers
+    const friendsIcon = friends.map(function(friend) {
+      const imgURL = 'https://api.adorable.io/avatars/92/' + friend.id;
+      const markerUrl = '<img class="friend-div-icon" src=' + imgURL + '/>';
+      return {
+        id: friend.id,
+        lat: friend.lat,
+        lng: friend.lng,
+        markerIcon: divIcon({
+          className: 'friend-div-icon',
+          html: markerUrl,
+          iconSize: [0, 0]
+        })
+      };
     });
     // Get my location for the marker
     const myMarker = us.filter(function(el) {
@@ -83,6 +102,7 @@ export default class GoogleMap extends Component {
       selfMarker: [myMarker[0].lat, myMarker[0].lng],
       othersMarkers: friends,
       POI: reformedPlaces,
+      friendsCustomMarkers: friendsIcon,
     });
   }
 
@@ -90,36 +110,43 @@ export default class GoogleMap extends Component {
     console.log(this.state.POI);
   }
 
+  _onClickButton() {
+    this.props.toggleFunction();
+  }
+
+  _onFocus() {
+    this.props.focusModal('DESTINATION');
+  }
+
   render() {
     const position = this.state.center;
     return (
-      <Map
-        style={{height: '100vh'}}
-        center={position}
-        zoom={this.state.zoom}>
-        <TileLayer
-          url="https://api.mapbox.com/styles/v1/junep1009/ciyjx3eah000i2skuw54czps9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoianVuZXAxMDA5IiwiYSI6ImNpaTFpbXZhMjAwYXFzd2txaWhwZWg0MGkifQ.zVbpTuEmpLzyRasVFfkysQ"
-          attribution="<attribution>"/>
-        <Marker
-          position={this.state.selfMarker}
-          icon={this.state.myMarkerCSS}
-        >
-          <Popup>
-            <span>You are here.<br/></span>
-          </Popup>
-        </Marker>
-        { this.state.othersMarkers.map((marker, index) =>
-            <Marker position={[0.01 * (index + 1) + marker.lat, marker.lng]}>
-              <Popup>
-                <span>You friends are here.<br/></span>
-              </Popup>
-            </Marker>
-        )}
-        { this.state.POI.map((marker, index) =>
+      <div className="wrapper-map">
+        <Map
+          style={{height: '100vh'}}
+          center={position}
+          zoom={this.state.zoom}>
+          <TileLayer
+            url="https://api.mapbox.com/styles/v1/junep1009/ciyjx3eah000i2skuw54czps9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoianVuZXAxMDA5IiwiYSI6ImNpaTFpbXZhMjAwYXFzd2txaWhwZWg0MGkifQ.zVbpTuEmpLzyRasVFfkysQ"
+            attribution="<attribution>"/>
           <Marker
-             icon={marker.markerIcon}
-            position={[marker.lat, marker.lng]}>
+            position={this.state.selfMarker}
+            icon={this.state.myMarkerCSS}
+          >
             <Popup>
+              <span>You are here.<br/></span>
+            </Popup>
+          </Marker>
+          { this.state.friendsCustomMarkers.map((marker, index) =>
+            <Marker
+              icon={marker.markerIcon}
+              position={[0.01 * (index + 1) + marker.lat, marker.lng]}/>
+          )}
+          { this.state.POI.map((marker, index) =>
+            <Marker
+              icon={marker.markerIcon}
+              position={[marker.lat, marker.lng]}>
+              <Popup>
               <span>
                 Name: <b>{marker.name}</b><br/>
                 Rating: <b>{marker.rating}</b><br/>
@@ -129,10 +156,23 @@ export default class GoogleMap extends Component {
                   Share
                 </button>
               </span>
-            </Popup>
-          </Marker>
-        )}
-      </Map>
+              </Popup>
+            </Marker>
+          )}
+        </Map>
+        <div className="navbar-map mui-row online-user-map">
+          <div className="textSearch-map mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+            <input ref="txtMessage"
+                   type="text"
+                   onFocus={ this._onFocus.bind(this) }
+                   placeholder="Search"/>
+          </div>
+          <div className="toggle-button-col mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
+            <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
+            </button>
+          </div>
+        </div>
+      </div>
     );
   }
 }
