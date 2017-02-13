@@ -73,10 +73,8 @@ class App extends React.Component {
 
   componentWillMount() {
     this.fetchData();
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({
-        currentLoc: [position.coords.latitude, position.coords.longitude]
-      });
+    this.setState({
+      currentLoc: [47.655412, -122.307928]
     });
   }
 
@@ -84,24 +82,22 @@ class App extends React.Component {
     console.log(this.state.searchedPOI);
     // No geo location here you said?
     this.props.setUserID(ID);
-    navigator.geolocation.getCurrentPosition((position) => {
-      pubnub.subscribe({
-        channel: 'ReactChat',
-        message: this.props.addMessage,
-        presence: this.onPresenceChange,
-        state: {
-          id: ID,
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        },
-      });
+    pubnub.subscribe({
+      channel: 'ReactChat',
+      message: this.props.addMessage,
+      presence: this.onPresenceChange,
+      state: {
+        id: ID,
+        lat: 47.655412,
+        lng: -122.307928,
+      },
     });
     const self = this;
     pubnub.here_now({
       channel: 'ReactChat',
       state: true,
       uuids: true,
-      callback: function(response) {
+      callback: function (response) {
         console.log(response);
         response.uuids.map((uuid) => {
           self.props.addMarker(uuid.state);
@@ -148,7 +144,7 @@ class App extends React.Component {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
-    fetch(url, {method: 'GET'}).then(function(response) {
+    fetch(url, {method: 'GET'}).then(function (response) {
       return response.json();
     }).then(json => {
       this.setState({
@@ -156,7 +152,7 @@ class App extends React.Component {
         searchBar: infoSearch,
         active: 'SEARCH_ENTER'
       });
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log('Error:', error);
     });
     console.log(infoSearch);
@@ -320,12 +316,15 @@ class App extends React.Component {
     console.log(dat);
     this.setState({active: dat});
   }
+
   //  Toggle Nav Bar
   goBackButton() {
     console.log();
     this.setState(
-      {mainNav: 'ORIGIN',
-        active: 'FIRST'}
+      {
+        mainNav: 'ORIGIN',
+        active: 'FIRST'
+      }
     );
   }
 

@@ -160,8 +160,9 @@ export default class GoogleMap extends Component {
             </Marker>
           )}
         </Map>
+        <div className="mui-container-fluid">
         <div className="navbar-map mui-row online-user-map">
-          <div className="textSearch-map mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+          <div className="textSearch-map mui-col-md-9 mui-col-xs-9 mui-col-lg-9">
             <input ref="txtMessage"
                    type="text"
                    onFocus={ this._onFocus.bind(this) }
@@ -170,6 +171,7 @@ export default class GoogleMap extends Component {
           <div className="toggle-button-col mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
             <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
             </button>
+          </div>
           </div>
         </div>
       </div>

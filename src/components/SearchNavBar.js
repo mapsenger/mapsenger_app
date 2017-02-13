@@ -47,20 +47,21 @@ class SearchNavBar extends React.Component {
       <div className="mui-container-fluid">
         {currentPage === 'SEARCH_ENTER' ? (
           <div className="mui-row online-user-list">
-            <div className="online-users-number valign-wrapper mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+            <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
               <button className="button-back"
                       onClick={this._onClickBackButton.bind(this)}>
               </button>
             </div>
-            <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+            <div className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
               <input autoFocus
+                     id="input_search_bar"
                      ref="txtMessage"
                      type="text"
                      onFocus={ this._onFocus.bind(this) }
                      onKeyPress={this._onSubmit.bind(this)}
                      placeholder="Search"/>
             </div>
-            <div className="mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+            <div className="mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
               <button className="search-button-div-map"
                       type="button" onClick={this._onClickButton.bind(this)}>
               </button>
@@ -69,15 +70,16 @@ class SearchNavBar extends React.Component {
         ) : currentPage === 'SEARCH' ?
           (
             <div className="mui-row online-user-list">
-              <div className="online-users-number valign-wrapper mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+              <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
                 <button className="button-back"
                         onClick={this._onClickBackButton.bind(this)}>
                 </button>
               </div>
-              <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+              <div className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
                 <input autoFocus
                        ref="txtMessage"
                        type="text"
+                       id="input_search_bar"
                        onFocus={ this._onFocus.bind(this) }
                        onKeyPress={this._onSubmit.bind(this)}
                        placeholder="Search"/>
@@ -86,20 +88,21 @@ class SearchNavBar extends React.Component {
           ) : currentPage === 'SEARCH_MAP' ?
           (
             <div className="mui-row online-user-list">
-              <div className="online-users-number valign-wrapper mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+              <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
                 <button className="button-back"
                         onClick={this._onClickBackButton.bind(this)}>
                 </button>
               </div>
-              <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+              <div className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
                 <input autoFocus
+                       id="input_search_bar"
                        ref="txtMessage"
                        type="text"
                        onFocus={ this._onFocus.bind(this) }
                        onKeyPress={this._onSubmit.bind(this)}
                        placeholder="Search"/>
               </div>
-              <div className="mui-col-md-2 mui-col-xs-2 mui-col-lg-2">
+              <div className="mui-col-md-1 mui-col-xs-1 mui-col-lg-1 ">
                 <button
                   className="search-button-div-list"
                   type="button" onClick={this._onClickButton.bind(this)}>

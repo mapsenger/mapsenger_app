@@ -87,6 +87,7 @@
     "rc-collapse": "^1.6.12",
     "react-leaflet": "^1.0.0-rc.3",
     "request": "^2.79.0",
+    "request-ip": "^1.2.3",
     "winston": "^2.1.1"
   },
   "keywords": [

@@ -8,7 +8,7 @@
   z-index: -1;
 }
 
-.current-user-div-icon{
+.current-user-div-icon {
   width: 12px;
   height: 12px;
   background-color: #5a43c8;
@@ -17,10 +17,10 @@
   border: solid 1px #ffffff;
 }
 
-.friend-div-icon{
-  width: 55px;
-  height: 55px;
-  border-radius: 27.5px;
+.friend-div-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
   box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -28,17 +28,17 @@
   height: 100%;
 }
 
-.navbar-map{
+.navbar-map {
   position: relative;
   height: 100%;
   z-index: 0;
 }
 
-.my-div-icon{
+.my-div-icon {
   /*background:url('http://i.imgur.com/fSL4zE3.png') center no-repeat;*/
 }
 
-.leaflet-left{
+.leaflet-left {
   margin-top: 70px;
 }
 
@@ -53,7 +53,7 @@ footer {
   height: 130px;
 }
 
-footer .input-field input{
+footer .input-field input {
   border-color: #FFFFFF;
 }
 
@@ -61,6 +61,26 @@ footer .input-field input{
   font-style: italic;
 }
 
+/* Css for Navigation Bar*/
+input[type=text] {
+  border-bottom: none;
+  margin: 0;
+  height: 3.2rem;
+}
+
+input[type=text]:focus:not([readonly]) {
+  border-bottom: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+#input_search_bar {
+  color: white;
+}
+
+button:focus{
+  background-color: transparent;
+}
 /* ChatHistory styles */
 
 body {
@@ -80,63 +100,75 @@ body {
   height: 100vh;
   flex-direction: column;
 }
+
 .message-container, .message-form {
   display: flex;
 }
+
 .message-form {
   flex: 1;
   max-height: 136px;
   background-color: #009688 !important;
   color: white;
 }
+
 .message-list {
   flex: 1;
   overflow: auto;
   margin-top: 0;
   margin-bottom: 0;
 }
+
 .message-form .input-field input {
   border-color: #FFFFFF;
 }
+
 .chip {
   font-style: italic;
 }
+
 .mdi-communication-chat {
   color: white;
 }
+
 .collection .collection-item {
   border-color: #EEEEEE
 }
+
 /* -------- Online user list ---------- */
 /* For Chat User*/
 .online-user-list {
-   height: 68px;
-   display:flex;
-   align-items:center;
-   background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
- }
+  height: 68px;
+  display: flex;
+  align-items: center;
+  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
+}
 
 .online-user-map {
   height: 68px;
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
   background: transparent !important;
 }
 
-.online-users-number{
+.online-users-number {
   color: white;
+  margin-left: 15px !important;
+  margin-right: 0 !important;
+  padding: 0;
 }
-.online-users-number i{
+
+.online-users-number i {
   font-size: 50px;
   padding-right: 10px;
 }
 
 /*Button for Navbar*/
-.toggle-button-col{
-  padding-left:30px;
+.toggle-button-col {
+  padding-left: 30px;
 }
 
-.toggle-button-div-chat{
+.toggle-button-div-chat {
   background-image: url('http://i.imgur.com/kVE8DIZ.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -144,21 +176,23 @@ body {
   width: 50px;
   height: 50px;
   background-color: #6359df;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  border: none;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
 }
 
-.toggle-button-div-map{
-   background-image: url('http://i.imgur.com/kVE8DIZ.png');
-   background-repeat: no-repeat;
-   background-position: center;
-   border-radius: 50%;
-   width: 50px;
-   height: 50px;
-   background-color: #6359df;
-   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
- }
+.toggle-button-div-map {
+  background-image: url('http://i.imgur.com/kVE8DIZ.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  border: none;
+  background-color: #6359df;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
+}
 
-.toggle-button-div-chat{
+.toggle-button-div-chat {
   background-image: url('http://i.imgur.com/xI1lvXE.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -169,7 +203,8 @@ body {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
 
-.search-button-div-map{
+.search-button-div-map {
+  margin-left: 15px;
   border: none;
   background-image: url('http://i.imgur.com/kVE8DIZ.png');
   background-repeat: no-repeat;
@@ -179,7 +214,8 @@ body {
   background-color: transparent;
 }
 
-.search-button-div-list{
+.search-button-div-list {
+  margin-left: 15px;
   border: none;
   background-image: url('http://i.imgur.com/Ji6wdWH.png');
   background-repeat: no-repeat;
@@ -189,19 +225,25 @@ body {
   background-color: transparent;
 }
 
-.textSearch{
+.textSearch {
   border-radius: 30px;
   background-color: #ffffff;
-  height:70%;
+  height: 50px;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
   padding: -20px;
 }
 
-.textSearch-map{
+.textSearch-search-nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.textSearch-map {
   border-radius: 30px;
   background-color: #ffffff;
-  margin-left: 30px;
-  height:70%;
+  height: 50px;
+  padding: -20px;
+  margin-left: 15px;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
 }
 
@@ -236,6 +278,7 @@ body {
   border: 20px solid;
   border-color: #666 transparent transparent transparent;
 }
+
 .tri-right.left-in:after {
   content: ' ';
   position: absolute;
@@ -248,7 +291,7 @@ body {
   border-color: white transparent transparent transparent;
 }
 
-.chat-button{
+.chat-button {
   background: royalblue
 }
 
@@ -265,7 +308,8 @@ body {
   border: 20px solid;
   border-color: transparent transparent transparent white;
 }
-.tri-right.right-in:after{
+
+.tri-right.right-in:after {
   content: ' ';
   position: absolute;
   width: 0;
@@ -279,27 +323,29 @@ body {
 }
 
 /* talk bubble contents */
-.talktext{
+.talktext {
   padding: 1em;
   text-align: left;
   line-height: 1.5em;
 }
-.talktext p{
+
+.talktext p {
   /* remove webkit p margins */
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
 }
 
-.button-back{
+.button-back {
   border: none;
   background-image: url('http://i.imgur.com/JSIFLni.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 50px;
-  height: 50px;
+  width: 2.2em;
+  height: 2.2em;
+  background-size: 1.8em auto;
   background-color: transparent;
 }
 
-.font-searchlist{
+.font-searchlist {
   color: white;
 }
