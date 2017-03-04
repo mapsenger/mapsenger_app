@@ -45,7 +45,7 @@ export default class ChatHistory extends React.Component {
                 </div>
               </li>
             ) : (
-              <li className="collection-item avatar" style={{backgroundColor : "#eeeeee"}} key={ messageObj.When }>
+              <li className="collection-item avatar" style={{backgroundColor : "#363636"}} key={ messageObj.When }>
                 <img src={ imgURL } alt={ messageObj.Who } className="circle"/>
                 <span className="title"> </span>
                 <p>

@@ -25,7 +25,6 @@ app.use(helmet());
 nodeProxy(app);
 
 app.get('/yelp', function(req, res) {
-  console.log('YELP');
 });
 
 // Serve the distributed assets and allow HTML5 mode routing. NB: must be last.

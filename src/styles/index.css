@@ -56,6 +56,9 @@ footer {
 footer .input-field input {
   border-color: #FFFFFF;
 }
+.blackFooter{
+  background-color: #505050;
+}
 
 .chip {
   font-style: italic;
@@ -84,10 +87,11 @@ button:focus{
 /* ChatHistory styles */
 
 body {
-  background: #EEEEEE;
+  background-color: #363636;
 }
 
 .collection {
+  border: none;
   margin-bottom: 130px;
   margin-top: -1px;
 }
@@ -141,7 +145,14 @@ body {
   height: 68px;
   display: flex;
   align-items: center;
-  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
+  background-color: #363636;
+  border: none;
+  /*-webkit-backdrop-filter: blur(5px);*/
+  /*-moz-filter: blur(5px);*/
+  /*-o-filter: blur(5px);*/
+  /*-ms-filter: blur(5px);*/
+  /*filter: blur(5px);*/
+  /*background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;*/
 }
 
 .online-user-map {
@@ -165,7 +176,6 @@ body {
 
 /*Button for Navbar*/
 .toggle-button-col {
-  padding-left: 30px;
 }
 
 .toggle-button-div-chat {

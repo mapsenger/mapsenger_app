@@ -10,6 +10,7 @@ import SearchCard from '../components/SearchCard';
 import SearchNavBar from '../components/SearchNavBar';
 import SearchMap from '../components/SearchMap';
 import SearchList from '../components/SearchList';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import places from '../components/places';
 
 const ID = Math.round(Math.random() * 1000000);
@@ -209,16 +210,21 @@ class App extends React.Component {
           </div>
         ) : active === 'SECOND' ? (
           <div>
-            <GoogleMap
-              focusModal={this.onToggleNav.bind(this)}
-              toggleFunction={this.handleClick.bind(this)}
-              markers={ props.markers }
-              userID={ props.userID }
-              sendMarker={ this.sendMarker.bind(this) }
-              allPOI={props.history}
-              fromWHere={state.fromWhereToMap}
-              markerFromHistory={state.goToMarker}
-            />
+            <ReactCSSTransitionGroup
+              transitionName="example"
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}>
+              <GoogleMap
+                focusModal={this.onToggleNav.bind(this)}
+                toggleFunction={this.handleClick.bind(this)}
+                markers={ props.markers }
+                userID={ props.userID }
+                sendMarker={ this.sendMarker.bind(this) }
+                allPOI={props.history}
+                fromWHere={state.fromWhereToMap}
+                markerFromHistory={state.goToMarker}
+              />
+            </ReactCSSTransitionGroup>
           </div>
         ) : active === 'SEARCH' ? (
           <div>

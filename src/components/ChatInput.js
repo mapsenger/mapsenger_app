@@ -35,7 +35,7 @@ export default class ChatInput extends React.Component {
     const {props, onSubmit} = this;
     const imgURL = 'https://api.adorable.io/avatars/92/' + props.userID;
     // Check if the message is empty
-    return (<footer className="teal">
+    return (<footer className="blackFooter">
       <form className="container" onSubmit={ onSubmit }>
         <div className="row">
           <div className="input-field col s10">
