@@ -101,7 +101,7 @@ class App extends React.Component {
       channel: 'ReactChat',
       state: true,
       uuids: true,
-      callback: function(response) {
+      callback: function (response) {
         console.log(response);
         response.uuids.map((uuid) => {
           self.props.addMarker(uuid.state);
@@ -148,7 +148,7 @@ class App extends React.Component {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
-    fetch(url, {method: 'GET'}).then(function(response) {
+    fetch(url, {method: 'GET'}).then(function (response) {
       return response.json();
     }).then(json => {
       this.setState({
@@ -156,7 +156,7 @@ class App extends React.Component {
         searchBar: infoSearch,
         active: 'SEARCH_ENTER'
       });
-    }).catch(function(error) {
+    }).catch(function (error) {
       console.log('Error:', error);
     });
     console.log(infoSearch);
@@ -209,16 +209,16 @@ class App extends React.Component {
           </div>
         ) : active === 'SECOND' ? (
           <div>
-            <GoogleMap
-              focusModal={this.onToggleNav.bind(this)}
-              toggleFunction={this.handleClick.bind(this)}
-              markers={ props.markers }
-              userID={ props.userID }
-              sendMarker={ this.sendMarker.bind(this) }
-              allPOI={props.history}
-              fromWHere={state.fromWhereToMap}
-              markerFromHistory={state.goToMarker}
-            />
+              <GoogleMap
+                focusModal={this.onToggleNav.bind(this)}
+                toggleFunction={this.handleClick.bind(this)}
+                markers={ props.markers }
+                userID={ props.userID }
+                sendMarker={ this.sendMarker.bind(this) }
+                allPOI={props.history}
+                fromWHere={state.fromWhereToMap}
+                markerFromHistory={state.goToMarker}
+              />
           </div>
         ) : active === 'SEARCH' ? (
           <div>
@@ -320,12 +320,15 @@ class App extends React.Component {
     console.log(dat);
     this.setState({active: dat});
   }
+
   //  Toggle Nav Bar
   goBackButton() {
     console.log();
     this.setState(
-      {mainNav: 'ORIGIN',
-        active: 'FIRST'}
+      {
+        mainNav: 'ORIGIN',
+        active: 'FIRST'
+      }
     );
   }
 

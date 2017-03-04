@@ -25,14 +25,13 @@ app.use(helmet());
 nodeProxy(app);
 
 app.get('/yelp', function(req, res) {
-  console.log('YELP');
 });
 
 // Serve the distributed assets and allow HTML5 mode routing. NB: must be last.
 nodeAppServer(app);
 
 // Start up the server.
-app.listen(PORT, '10.229.31.88', (err) => {
+app.listen(PORT, '10.0.0.135', (err) => {
   if (err) {
     winston.error(err);
     return;

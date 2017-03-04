@@ -18,8 +18,8 @@ module.exports = {
     target: 'http://jsonplaceholder.typicode.com',
     changeOrigin: true,
   },
-    '/yelp': {
+  '/yelp': {
     target: 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBE3jdNsLmUq78SkdSLpDj8FhDr7oEXF2c&',
     changeOrigin: true,
-    },
+  },
 };

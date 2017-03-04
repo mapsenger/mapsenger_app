@@ -2,6 +2,10 @@
  * Created by JNEP on 12/22/16.
  */
 import * as React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
+const style = {
+};
 
 export default class ChatInput extends React.Component {
 
@@ -35,24 +39,31 @@ export default class ChatInput extends React.Component {
     const {props, onSubmit} = this;
     const imgURL = 'https://api.adorable.io/avatars/92/' + props.userID;
     // Check if the message is empty
-    return (<footer className="teal">
+    return (
+  <MuiThemeProvider>
+      <footer className="blackFooter">
       <form className="container" onSubmit={ onSubmit }>
         <div className="row">
-          <div className="input-field col s10">
-            <i className="prefix mdi-communication-chat"/>
+          <div className="input-field col s9">
             <input ref="txtMessage" type="text" placeholder="Type your message"/>
             <span className="chip left">
               <img src={ imgURL }/>
               <span>Anonymous robot #{ props.userID }</span>
             </span>
           </div>
-          <div className="input-field col s2">
-            <button type="submit" className="waves-effect waves-light btn-floating btn-large">
-              <i className="mdi-content-send"/>
-            </button>
+          <div className="input-field col s3">
+            <RaisedButton backgroundColor='#6c4dd5'  primary={true} label="SEND"  style={{
+      minWidth: '60px',
+      pading: '0px 0px',
+      margin: '0 auto',
+      color: '#fff',
+    }}
+               />
           </div>
         </div>
       </form>
-    </footer>);
+    </footer>
+  </MuiThemeProvider>
+  );
   }
 }
