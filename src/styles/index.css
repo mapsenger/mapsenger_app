@@ -142,6 +142,10 @@ body {
   border-color: #EEEEEE
 }
 
+.collection .collection-item.avatar{
+  min-height:50px !important;
+}
+
 /* -------- Online user list ---------- */
 /* For Chat User*/
 .empty-div{
@@ -192,8 +196,8 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   background-color: #6359df;
   border: none;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
@@ -204,9 +208,10 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border: none;
+  margin-top : 2px;
   background-color: #6359df;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
 }
@@ -247,7 +252,7 @@ body {
 .textSearch {
   border-radius: 30px;
   background-color: #ffffff;
-  height: 50px;
+  height: 44px;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
   padding: -20px;
 }
@@ -260,7 +265,7 @@ body {
 .textSearch-map {
   border-radius: 30px;
   background-color: #ffffff;
-  height: 50px;
+  height: 44px;
   padding: -20px;
   margin-left: 15px;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
@@ -271,31 +276,21 @@ body {
   display: inline-block;
   position: relative;
   height: auto;
-  padding: 10px 10px 10px 10px;
-  background-color: white;
+  padding: 10px;
+  margin-bottom:10px;
+  background-color: #fff;
 }
 
 .talk-bubble-me {
-  float: right;
-  position: absolute;
+  right: 12px;
+  clear : right;
   display: inline-block;
-  right: 11px;
+  position: absolute;
+  margin-bottom:10px;
   height: auto;
   padding: 10px;
-  background-color: white;
-}
-
-.tri-right.border.left-in:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -40px;
-  right: auto;
-  top: 30px;
-  bottom: auto;
-  border: 20px solid;
-  border-color: #666 transparent transparent transparent;
+  background-color: #6359df;
+  color: #fff
 }
 
 .tri-right.left-in:after {
@@ -303,29 +298,17 @@ body {
   position: absolute;
   width: 0;
   height: 0;
-  left: -12px;
   right: auto;
+  left: -14px;
+  top: 10px;
   bottom: auto;
-  border: 11px solid;
-  border-color: white transparent transparent transparent;
+  border: 8px solid;
+  border-color: transparent white transparent transparent
+
 }
 
 .chat-button {
   background: royalblue
-}
-
-/* for my chat*/
-.tri-right.border.right-in:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: auto;
-  right: -40px;
-  top: 30px;
-  bottom: auto;
-  border: 20px solid;
-  border-color: transparent transparent transparent white;
 }
 
 .tri-right.right-in:after {
@@ -334,11 +317,18 @@ body {
   width: 0;
   height: 0;
   left: auto;
-  right: -12px;
-  top: 2px;
+  right: -14px;
+  top: 14px;
   bottom: auto;
   border: 8px solid;
-  border-color: transparent transparent transparent white;
+  border-color: transparent transparent transparent #6359df;
+}
+
+.round{
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+
 }
 
 /* talk bubble contents */
@@ -368,4 +358,9 @@ body {
 .font-searchlist {
   color: white;
 }
+/*this is for searched lists and cards*/
 
+.subhead{
+  color:white;
+  font-weight: 100;
+}
