@@ -99,4 +99,3 @@ export default class SearchCard extends Component {
 
 
 }
-

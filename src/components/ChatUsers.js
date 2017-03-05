@@ -41,6 +41,7 @@ class ChatUsers extends React.Component {
                      onFocus={ this._onFocus.bind(this) }
                      placeholder="Search"/>
             </div>
+
             <div className="toggle-button-col mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
               <button className="toggle-button-div-map" onClick={this._onClickButton.bind(this)}>
               </button>

@@ -178,4 +178,3 @@ export default class GoogleMap extends Component {
     );
   }
 }
-

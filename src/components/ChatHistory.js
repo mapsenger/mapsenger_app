@@ -34,28 +34,28 @@ export default class ChatHistory extends React.Component {
         return (
           <div>
             {String(props.me) === String(messageObj.Who) ? (
-              <li className="collection-item avatar" style={{backgroundColor : "#eeeeee"}} key={ messageObj.When }>
+              <li className="collection-item avatar" style={{backgroundColor : "transparent"}} key={ messageObj.When }>
                   <span className="title"> </span>
                   <p>
                   {messageObj.Where ? (
-                    <div className="talk-bubble-me tri-right right-in">
+                    <div className="talk-bubble-me tri-right round right-in">
                   <span style={{fontSize:15}}>
                     {messageObj.Where.name}
                     <br/>
-                  </span>
+
                       <button
                         className="chat-button"
                         onClick={() => this._onClickButton(messageObj.Where)}
                       >
                         Go to marker
-                      </button>
+                      </button></span>
                     </div>
                   ) : (
-                    <div className="talk-bubble-me tri-right right-in">
+                    <div className="talk-bubble-me tri-right round right-in">
                       <span style={{fontSize:15}}>{ messageObj.What }</span>
                     </div>
                   )}
-                </p>
+                  </p>
               </li>
             ) : (
               <li className="collection-item avatar" style={{backgroundColor : "#363636"}} key={ messageObj.When }>
@@ -63,7 +63,7 @@ export default class ChatHistory extends React.Component {
                 <span className="title"> </span>
                 <p>
                   {messageObj.Where ? (
-                    <div className="talk-bubble tri-right left-in">
+                    <div className="talk-bubble tri-right round left-in">
                   <span style={{fontSize:15}}> I think this one is great <br/>
                     {messageObj.Where.name}
                     <br/>
@@ -75,8 +75,10 @@ export default class ChatHistory extends React.Component {
                   </span>
                     </div>
                   ) : (
-                    <div className="talk-bubble tri-right left-in">
-                      <span style={{fontSize:15}}>{ messageObj.What }</span>
+                    <div className="talk-bubble tri-right round left-in">
+                      <span style={{fontSize:15}}>{
+                      messageObj.What
+                       }</span>
                     </div>
                   )}
                 </p>
