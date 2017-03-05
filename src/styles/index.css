@@ -86,6 +86,9 @@ button:focus{
 }
 /* ChatHistory styles */
 
+.mui-row{
+  width: 100%;
+}
 body {
   background-color: #363636;
 }
@@ -141,12 +144,17 @@ body {
 
 /* -------- Online user list ---------- */
 /* For Chat User*/
+.empty-div{
+  height: 80px;
+}
 .online-user-list {
   height: 68px;
   display: flex;
   align-items: center;
   background-color: #363636;
   border: none;
+  position: fixed;
+  z-index: 100000000;
   /*-webkit-backdrop-filter: blur(5px);*/
   /*-moz-filter: blur(5px);*/
   /*-o-filter: blur(5px);*/
@@ -175,8 +183,9 @@ body {
 }
 
 /*Button for Navbar*/
-.toggle-button-col {
-}
+/*.toggle-button-col {*/
+  /*margin-left: 5%;*/
+/*}*/
 
 .toggle-button-div-chat {
   background-image: url('http://i.imgur.com/kVE8DIZ.png');
@@ -207,8 +216,8 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   background-color: #6359df;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
 }
@@ -359,3 +368,4 @@ body {
 .font-searchlist {
   color: white;
 }
+

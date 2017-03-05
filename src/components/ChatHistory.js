@@ -2,6 +2,11 @@
  * Created by JNEP on 12/22/16.
  */
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+const Scroll  = require('react-scroll');
+
+const scroll = Scroll.animateScroll;
+
 export default class ChatHistory extends React.Component {
   static propTypes = {
     history: React.PropTypes.array,
@@ -9,21 +14,29 @@ export default class ChatHistory extends React.Component {
     me: React.PropTypes.number
   };
 
+  componentDidUpdate() {
+     scroll.scrollToBottom();
+  }
+
   _onClickButton(location) {
     this.props.getMarker(location);
   }
 
+  onScroll = () => {
+// TODO: call fetchHistory when scrolled to the top
+  };
+
   render() {
-    const {props} = this;
-    return (<ul className="collection">
-      { props.history.map((messageObj) => {
+    const { props } = this;
+    return (<ul className="collection" ref="messageList">
+    { props.history.map((messageObj) => {
         const imgURL = 'https://api.adorable.io/avatars/92/' + messageObj.Who;
         return (
           <div>
             {String(props.me) === String(messageObj.Who) ? (
               <li className="collection-item avatar" style={{backgroundColor : "#eeeeee"}} key={ messageObj.When }>
-                <div>
                   <span className="title"> </span>
+                  <p>
                   {messageObj.Where ? (
                     <div className="talk-bubble-me tri-right right-in">
                   <span style={{fontSize:15}}>
@@ -42,7 +55,7 @@ export default class ChatHistory extends React.Component {
                       <span style={{fontSize:15}}>{ messageObj.What }</span>
                     </div>
                   )}
-                </div>
+                </p>
               </li>
             ) : (
               <li className="collection-item avatar" style={{backgroundColor : "#363636"}} key={ messageObj.When }>
@@ -76,4 +89,11 @@ export default class ChatHistory extends React.Component {
       }
     </ul>);
   }
+  // scrollToBottom = () => {
+  //  const { messageList } = this.refs;
+  //  const scrollHeight = messageList.scrollHeight;
+  //  const height = messageList.clientHeight;
+  //  const maxScrollTop = scrollHeight - height;
+  //  ReactDOM.findDOMNode(messageList).scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+  // }
 }

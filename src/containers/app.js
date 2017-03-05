@@ -10,7 +10,6 @@ import SearchCard from '../components/SearchCard';
 import SearchNavBar from '../components/SearchNavBar';
 import SearchMap from '../components/SearchMap';
 import SearchList from '../components/SearchList';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import places from '../components/places';
 
 const ID = Math.round(Math.random() * 1000000);
@@ -183,37 +182,36 @@ class App extends React.Component {
     const mainNav = state.mainNav;
     const searchPOI = state.searchBar;
     return (
-      <div>
-        {mainNav === 'ORIGIN' ? (
-          <ChatUsers users={ props.users }
-                     focusModal={this.onToggleNav.bind(this)}
-                     currentPage={active}
-                     toggleFunction={this.handleClick.bind(this)}
-          />
-        ) : mainNav === 'DESTINATION' ? (
-          <SearchNavBar users={ props.users }
-                        backButton={this.goBackButton.bind(this)}
-                        searchText={this.getText.bind(this)}
-                        focusModal={this.openModal.bind(this)}
-                        currentPage={active}
-                        toggleFunction={this.handleClick.bind(this)}
-          />
-        ) : null}
-        {active === 'FIRST' ? (
-          <div>
-            <ChatHistory
-              history={ props.history }
-              getMarker={this.getMarker.bind(this)}
-              me={ props.userID }
-            />
-            <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
-          </div>
-        ) : active === 'SECOND' ? (
-          <div>
-            <ReactCSSTransitionGroup
-              transitionName="example"
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={300}>
+        <div>
+              {mainNav === 'ORIGIN' ? (
+                <div>
+                <ChatUsers users={ props.users }
+                           focusModal={this.onToggleNav.bind(this)}
+                           currentPage={active}
+                           toggleFunction={this.handleClick.bind(this)}
+                />
+                  </div>
+              ) : mainNav === 'DESTINATION' ? (
+                <SearchNavBar users={ props.users }
+                              backButton={this.goBackButton.bind(this)}
+                              searchText={this.getText.bind(this)}
+                              focusModal={this.openModal.bind(this)}
+                              currentPage={active}
+                              toggleFunction={this.handleClick.bind(this)}
+                />
+              ) : null}
+          {active === 'FIRST' ? (
+            <div>
+              <div className="empty-div"></div>
+              <ChatHistory
+                history={ props.history }
+                getMarker={this.getMarker.bind(this)}
+                me={ props.userID }
+              />
+              <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
+            </div>
+          ) : active === 'SECOND' ? (
+            <div>
               <GoogleMap
                 focusModal={this.onToggleNav.bind(this)}
                 toggleFunction={this.handleClick.bind(this)}
@@ -224,40 +222,39 @@ class App extends React.Component {
                 fromWHere={state.fromWhereToMap}
                 markerFromHistory={state.goToMarker}
               />
-            </ReactCSSTransitionGroup>
-          </div>
-        ) : active === 'SEARCH' ? (
-          <div>
-            <SearchFunction
-              searchText={this.getText.bind(this)}
-            />
-          </div>
-        )
-          : active === 'SEARCH_ENTER' ? (
-          <div>
-            <SearchList
-              textSearch={searchPOI}
-              POI={state.searchedPOI}
-              sendMessage={ sendMessage }
-              userID={ props.userID }
-            />
-          </div>
-        )
-          : active === 'SEARCH_MAP' ? (
-          <div>
-            <SearchMap
-              markers={ props.markers }
-              POI={state.searchedPOI}
-              userID={ props.userID }
-              currentLoc={state.currentLoc}
-              sendMessage={ sendMessage }
-              sendMarker={ this.sendMarker.bind(this)
+            </div>
+          ) : active === 'SEARCH' ? (
+            <div>
+              <SearchFunction
+                searchText={this.getText.bind(this)}
+              />
+            </div>
+          )
+            : active === 'SEARCH_ENTER' ? (
+            <div>
+              <SearchList
+                textSearch={searchPOI}
+                POI={state.searchedPOI}
+                sendMessage={ sendMessage }
+                userID={ props.userID }
+              />
+            </div>
+          )
+            : active === 'SEARCH_MAP' ? (
+            <div>
+              <SearchMap
+                markers={ props.markers }
+                POI={state.searchedPOI}
+                userID={ props.userID }
+                currentLoc={state.currentLoc}
+                sendMessage={ sendMessage }
+                sendMarker={ this.sendMarker.bind(this)
               }
-            />
-          </div>
-        )
-          : null}
-      </div>
+              />
+            </div>
+          )
+            : null}
+        </div>
     );
   }
 
