@@ -148,6 +148,10 @@ body {
   border-color: #EEEEEE
 }
 
+.collection .collection-item.avatar{
+  min-height:50px !important;
+}
+
 /* -------- Online user list ---------- */
 /* For Chat User*/
 .online-user-list {
@@ -275,61 +279,39 @@ body {
   display: inline-block;
   position: relative;
   height: auto;
-  padding: 10px 10px 10px 10px;
-  background-color: white;
+  padding: 10px;
+  margin-bottom:10px;
+  background-color: #fff;
 }
 
 .talk-bubble-me {
-  float: right;
-  position: absolute;
+  right: 12px;
+  clear : right;
   display: inline-block;
-  right: 11px;
+  position: absolute;
+  margin-bottom:10px;
   height: auto;
   padding: 10px;
-  background-color: white;
-}
-
-.tri-right.border.left-in:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -40px;
-  right: auto;
-  top: 30px;
-  bottom: auto;
-  border: 20px solid;
-  border-color: #666 transparent transparent transparent;
+  background-color: #6359df;
+  color: #fff
 }
 
 .tri-right.left-in:after {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -12px;
-  right: auto;
-  bottom: auto;
-  border: 11px solid;
-  border-color: white transparent transparent transparent;
+    content: ' ';
+  	position: absolute;
+  	width: 0;
+  	height: 0;
+    right: auto;
+    left: -14px;
+    top: 10px;
+    bottom: auto;
+    border: 8px solid;
+    border-color: transparent white transparent transparent
+
 }
 
 .chat-button {
   background: royalblue
-}
-
-/* for my chat*/
-.tri-right.border.right-in:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: auto;
-  right: -40px;
-  top: 30px;
-  bottom: auto;
-  border: 20px solid;
-  border-color: transparent transparent transparent white;
 }
 
 .tri-right.right-in:after {
@@ -338,11 +320,18 @@ body {
   width: 0;
   height: 0;
   left: auto;
-  right: -12px;
-  top: 2px;
+  right: -14px;
+  top: 14px;
   bottom: auto;
   border: 8px solid;
-  border-color: transparent transparent transparent white;
+  border-color: transparent transparent transparent #6359df;
+}
+
+.round{
+  border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+
 }
 
 /* talk bubble contents */
@@ -371,4 +360,10 @@ body {
 
 .font-searchlist {
   color: white;
+}
+/*this is for searched lists and cards*/
+
+.subhead{
+  color:white;
+  font-weight: 100;
 }
