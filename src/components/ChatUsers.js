@@ -32,9 +32,6 @@ class ChatUsers extends React.Component {
       <div className="mui-container-fluid">
         {currentPage === 'FIRST' ? (
           <div className="mui-row online-user-list">
-            <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
-              <span className="valign">{ users.length } online</span>
-            </div>
             <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
               <input ref="txtMessage"
                      type="text"

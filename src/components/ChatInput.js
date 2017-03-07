@@ -52,11 +52,15 @@ export default class ChatInput extends React.Component {
             </span>
           </div>
           <div className="input-field col s3">
-            <RaisedButton type='submit' backgroundColor='#6c4dd5'  primary={true} label="SEND"  style={{
+            <RaisedButton
+              backgroundColor="#6359df"
+              type="submit"
+              labelColor="#fff"
+              label="SEND"  style={{
       minWidth: '60px',
       pading: '0px 0px',
       margin: '0 auto',
-      color: '#fff',
+      color: '#fff'
     }}
                />
           </div>

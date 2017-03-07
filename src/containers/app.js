@@ -11,6 +11,8 @@ import SearchNavBar from '../components/SearchNavBar';
 import SearchMap from '../components/SearchMap';
 import SearchList from '../components/SearchList';
 import places from '../components/places';
+const Spinner = require('react-spinkit');
+
 
 const ID = Math.round(Math.random() * 1000000);
 const pubnub = PUBNUB.init({
@@ -61,6 +63,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userLoading: false,
       active: 'FIRST',
       searchBar: '',
       searchedPOI: '',
@@ -81,7 +84,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state.searchedPOI);
     // No geo location here you said?
     this.props.setUserID(ID);
     navigator.geolocation.getCurrentPosition((position) => {
@@ -102,9 +104,11 @@ class App extends React.Component {
       state: true,
       uuids: true,
       callback: function (response) {
-        console.log(response);
         response.uuids.map((uuid) => {
           self.props.addMarker(uuid.state);
+          self.setState({
+            userLoading: true
+          });
         });
       },
     });
@@ -180,9 +184,12 @@ class App extends React.Component {
     const {props, sendMessage, state} = this;
     const active = state.active;
     const mainNav = state.mainNav;
+    const userRecog = state.userLoading;
     const searchPOI = state.searchBar;
     return (
         <div>
+          {userRecog ? (
+            <div>
               {mainNav === 'ORIGIN' ? (
                 <div>
                 <ChatUsers users={ props.users }
@@ -254,6 +261,12 @@ class App extends React.Component {
             </div>
           )
             : null}
+        </div>
+          ) : (
+            <div>
+              <Spinner className="loading" spinnerName="wandering-cubes" />
+            </div>
+          )}
         </div>
     );
   }
