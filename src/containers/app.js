@@ -63,7 +63,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLoading: false,
+      userLoading: true,
       active: 'FIRST',
       searchBar: '',
       searchedPOI: '',
@@ -76,27 +76,23 @@ class App extends React.Component {
 
   componentWillMount() {
     this.fetchData();
-    navigator.geolocation.getCurrentPosition((position) => {
       this.setState({
-        currentLoc: [position.coords.latitude, position.coords.longitude]
+        currentLoc: [47.6553, -122.3035]
       });
-    });
   }
 
   componentDidMount() {
     // No geo location here you said?
     this.props.setUserID(ID);
-    navigator.geolocation.getCurrentPosition((position) => {
       pubnub.subscribe({
         channel: 'ReactChat',
         message: this.props.addMessage,
         presence: this.onPresenceChange,
         state: {
           id: ID,
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
+          lat: 47.6553,
+          lng: -122.3035,
         },
-      });
     });
     const self = this;
     pubnub.here_now({
