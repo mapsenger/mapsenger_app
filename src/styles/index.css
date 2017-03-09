@@ -143,7 +143,14 @@ body {
 }
 
 .collection .collection-item.avatar{
-  min-height:50px !important;
+  min-height: !important;
+  /*overflow:auto;*/
+}
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /* -------- Online user list ---------- */
@@ -286,9 +293,9 @@ body {
 
 .talk-bubble-me {
   right: 12px;
+  float:right;
   clear : right;
   display: inline-block;
-  position: absolute;
   margin-bottom:10px;
   height: auto;
   padding: 10px;
@@ -302,8 +309,8 @@ body {
   	width: 0;
   	height: 0;
     right: auto;
-    left: -14px;
-    top: 10px;
+    left: 6px;
+    top: 22px;
     bottom: auto;
     border: 8px solid;
     border-color: transparent white transparent transparent
