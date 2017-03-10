@@ -34,7 +34,7 @@ export default class ChatHistory extends React.Component {
         return (
           <div>
             {String(props.me) === String(messageObj.Who) ? (
-              <li className="collection-item avatar" style={{backgroundColor : "transparent"}} key={ messageObj.When }>
+              <li className="collection-item avatar group" style={{backgroundColor : "transparent"}} key={ messageObj.When }>
                   <span className="title"> </span>
                   <p>
                   {messageObj.Where ? (
