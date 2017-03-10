@@ -309,8 +309,8 @@ body {
   	width: 0;
   	height: 0;
     right: auto;
-    left: 6px;
-    top: 22px;
+    left: -14px;
+    top: 12px;
     bottom: auto;
     border: 8px solid;
     border-color: transparent white transparent transparent
@@ -327,8 +327,8 @@ body {
   width: 0;
   height: 0;
   left: auto;
-  right: -14px;
-  top: 14px;
+  right: 6px;
+  top: 22px;
   bottom: auto;
   border: 8px solid;
   border-color: transparent transparent transparent #6359df;
