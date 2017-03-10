@@ -7,6 +7,19 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+class ReplyForm extends Component {
+  constructor() {
+    super();
+  }
+  render() {
+    return (
+      <p style={{color: red}}>
+        SHARED
+      </p>
+    );
+  }
+}
+
 export default class SearchList extends Component {
   static propTypes = {
     textSearch: React.PropTypes.string,
@@ -16,7 +29,7 @@ export default class SearchList extends Component {
   };
 
   _shareMarker(marker) {
-    console.log('ok share');
+    this.setState({showReply: !this.state.showReply});
     const messageObj = {
       Who: this.props.userID,
       // What: message,
@@ -31,6 +44,7 @@ export default class SearchList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showReply: false,
       places: props.POI,
     };
   }
@@ -81,6 +95,7 @@ export default class SearchList extends Component {
                   <div>{"Rating: " + place.rating}</div>
                   <div>{"Address: " + place.address}</div>
                   <div>{"Distance: " + place.distance}</div>
+                  {this.state.showReply && < ReplyForm/>}
                   </div>
                   }
                   actAsExpander={true}
