@@ -12,11 +12,12 @@ export default class SearchList extends Component {
     textSearch: React.PropTypes.string,
     POI: React.PropTypes.array,
     sendMessage: React.PropTypes.func,
+    markerFromHistory: React.PropTypes.array,
     userID: React.PropTypes.number,
   };
 
-  _shareMarker(marker) {
-    console.log('ok share');
+  _shareMarker(marker, e) {
+    console.log(e.target);
     const messageObj = {
       Who: this.props.userID,
       // What: message,
@@ -31,11 +32,15 @@ export default class SearchList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showReply: false,
       places: props.POI,
+      'active': false,
+      'class': 'album'
     };
   }
 
   componentWillMount() {
+    console.log(this.props.markerFromHistory);
     const reformedPlaces = this.state.places.map(function(obj) {
       const disLat = obj.geometry.location.lat;
       const disLng = obj.geometry.location.lng;
@@ -86,8 +91,10 @@ export default class SearchList extends Component {
                   actAsExpander={true}
                 />
                 <CardActions>
-                  <FlatButton label="Share"
-                  onClick={() => this._shareMarker(place)}
+                  <FlatButton
+                    className="active"
+                    label="Share"
+                    onClick={this._shareMarker.bind(this, place)}
                   />
                 </CardActions>
               </Card>

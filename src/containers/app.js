@@ -63,7 +63,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLoading: true,
+      userLoading: false,
       active: 'FIRST',
       searchBar: '',
       searchedPOI: '',
@@ -102,15 +102,11 @@ class App extends React.Component {
       callback: function (response) {
         response.uuids.map((uuid) => {
           self.props.addMarker(uuid.state);
-          self.setState({
-            userLoading: true
-          });
         });
       },
     });
     window.addEventListener('beforeunload', this.leaveChat);
   }
-
   componentWillUnmount() {
     this.leaveChat();
   }
@@ -122,9 +118,13 @@ class App extends React.Component {
         if (presenceData.data) {
           this.props.addMarker(presenceData.data);
         }
+        this.setState({
+          userLoading: true
+        });
         this.props.addUser(presenceData.uuid);
         break;
       case 'leave':
+        console.log('leave');
         this.props.removeUser(presenceData.uuid);
         break;
       case 'timeout':
@@ -228,6 +228,10 @@ class App extends React.Component {
             </div>
           ) : active === 'SEARCH' ? (
             <div>
+              <div
+                className="add-height"
+              >
+              </div>
               <SearchFunction
                 searchText={this.getText.bind(this)}
               />
@@ -235,22 +239,32 @@ class App extends React.Component {
           )
             : active === 'SEARCH_ENTER' ? (
             <div>
+              <div
+                className="add-height"
+              >
+              </div>
               <SearchList
                 textSearch={searchPOI}
                 POI={state.searchedPOI}
                 sendMessage={ sendMessage }
+                markerFromHistory={state.goToMarker}
                 userID={ props.userID }
               />
             </div>
           )
             : active === 'SEARCH_MAP' ? (
             <div>
+              <div
+                className="add-height"
+              >
+              </div>
               <SearchMap
                 markers={ props.markers }
                 POI={state.searchedPOI}
                 userID={ props.userID }
                 currentLoc={state.currentLoc}
                 sendMessage={ sendMessage }
+                markerFromHistory={state.goToMarker}
                 sendMarker={ this.sendMarker.bind(this)
               }
               />
@@ -335,15 +349,22 @@ class App extends React.Component {
 
   //  Toggle Nav Bar
   goBackButton() {
-    console.log();
-    this.setState(
-      {
-        mainNav: 'ORIGIN',
-        active: 'FIRST'
-      }
-    );
+    if (this.state.active === 'SEARCH') {
+      this.setState(
+        {
+          mainNav: 'ORIGIN',
+          active: 'FIRST'
+        }
+      );
+    } else if (this.state.active === 'SEARCH_MAP' || this.state.active === 'SEARCH_ENTER') {
+      this.setState(
+        {
+          mainNav: 'DESTINATION',
+          active: 'SEARCH'
+        }
+      );
+    }
   }
-
 }
 
 export default connect(

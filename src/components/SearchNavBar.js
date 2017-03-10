@@ -46,7 +46,7 @@ class SearchNavBar extends React.Component {
     return (
       <div className="mui-container-fluid">
         {currentPage === 'SEARCH_ENTER' ? (
-          <div className="mui-row online-user-list">
+          <div className="mui-row seach-navbar">
             <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
               <button className="button-back"
                       onClick={this._onClickBackButton.bind(this)}>
@@ -69,7 +69,7 @@ class SearchNavBar extends React.Component {
           </div>
         ) : currentPage === 'SEARCH' ?
           (
-            <div className="mui-row online-user-list">
+            <div className="mui-row seach-navbar">
               <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
                 <button className="button-back"
                         onClick={this._onClickBackButton.bind(this)}>
@@ -87,7 +87,7 @@ class SearchNavBar extends React.Component {
             </div>
           ) : currentPage === 'SEARCH_MAP' ?
           (
-            <div className="mui-row online-user-list">
+            <div className="mui-row seach-navbar">
               <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
                 <button className="button-back"
                         onClick={this._onClickBackButton.bind(this)}>
