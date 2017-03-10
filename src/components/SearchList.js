@@ -7,29 +7,17 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
-class ReplyForm extends Component {
-  constructor() {
-    super();
-  }
-  render() {
-    return (
-      <p style={{color: red}}>
-        SHARED
-      </p>
-    );
-  }
-}
-
 export default class SearchList extends Component {
   static propTypes = {
     textSearch: React.PropTypes.string,
     POI: React.PropTypes.array,
     sendMessage: React.PropTypes.func,
+    markerFromHistory: React.PropTypes.array,
     userID: React.PropTypes.number,
   };
 
-  _shareMarker(marker) {
-    this.setState({showReply: !this.state.showReply});
+  _shareMarker(marker, e) {
+    console.log(e.target);
     const messageObj = {
       Who: this.props.userID,
       // What: message,
@@ -46,10 +34,13 @@ export default class SearchList extends Component {
     this.state = {
       showReply: false,
       places: props.POI,
+      'active': false,
+      'class': 'album'
     };
   }
 
   componentWillMount() {
+    console.log(this.props.markerFromHistory);
     const reformedPlaces = this.state.places.map(function(obj) {
       const disLat = obj.geometry.location.lat;
       const disLng = obj.geometry.location.lng;
@@ -95,14 +86,15 @@ export default class SearchList extends Component {
                   <div>{"Rating: " + place.rating}</div>
                   <div>{"Address: " + place.address}</div>
                   <div>{"Distance: " + place.distance}</div>
-                  {this.state.showReply && < ReplyForm/>}
                   </div>
                   }
                   actAsExpander={true}
                 />
                 <CardActions>
-                  <FlatButton label="Share"
-                  onClick={() => this._shareMarker(place)}
+                  <FlatButton
+                    className="active"
+                    label="Share"
+                    onClick={this._shareMarker.bind(this, place)}
                   />
                 </CardActions>
               </Card>
