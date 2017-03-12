@@ -58,7 +58,7 @@ export default class GoogleMap extends Component {
         markerIcon: divIcon({
           className: 'friend-div-icon',
           html: markerUrl,
-          iconSize: [0, 0]
+          iconSize: [20, 20]
         })
       };
     });

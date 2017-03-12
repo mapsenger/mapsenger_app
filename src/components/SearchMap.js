@@ -57,6 +57,22 @@ export default class SearchMap extends Component {
         iconSize: [15, 15]
     });
 
+    // Friends' markers
+    const friendsIcon = friends.map(function(friend) {
+      const imgURL = 'https://api.adorable.io/avatars/92/' + friend.id;
+      const markerUrl = '<img class="friend-div-icon" src=' + imgURL + '/>';
+      return {
+        id: friend.id,
+        lat: friend.lat,
+        lng: friend.lng,
+        markerIcon: divIcon({
+          className: 'friend-div-icon',
+          html: markerUrl,
+          iconSize: [20, 20]
+        })
+      };
+    });
+
     // POIs Marker
     const reformedPlaces = this.state.poiMarkers.map(function(obj) {
       const disLat = obj.geometry.location.lat;
@@ -89,7 +105,7 @@ export default class SearchMap extends Component {
       myMarkerCSS: mIcon,
       poiMarkers: reformedPlaces,
       selfMarker: [myMarker[0].lat, myMarker[0].lng],
-      othersMarkers: friends,
+      othersMarkers: friendsIcon,
     });
   }
 
@@ -118,11 +134,9 @@ export default class SearchMap extends Component {
           </Popup>
         </Marker>
         { this.state.othersMarkers.map((marker, index) =>
-          <Marker position={[0.01 * (index + 1) + marker.lat, marker.lng]}>
-            <Popup>
-              <span>You friends are here.<br/></span>
-            </Popup>
-          </Marker>
+          <Marker
+            icon={marker.markerIcon}
+            position={[0.01 * (index + 1) + marker.lat, marker.lng]}/>
         )}
         { this.state.poiMarkers.map((marker, index) =>
           <Marker
