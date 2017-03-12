@@ -108,8 +108,7 @@ export default class SearchList extends Component {
                 <CardActions>
                   <FlatButton
                     style={{
-                      color:'#fff',
-                    
+                      color:'#fff'
                     }}
                     className="active"
                     label="Share"
