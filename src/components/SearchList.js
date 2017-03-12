@@ -77,21 +77,40 @@ export default class SearchList extends Component {
         <MuiThemeProvider>
           <div>
             {this.state.places.map((place, i) =>
-              <Card>
+              <Card
+                style={{
+                  backgroundColor: '#363636',
+                  boxShadow:'none',
+                  borderRadius:'none',
+                  borderBottom:'1px #4a4a4a solid',
+                  paddingRight:'none'
+                }}
+                >
+
                 <CardHeader
+                  style={{
+                    padding: '16px 16px 0px 16px',
+                  }}
+                  titleColor="#fff"
                   title={place.name}
                   label="This toggle controls the expanded state of the component."
+                  subtitleColor="#fff"
                   subtitle={
                   <div>
-                  <div>{"Rating: " + place.rating}</div>
-                  <div>{"Address: " + place.address}</div>
-                  <div>{"Distance: " + place.distance}</div>
+                  <div style={{fontWeight:'100'}}>{"Rating: " + place.rating}</div>
+                  <div style={{fontWeight:'100'}}>{"Address: " + place.address}</div>
+                  <div style={{fontWeight:'100'}}>{"Distance: " + place.distance}</div>
                   </div>
                   }
                   actAsExpander={true}
+
                 />
                 <CardActions>
                   <FlatButton
+                    style={{
+                      color:'#fff',
+                    
+                    }}
                     className="active"
                     label="Share"
                     onClick={this._shareMarker.bind(this, place)}
@@ -106,4 +125,3 @@ export default class SearchList extends Component {
   }
 
 }
-

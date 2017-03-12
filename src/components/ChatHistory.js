@@ -68,6 +68,7 @@ export default class ChatHistory extends React.Component {
                     {messageObj.Where.name}
                     <br/>
                  <button
+                  className="chat-button"
                    onClick={() => this._onClickButton(messageObj.Where)}
                  >
                    Go to marker

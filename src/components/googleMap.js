@@ -162,7 +162,7 @@ export default class GoogleMap extends Component {
         </Map>
         <div className="mui-container-fluid">
         <div className="navbar-map mui-row online-user-map">
-          <div className="textSearch-map mui-col-md-9 mui-col-xs-9 mui-col-lg-9">
+          <div className="textSearch-map mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
             <input ref="txtMessage"
                    type="text"
                    onFocus={ this._onFocus.bind(this) }
