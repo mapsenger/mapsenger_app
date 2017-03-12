@@ -18,6 +18,7 @@ export default class SearchList extends Component {
 
   _shareMarker(marker, e) {
     console.log(e.target);
+    console.log(e.target.parentNode);
     const messageObj = {
       Who: this.props.userID,
       // What: message,
@@ -40,7 +41,6 @@ export default class SearchList extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.markerFromHistory);
     const reformedPlaces = this.state.places.map(function(obj) {
       const disLat = obj.geometry.location.lat;
       const disLng = obj.geometry.location.lng;

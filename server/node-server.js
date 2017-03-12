@@ -31,7 +31,7 @@ app.get('/yelp', function(req, res) {
 nodeAppServer(app);
 
 // Start up the server.
-app.listen(PORT, '10.0.0.135', (err) => {
+app.listen(PORT, '10.18.231.243', (err) => {
   if (err) {
     winston.error(err);
     return;

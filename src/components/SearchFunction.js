@@ -15,8 +15,9 @@ const styles = {
     justifyContent: 'space-around',
   },
   gridList: {
+    borderRadius:'5px',
     width: 500,
-    height: 450,
+    height: 350,
     overflowY: 'auto',
   },
 };
@@ -72,6 +73,7 @@ export default class SearchCard extends Component {
       <div style={styles.root}>
         <GridList
           cellHeight={180}
+          cols=1
           style={styles.gridList}
         >
           <Subheader>POI Types</Subheader>

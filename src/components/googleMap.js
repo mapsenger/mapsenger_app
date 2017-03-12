@@ -91,7 +91,7 @@ export default class GoogleMap extends Component {
       return robj;
     });
     console.log('from history', this.props.markerFromHistory);
-    const whereIsCurrent = (this.props.fromWHere === 'main') ?
+    const whereIsCurrent = (this.props.fromWHere === 'main' && myMarker[0].lat !== null) ?
       [myMarker[0].lat, myMarker[0].lng] :
       [this.props.markerFromHistory.lat, this.props.markerFromHistory.lng];
 

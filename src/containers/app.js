@@ -117,10 +117,10 @@ class App extends React.Component {
         // this.props.addUser([presenceData.uuid, presenceData.data.lat, presenceData.data.lng]);
         if (presenceData.data) {
           this.props.addMarker(presenceData.data);
+          this.setState({
+            userLoading: true
+          });
         }
-        this.setState({
-          userLoading: true
-        });
         this.props.addUser(presenceData.uuid);
         break;
       case 'leave':
