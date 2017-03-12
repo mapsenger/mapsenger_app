@@ -147,18 +147,23 @@ class App extends React.Component {
   getText(infoSearch) {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
-    const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
-    fetch(url, {method: 'GET'}).then(function (response) {
-      return response.json();
-    }).then(json => {
-      this.setState({
-        searchedPOI: json.results,
+     this.setState({
         searchBar: infoSearch,
-        active: 'SEARCH_ENTER'
-      });
-    }).catch(function (error) {
-      console.log('Error:', error);
-    });
+        active: 'SEARCH_ENTER',
+        searchedPOI: places.thai
+     });
+    // const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
+    // fetch(url, {method: 'GET'}).then(function (response) {
+    //  return response.json();
+    // }).then(json => {
+    //  this.setState({
+    //    searchedPOI: json.results,
+    //    searchBar: infoSearch,
+    //    active: 'SEARCH_ENTER'
+    //  });
+    // }).catch(function (error) {
+    //  console.log('Error:', error);
+    // });
     console.log(infoSearch);
     //  this.setState({
     //    searchBar: infoSearch,
