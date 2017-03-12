@@ -17,8 +17,6 @@ export default class SearchList extends Component {
   };
 
   _shareMarker(marker, e) {
-    console.log(e.target);
-    console.log(e.target.parentNode);
     const messageObj = {
       Who: this.props.userID,
       // What: message,
@@ -90,6 +88,7 @@ export default class SearchList extends Component {
                   <div>{"Rating: " + place.rating}</div>
                   <div>{"Address: " + place.address}</div>
                   <div>{"Distance: " + place.distance}</div>
+                  <img className="item-shared" src="http://i.imgur.com/fSL4zE3.png"/>
                   </div>
                   }
                   actAsExpander={true}
