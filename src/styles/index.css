@@ -18,8 +18,8 @@
 }
 
 .friend-div-icon {
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
 }
@@ -377,6 +377,12 @@ body {
 
 .font-searchlist {
   color: white;
+}
+
+.item-shared{
+  position: absolute;
+  top: 50%;
+  right: 10%;
 }
 /*this is for searched lists and cards*/
 
