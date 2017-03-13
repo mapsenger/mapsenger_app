@@ -18,10 +18,21 @@
 }
 
 .friend-div-icon {
-  width: 25px;
-  height: 25px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.3);
+}
+
+.friend-div-circle{
+  position: absolute;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    left: 15px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .wrapper {
@@ -162,10 +173,10 @@ body {
   height: 68px;
   display: flex;
   align-items: center;
-  background-color: #363636;
+  background-color: rgba(54, 54, 54, 0.8);
   border: none;
   position: fixed;
-  z-index: 100000000;
+  z-index: 9999;
   /*-webkit-backdrop-filter: blur(5px);*/
   /*-moz-filter: blur(5px);*/
   /*-o-filter: blur(5px);*/
@@ -216,7 +227,7 @@ body {
   border-radius: 50%;
   width: 44px;
   height: 44px;
-  margin-top : 2px;
+  margin-top : 4px;
   background-color: #6359df;
   border: none;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
@@ -230,7 +241,7 @@ body {
   width: 44px;
   height: 44px;
   border: none;
-  margin-top : 2px;
+  margin-top : 4px;
   background-color: #6359df;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
 }
@@ -298,7 +309,8 @@ body {
   height: auto;
   padding: 10px;
   margin-bottom:10px;
-  background-color: #fff;
+  background-color: #505050;
+  color:white
 }
 
 .talk-bubble-me {
@@ -319,16 +331,19 @@ body {
   	width: 0;
   	height: 0;
     right: auto;
-    left: 6px;
-    top: 22px;
+    left: -14px;
+    top: 12px;
     bottom: auto;
     border: 8px solid;
-    border-color: transparent white transparent transparent
+    border-color: transparent #505050 transparent transparent
 
 }
 
 .chat-button {
-  background: royalblue
+  background: rgba(255,255,255,0.2);
+  border:none;
+  color:white;
+  border-radius:2px;
 }
 
 .tri-right.right-in:after {
@@ -337,8 +352,8 @@ body {
   width: 0;
   height: 0;
   left: auto;
-  right: -14px;
-  top: 14px;
+  right: 6px;
+  top: 22px;
   bottom: auto;
   border: 8px solid;
   border-color: transparent transparent transparent #6359df;
@@ -369,9 +384,9 @@ body {
   background-image: url('http://i.imgur.com/JSIFLni.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 2.2em;
-  height: 2.2em;
-  background-size: 1.8em auto;
+  width: 1.4em;
+  height: 1.4em;
+  background-size: 1.4em auto;
   background-color: transparent;
 }
 
