@@ -59,7 +59,7 @@ export default class ChatHistory extends React.Component {
               </li>
             ) : (
               <li className="collection-item avatar" style={{backgroundColor : "#363636"}} key={ messageObj.When }>
-                <img src={ imgURL } alt={ messageObj.Who } className="circle"/>
+                <img src={ imgURL } alt={ messageObj.Who } className="friend-div-circle"/>
                 <span className="title"> </span>
                 <p>
                   {messageObj.Where ? (
@@ -68,6 +68,7 @@ export default class ChatHistory extends React.Component {
                     {messageObj.Where.name}
                     <br/>
                  <button
+                  className="chat-button"
                    onClick={() => this._onClickButton(messageObj.Where)}
                  >
                    Go to marker

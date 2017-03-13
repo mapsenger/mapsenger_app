@@ -12,11 +12,13 @@ export default class SearchList extends Component {
     textSearch: React.PropTypes.string,
     POI: React.PropTypes.array,
     sendMessage: React.PropTypes.func,
+    markerFromHistory: React.PropTypes.array,
     userID: React.PropTypes.number,
   };
 
-  _shareMarker(marker) {
-    console.log('ok share');
+  _shareMarker(marker, e) {
+    console.log(e.target);
+    console.log(e.target.parentNode);
     const messageObj = {
       Who: this.props.userID,
       // What: message,
@@ -31,7 +33,10 @@ export default class SearchList extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showReply: false,
       places: props.POI,
+      'active': false,
+      'class': 'album'
     };
   }
 
@@ -72,22 +77,42 @@ export default class SearchList extends Component {
         <MuiThemeProvider>
           <div>
             {this.state.places.map((place, i) =>
-              <Card>
+              <Card
+                style={{
+                  backgroundColor: '#363636',
+                  boxShadow:'none',
+                  borderRadius:'none',
+                  borderBottom:'1px #4a4a4a solid',
+                  paddingRight:'none'
+                }}
+                >
+
                 <CardHeader
+                  style={{
+                    padding: '16px 16px 0px 16px',
+                  }}
+                  titleColor="#fff"
                   title={place.name}
                   label="This toggle controls the expanded state of the component."
+                  subtitleColor="#fff"
                   subtitle={
                   <div>
-                  <div>{"Rating: " + place.rating}</div>
-                  <div>{"Address: " + place.address}</div>
-                  <div>{"Distance: " + place.distance}</div>
+                  <div style={{fontWeight:'100'}}>{"Rating: " + place.rating}</div>
+                  <div style={{fontWeight:'100'}}>{"Address: " + place.address}</div>
+                  <div style={{fontWeight:'100'}}>{"Distance: " + place.distance}</div>
                   </div>
                   }
                   actAsExpander={true}
+
                 />
                 <CardActions>
-                  <FlatButton label="Share"
-                  onClick={() => this._shareMarker(place)}
+                  <FlatButton
+                    style={{
+                      color:'#fff'
+                    }}
+                    className="active"
+                    label="Share"
+                    onClick={this._shareMarker.bind(this, place)}
                   />
                 </CardActions>
               </Card>
@@ -99,4 +124,3 @@ export default class SearchList extends Component {
   }
 
 }
-

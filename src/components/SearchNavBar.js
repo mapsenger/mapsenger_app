@@ -19,6 +19,7 @@ class SearchNavBar extends React.Component {
     super(props);
     this.state = {
       focus: props.focusModal,
+      focusText: 'Search'
     };
   }
 
@@ -36,7 +37,9 @@ class SearchNavBar extends React.Component {
 
   _onSubmit(e) {
     if (e.key === 'Enter') {
+      console.log(this.props.searchText);
       const message = this.refs.txtMessage.value;
+      this.refs.txtMessage.blur();
       this.props.searchText(message);
     }
   }
@@ -46,7 +49,7 @@ class SearchNavBar extends React.Component {
     return (
       <div className="mui-container-fluid">
         {currentPage === 'SEARCH_ENTER' ? (
-          <div className="mui-row online-user-list">
+          <div className="mui-row seach-navbar">
             <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
               <button className="button-back"
                       onClick={this._onClickBackButton.bind(this)}>
@@ -59,7 +62,7 @@ class SearchNavBar extends React.Component {
                      type="text"
                      onFocus={ this._onFocus.bind(this) }
                      onKeyPress={this._onSubmit.bind(this)}
-                     placeholder="Search"/>
+                     placeholder={this.state.focusText}/>
             </div>
             <div className="mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
               <button className="search-button-div-map"
@@ -69,7 +72,7 @@ class SearchNavBar extends React.Component {
           </div>
         ) : currentPage === 'SEARCH' ?
           (
-            <div className="mui-row online-user-list">
+            <div className="mui-row seach-navbar">
               <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
                 <button className="button-back"
                         onClick={this._onClickBackButton.bind(this)}>
@@ -82,12 +85,12 @@ class SearchNavBar extends React.Component {
                        id="input_search_bar"
                        onFocus={ this._onFocus.bind(this) }
                        onKeyPress={this._onSubmit.bind(this)}
-                       placeholder="Search"/>
+                       placeholder={this.state.focusText}/>
               </div>
             </div>
           ) : currentPage === 'SEARCH_MAP' ?
           (
-            <div className="mui-row online-user-list">
+            <div className="mui-row seach-navbar">
               <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
                 <button className="button-back"
                         onClick={this._onClickBackButton.bind(this)}>
