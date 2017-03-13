@@ -7,7 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import FontAwesome from 'react-fontawesome';
 
 const styles = {
   root: {
@@ -77,7 +76,7 @@ export default class SearchCard extends Component {
           padding={15}
           style={styles.gridList}
         >
-          <Subheader style={{color:'rgba(255,255,255,0.4)', textAlign:'center', fontSize:'1.5em',padding:'18px 0px 0px 0px'}}>Categories</Subheader>
+          <Subheader style={{color:'rgba(255,255,255,0.4)', textAlign:'center', fontSize:'1.5em', padding:'18px 0px 0px 0px'}}>Categories</Subheader>
           {tilesData.map((tile) => (
             <GridTile
               key={tile.img}
@@ -92,18 +91,8 @@ export default class SearchCard extends Component {
                 mozBorderRadius: '7px',
                 boxShadow: '0px 5px 20px rgba(0, 0, 0, 0.2)'
               }}
-              actionIcon={
-              <IconButton
-              >
-              <FontAwesome
-                className="super-crazy-colors"
-                spin
-                style={{ textShadow: '0 1px 0 rgba(0, 0, 0, 1)' }}
-              />
-
-              </IconButton>
-              }
-                onClick={() => this._onClickButton(tile.title)}
+              actionIcon={<IconButton/>}
+              onClick={() => this._onClickButton(tile.title)}
             >
               <img
                 src={tile.img}

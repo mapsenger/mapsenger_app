@@ -394,8 +394,16 @@ body {
   color: white;
 }
 
+.item-share{
+  position: absolute;
+  opacity: 0;
+  top: 50%;
+  right: 10%;
+}
+
 .item-shared{
   position: absolute;
+  opacity: 1;
   top: 50%;
   right: 10%;
 }

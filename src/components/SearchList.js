@@ -17,6 +17,9 @@ export default class SearchList extends Component {
   };
 
   _shareMarker(marker, e) {
+    const markerId = '#' + marker.id;
+    $(markerId).removeClass('item-share');
+    $(markerId).addClass('item-shared');
     const messageObj = {
       Who: this.props.userID,
       // What: message,
@@ -48,6 +51,7 @@ export default class SearchList extends Component {
       );
       const distanceInMiles = totalDistance / 6000;
       const robj = {
+        id: obj.id,
         name: obj.name,
         pic: obj.icon,
         rating: obj.rating,
@@ -98,7 +102,7 @@ export default class SearchList extends Component {
                   <div style={{fontWeight:'100'}}>{"Rating: " + place.rating}</div>
                   <div style={{fontWeight:'100'}}>{"Address: " + place.address}</div>
                   <div style={{fontWeight:'100'}}>{"Distance: " + place.distance}</div>
-                  <img className="item-shared" src="http://i.imgur.com/fSL4zE3.png"/>
+                  <img id={place.id} className="item-share" src="http://i.imgur.com/fSL4zE3.png"/>
                   </div>
                   }
                   actAsExpander={true}
