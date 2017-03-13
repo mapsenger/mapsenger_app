@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react';
 import { Map, TileLayer, Marker, Popup} from 'react-leaflet';
+import Control from 'react-leaflet-control';
 import { divIcon } from 'leaflet';
 
 
@@ -17,6 +18,13 @@ export default class GoogleMap extends Component {
     toggleFunction: React.PropTypes.func,
     focusModal: React.PropTypes.func,
   };
+
+  _currentLocation() {
+    const currentLocation = this.state.center;
+    this.setState({
+      center:[currentLocation[0] + 0.000001, currentLocation[1] + 0.000001]
+    });
+  }
 
   constructor(props) {
     super(props);
@@ -159,6 +167,11 @@ export default class GoogleMap extends Component {
               </Popup>
             </Marker>
           )}
+          <Control position="topleft">
+            <i
+              onClick={this._currentLocation.bind(this)} 
+              className="fa fa-street-view map-current-location" aria-hidden="true"/>
+          </Control>
         </Map>
         <div className="mui-container-fluid">
         <div className="navbar-map mui-row online-user-map">

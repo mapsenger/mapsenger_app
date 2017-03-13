@@ -12,11 +12,14 @@ export default class SearchMap extends Component {
     userID: React.PropTypes.number,
     sendMarker: React.PropTypes.func,
     POI: React.PropTypes.array,
+    allPOI: React.PropTypes.array,
     currentLoc: React.PropTypes.array,
     sendMessage: React.PropTypes.func,
   };
 
   _shareMarker(marker) {
+    const currentMarkerID = '#' + marker.id;
+    $(currentMarkerID).attr('src', 'http://i.imgur.com/VpiXxWu.png');
     const messageObj = {
       Who: this.props.userID,
       When: new Date().valueOf(),
@@ -42,6 +45,15 @@ export default class SearchMap extends Component {
   }
 
   componentWillMount() {
+    const markerHistory = this.props.allPOI;
+    const allExistingID = [];
+    let robj;
+    const getMarker = markerHistory.filter(function (el) {
+      return el.Type === 'marker';
+    });
+    getMarker.map(function (existingMarker) {
+      allExistingID.push(existingMarker.Where.id);
+    });
     const us =  this.props.markers;
     const me = this.props.userID;
     const friends = us.filter(function(el) {
@@ -82,23 +94,43 @@ export default class SearchMap extends Component {
         {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
       const distanceInMiles = totalDistance / 6000;
-      const robj = {
-        markerID: obj.id,
-        markerIcon: divIcon({
-          className: 'my-div-icon',
-          html: '<img src="http://i.imgur.com/fSL4zE3.png"/>',
-          iconSize: [25, 25]
-        }),
-        lat: disLat,
-        lng: disLng,
-        name: obj.name,
-        pic: obj.icon,
-        rating: obj.rating,
-        address: obj.formatted_address,
-        background: '#ffffff',
-        imgBorderColor: 'black',
-        distance: String(distanceInMiles.toFixed(2)) + ' Miles',
-      };
+      if (allExistingID.includes(obj.id)) {
+        robj = {
+          id: obj.id,
+          markerIcon: divIcon({
+            className: 'my-div-icon',
+            html: '<img id=' + obj.id + ' src="http://i.imgur.com/VpiXxWu.png"/>',
+            iconSize: [15, 15]
+          }),
+          lat: disLat,
+          lng: disLng,
+          name: obj.name,
+          pic: obj.icon,
+          rating: obj.rating,
+          address: obj.formatted_address,
+          background: '#ffffff',
+          imgBorderColor: 'black',
+          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
+        };
+      } else {
+        robj = {
+          id: obj.id,
+          markerIcon: divIcon({
+            className: 'my-div-icon',
+            html: '<img id=' + obj.id + ' src="http://i.imgur.com/fSL4zE3.png"/>',
+            iconSize: [25, 25]
+          }),
+          lat: disLat,
+          lng: disLng,
+          name: obj.name,
+          pic: obj.icon,
+          rating: obj.rating,
+          address: obj.formatted_address,
+          background: '#ffffff',
+          imgBorderColor: 'black',
+          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
+        };
+      }
       return robj;
     });
     this.setState({
@@ -140,6 +172,7 @@ export default class SearchMap extends Component {
         )}
         { this.state.poiMarkers.map((marker, index) =>
           <Marker
+            id={marker.id}
             icon={marker.markerIcon}
             position={[marker.lat, marker.lng]}>
             <Popup>

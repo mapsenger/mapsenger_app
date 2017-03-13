@@ -430,3 +430,13 @@ body {
 .add-height{
   height: 68px;
 }
+
+.map-current-location{
+  text-align: center;
+  font-size: 22px;
+  width: 30px;
+  height: 30px;
+  color: black;
+  background-color: lightgrey;
+  border-radius: 95%;
+}

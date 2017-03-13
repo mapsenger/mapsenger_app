@@ -252,7 +252,7 @@ class App extends React.Component {
                 textSearch={searchPOI}
                 POI={state.searchedPOI}
                 sendMessage={ sendMessage }
-                markerFromHistory={state.goToMarker}
+                allPOI={props.history}
                 userID={ props.userID }
               />
             </div>
@@ -269,7 +269,7 @@ class App extends React.Component {
                 userID={ props.userID }
                 currentLoc={state.currentLoc}
                 sendMessage={ sendMessage }
-                markerFromHistory={state.goToMarker}
+                allPOI={props.history}
                 sendMarker={ this.sendMarker.bind(this)
               }
               />
