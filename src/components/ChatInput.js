@@ -45,11 +45,7 @@ export default class ChatInput extends React.Component {
       <form className="container" onSubmit={ onSubmit }>
         <div className="row">
           <div className="input-field col s9">
-            <input ref="txtMessage" type="text" placeholder="Type your message"/>
-            <span className="chip left">
-              <img src={ imgURL }/>
-              <span>Anonymous robot #{ props.userID }</span>
-            </span>
+            <input style={{height:'2.5em'}} ref="txtMessage" type="text" placeholder="Type your message"/>
           </div>
           <div className="input-field col s3">
             <RaisedButton

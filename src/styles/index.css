@@ -69,6 +69,7 @@ footer .input-field input {
 }
 .blackFooter{
   background-color: #505050;
+  height:4.5em
 }
 
 .chip {
@@ -308,7 +309,6 @@ body {
   position: relative;
   height: auto;
   padding: 10px;
-  margin-bottom:10px;
   background-color: #505050;
   color:white
 }
@@ -318,7 +318,6 @@ body {
   float:right;
   clear : right;
   display: inline-block;
-  margin-bottom:10px;
   height: auto;
   padding: 10px;
   background-color: #6359df;
