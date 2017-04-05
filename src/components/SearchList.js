@@ -12,7 +12,7 @@ export default class SearchList extends Component {
     textSearch: React.PropTypes.string,
     POI: React.PropTypes.array,
     sendMessage: React.PropTypes.func,
-    markerFromHistory: React.PropTypes.array,
+    allPOI: React.PropTypes.array,
     userID: React.PropTypes.number,
   };
 
@@ -42,7 +42,17 @@ export default class SearchList extends Component {
   }
 
   componentWillMount() {
-    const reformedPlaces = this.state.places.map(function(obj) {
+    const allExistingID = [];
+    let robj;
+    const markerHistory = this.props.allPOI;
+    const getMarker = markerHistory.filter(function (el) {
+      return el.Type === 'marker';
+    });
+    getMarker.map(function (existingMarker) {
+      allExistingID.push(existingMarker.Where.id);
+    });
+    console.log(allExistingID);
+    const reformedPlaces = this.state.places.map(function (obj) {
       const disLat = obj.geometry.location.lat;
       const disLng = obj.geometry.location.lng;
       const totalDistance = geolib.getDistance(
@@ -50,18 +60,35 @@ export default class SearchList extends Component {
         {latitude: 47.658350, longitude: -122.313782}
       );
       const distanceInMiles = totalDistance / 6000;
-      const robj = {
-        id: obj.id,
-        name: obj.name,
-        pic: obj.icon,
-        rating: obj.rating,
-        address: obj.formatted_address.split(",")[0],
-        background: '#ffffff',
-        imgBorderColor: 'black',
-        distance: String(distanceInMiles.toFixed(2)) + ' Miles',
-        lat: disLat,
-        lng: disLng,
-      };
+      if (allExistingID.includes(obj.id)) {
+        robj = {
+          id: obj.id,
+          name: obj.name,
+          pic: obj.icon,
+          rating: obj.rating,
+          address: obj.formatted_address.split(",")[0],
+          background: '#ffffff',
+          imgBorderColor: 'black',
+          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
+          lat: disLat,
+          lng: disLng,
+          existing: 'item-shared'
+        };
+      } else {
+        robj = {
+          id: obj.id,
+          name: obj.name,
+          pic: obj.icon,
+          rating: obj.rating,
+          address: obj.formatted_address.split(",")[0],
+          background: '#ffffff',
+          imgBorderColor: 'black',
+          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
+          lat: disLat,
+          lng: disLng,
+          existing: 'item-share'
+        };
+      }
       return robj;
     });
     this.setState({
@@ -87,7 +114,7 @@ export default class SearchList extends Component {
                   borderBottom:'1px #4a4a4a solid',
                   paddingRight:'none'
                 }}
-                >
+              >
 
                 <CardHeader
                   style={{
@@ -102,7 +129,7 @@ export default class SearchList extends Component {
                   <div style={{fontWeight:'100'}}>{"Rating: " + place.rating}</div>
                   <div style={{fontWeight:'100'}}>{"Address: " + place.address}</div>
                   <div style={{fontWeight:'100'}}>{"Distance: " + place.distance}</div>
-                  <img id={place.id} className="item-share" src="http://i.imgur.com/fSL4zE3.png"/>
+                  <img id={place.id} className={place.existing} src="http://i.imgur.com/76rcbCP.png"/>
                   </div>
                   }
                   actAsExpander={true}

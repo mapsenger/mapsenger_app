@@ -33,7 +33,7 @@ function appReducer(state = INITIAL_STATE, action = {}) {
       return state.update('markers', (markers) => markers.push(action.payload));
     case REMOVE_USER:
       return state.update('users', (users) =>
-        users.delete(action.payload)
+        users.filter(element => element !== action.payload)
       );
     case SEND_MARKER:
       return state;

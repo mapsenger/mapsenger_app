@@ -71,6 +71,7 @@ class App extends React.Component {
       currentLoc: '',
       goToMarker: '',
       fromWhereToMap: '',
+      newMessage: '',
     };
   }
 
@@ -82,6 +83,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log('did mount', this.props.history);
     // No geo location here you said?
     this.props.setUserID(ID);
       pubnub.subscribe({
@@ -111,6 +113,17 @@ class App extends React.Component {
     this.leaveChat();
   }
 
+  componentDidUpdate() {
+    console.log('will receive prop', this.props.history);
+    if (this.props.history.length > 0) {
+      if (this.props.history.slice(-1)[0].Type === 'message' && this.props.history.slice(-1)[0].What !== this.state.newMessage) {
+        this.setState({
+          newMessage: this.props.history.slice(-1)[0].What
+        });
+      }
+    }
+  }
+
   onPresenceChange = (presenceData) => {
     switch (presenceData.action) {
       case 'join':
@@ -124,7 +137,6 @@ class App extends React.Component {
         this.props.addUser(presenceData.uuid);
         break;
       case 'leave':
-        console.log('leave');
         this.props.removeUser(presenceData.uuid);
         break;
       case 'timeout':
@@ -225,6 +237,7 @@ class App extends React.Component {
                 toggleFunction={this.handleClick.bind(this)}
                 markers={ props.markers }
                 userID={ props.userID }
+                newMessage={state.newMessage}
                 sendMarker={ this.sendMarker.bind(this) }
                 allPOI={props.history}
                 fromWHere={state.fromWhereToMap}
@@ -252,7 +265,7 @@ class App extends React.Component {
                 textSearch={searchPOI}
                 POI={state.searchedPOI}
                 sendMessage={ sendMessage }
-                markerFromHistory={state.goToMarker}
+                allPOI={props.history}
                 userID={ props.userID }
               />
             </div>
@@ -269,7 +282,7 @@ class App extends React.Component {
                 userID={ props.userID }
                 currentLoc={state.currentLoc}
                 sendMessage={ sendMessage }
-                markerFromHistory={state.goToMarker}
+                allPOI={props.history}
                 sendMarker={ this.sendMarker.bind(this)
               }
               />
