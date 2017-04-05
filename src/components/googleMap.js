@@ -15,6 +15,7 @@ export default class GoogleMap extends Component {
     allPOI: React.PropTypes.array,
     markerFromHistory: React.PropTypes.array,
     fromWHere: React.PropTypes.string,
+    newMessage: React.PropTypes.string,
     toggleFunction: React.PropTypes.func,
     focusModal: React.PropTypes.func,
   };
@@ -22,7 +23,7 @@ export default class GoogleMap extends Component {
   _currentLocation() {
     const currentLocation = this.state.center;
     this.setState({
-      center:[currentLocation[0] + 0.000001, currentLocation[1] + 0.000001]
+      center: [currentLocation[0] + 0.000001, currentLocation[1] + 0.000001]
     });
   }
 
@@ -37,7 +38,8 @@ export default class GoogleMap extends Component {
       lat: 47.658350,
       lng: -122.313782,
       zoom: 15,
-      POI: ''
+      POI: '',
+      newMessage: 'fuck'
     };
   }
 
@@ -46,7 +48,7 @@ export default class GoogleMap extends Component {
     const me = this.props.userID;
     const markerHistory = this.props.allPOI;
     // Get all friends locations
-    const friends = us.filter(function(el) {
+    const friends = us.filter(function (el) {
       console.log(el.id);
       return el.id !== me;
     });
@@ -56,7 +58,7 @@ export default class GoogleMap extends Component {
       iconSize: [15, 15]
     });
     // Friends Markers
-    const friendsIcon = friends.map(function(friend) {
+    const friendsIcon = friends.map(function (friend) {
       const imgURL = 'https://api.adorable.io/avatars/92/' + friend.id;
       const markerUrl = '<img class="friend-div-icon" src=' + imgURL + '/>';
       return {
@@ -71,14 +73,14 @@ export default class GoogleMap extends Component {
       };
     });
     // Get my location for the marker
-    const myMarker = us.filter(function(el) {
+    const myMarker = us.filter(function (el) {
       return el.id === me;
     });
     // Get all POI location
-    const getMarker = markerHistory.filter(function(el) {
+    const getMarker = markerHistory.filter(function (el) {
       return el.Type === 'marker';
     });
-    const reformedPlaces = getMarker.map(function(obj) {
+    const reformedPlaces = getMarker.map(function (obj) {
       const robj = {
         markerID: obj.Where.markerID,
         markerIcon: divIcon({
@@ -115,7 +117,17 @@ export default class GoogleMap extends Component {
   }
 
   componentDidMount() {
+    console.log('new message app', this.props.newMessage);
     console.log(this.state.POI);
+  }
+
+  componentDidUpdate() {
+    console.log('map app', this.props.newMessage);
+    if (this.props.newMessage !== this.state.newMessage) {
+        this.setState({
+          newMessage: this.props.newMessage
+        });
+    }
   }
 
   _onClickButton() {
@@ -169,23 +181,29 @@ export default class GoogleMap extends Component {
           )}
           <Control position="topleft">
             <i
-              onClick={this._currentLocation.bind(this)} 
+              onClick={this._currentLocation.bind(this)}
               className="fa fa-street-view map-current-location" aria-hidden="true"/>
           </Control>
         </Map>
         <div className="mui-container-fluid">
-        <div className="navbar-map mui-row online-user-map">
-          <div className="textSearch-map mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
-            <input ref="txtMessage"
-                   type="text"
-                   onFocus={ this._onFocus.bind(this) }
-                   placeholder="Search"/>
+          <div className="navbar-map mui-row online-user-map">
+            <div
+              className="textSearch-map mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
+              <input ref="txtMessage"
+                     type="text"
+                     onFocus={ this._onFocus.bind(this) }
+                     placeholder="Search"/>
+            </div>
+            <div className="toggle-button-col mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
+              <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
+              </button>
+            </div>
           </div>
-          <div className="toggle-button-col mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
-            <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
-            </button>
-          </div>
-          </div>
+        </div>
+        <div id="chatNotif" className="map-chat-notif">
+          <p
+          style={{color:'black'}}
+          >{this.state.newMessage}</p>
         </div>
       </div>
     );

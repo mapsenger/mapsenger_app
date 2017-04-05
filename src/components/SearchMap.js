@@ -19,7 +19,7 @@ export default class SearchMap extends Component {
 
   _shareMarker(marker) {
     const currentMarkerID = '#' + marker.id;
-    $(currentMarkerID).attr('src', 'http://i.imgur.com/VpiXxWu.png');
+    $(currentMarkerID).attr('src', 'http://i.imgur.com/76rcbCP.png');
     const messageObj = {
       Who: this.props.userID,
       When: new Date().valueOf(),
@@ -99,7 +99,7 @@ export default class SearchMap extends Component {
           id: obj.id,
           markerIcon: divIcon({
             className: 'my-div-icon',
-            html: '<img id=' + obj.id + ' src="http://i.imgur.com/VpiXxWu.png"/>',
+            html: '<img id=' + obj.id + ' src="http://i.imgur.com/76rcbCP.png"/>',
             iconSize: [15, 15]
           }),
           lat: disLat,

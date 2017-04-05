@@ -440,3 +440,14 @@ body {
   background-color: lightgrey;
   border-radius: 95%;
 }
+
+.map-chat-notif{
+  background-color: white;
+  width: 200px;
+  height: 40px;
+  border-radius: 2%;
+  position: absolute;
+  top: 85%;
+  left: 22%;
+  z-index: 99;
+}
