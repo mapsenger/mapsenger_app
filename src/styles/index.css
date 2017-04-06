@@ -441,12 +441,24 @@ body {
 }
 
 .map-chat-notif{
-  background-color: white;
-  width: 200px;
+  background-color: rgba(100,100,100,0.8);
+  width: 84%;
   height: 40px;
-  border-radius: 2%;
+  border-radius: 5px ;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   position: absolute;
-  top: 85%;
-  left: 22%;
+  bottom: 3%;
+  text-align: center;
+  left:8%;
   z-index: 99;
+  box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
+}
+
+.map-chat-notif p{
+  padding: 10px;
+  vertical-align: middle;
+  font-size: 12pt;
+  font-weight:400;
+  color:#fff !important;
 }
