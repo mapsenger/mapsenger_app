@@ -23,7 +23,13 @@ class ChatUsers extends React.Component {
   }
 
   _onFocus() {
-    this.props.focusModal('DESTINATION');
+    $('#navbarTextSearch :input').hide();
+    const listSet = '#navbarTextSearch';
+    $(listSet).addClass('textSearch-transition-navbar');
+    setTimeout(function() {
+        this.props.focusModal('DESTINATION');
+      }.bind(this),
+      200);
   }
 
   render() {
@@ -32,8 +38,9 @@ class ChatUsers extends React.Component {
       <div className="mui-container-fluid">
         {currentPage === 'FIRST' ? (
           <div className="mui-row online-user-list">
-            <div className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
-              <input ref="txtMessage"
+            <div id="navbarTextSearch" className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
+              <input
+                    ref="txtMessage"
                      type="text"
                      onFocus={ this._onFocus.bind(this) }
                      placeholder="Search"/>

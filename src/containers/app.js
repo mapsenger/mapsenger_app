@@ -283,8 +283,8 @@ class App extends React.Component {
                 currentLoc={state.currentLoc}
                 sendMessage={ sendMessage }
                 allPOI={props.history}
-                sendMarker={ this.sendMarker.bind(this)
-              }
+                sendMarker={ this.sendMarker.bind(this)}
+                toggleFunction={this.handleClick.bind(this)}
               />
             </div>
           )

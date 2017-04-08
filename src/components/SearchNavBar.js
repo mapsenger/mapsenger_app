@@ -28,7 +28,18 @@ class SearchNavBar extends React.Component {
   }
 
   _onClickBackButton() {
-    this.props.backButton();
+    if (this.props.currentPage === 'SEARCH') {
+      const listSet = '#SearchNavBar';
+      const inputNav = '#textInputSearchNav';
+      $(listSet).addClass('navbar-transition-search');
+      $(inputNav).addClass('textSearch-search-nav-transition');
+      setTimeout(function () {
+          this.props.backButton();
+        }.bind(this),
+        500);
+    } else {
+      this.props.backButton();
+    }
   }
 
   _onFocus() {
@@ -72,13 +83,13 @@ class SearchNavBar extends React.Component {
           </div>
         ) : currentPage === 'SEARCH' ?
           (
-            <div className="mui-row seach-navbar">
+            <div id="SearchNavBar" className="mui-row seach-navbar">
               <div className="online-users-number valign-wrapper mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
                 <button className="button-back"
                         onClick={this._onClickBackButton.bind(this)}>
                 </button>
               </div>
-              <div className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
+              <div id="textInputSearchNav" className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
                 <input autoFocus
                        ref="txtMessage"
                        type="text"

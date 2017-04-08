@@ -191,9 +191,18 @@ body {
   align-items: center;
   border: none;
   position: fixed;
-  z-index: 100000000;;
+  z-index: 10;
   background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
+  -webkit-transition: all .2s;
 }
+
+.navbar-transition-search{
+  display: flex;
+  align-items: center;
+  background: rgba(54, 54, 54, 0.8) !important;
+  z-index: 11;
+}
+
 
 .online-user-map {
   height: 68px;
@@ -202,6 +211,7 @@ body {
   position: fixed;
   background: transparent !important;
 }
+
 
 .online-users-number {
   color: white;
@@ -287,11 +297,41 @@ body {
   height: 44px;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
   padding: -20px;
+  -webkit-transition: all .3s;
+}
+
+.movetext{
+  background-color: black;
+  background-color: black;
+}
+
+.textSearch-transition-navbar{
+  border-radius: 0;
+  margin-left:0;
+  height: 68px;
+  width:100%;
+  display: flex;
+  align-items: center;
+  border: none;
+  position: fixed;
+  z-index: 100000000;;
+  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
 }
 
 .textSearch-search-nav {
   background-color: transparent;
   box-shadow: none;
+  -webkit-transition: all 1s;
+}
+
+.textSearch-search-nav-transition {
+  border-radius: 30px;
+  width:66.66667%;
+  margin-left:-5%;
+  background-color: #ffffff;
+  height: 44px;
+  padding: -20px;
+  box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
 }
 
 .textSearch-map {
@@ -450,4 +490,55 @@ body {
   top: 85%;
   left: 22%;
   z-index: 99;
+}
+
+.navbar-map-search{
+  position: absolute;
+  z-index: 100;
+  top: 65%;
+  zoom: 0.95; /* Old IE only */
+  -webkit-transition: -webkit-transform 3s;
+  -moz-transform: scale(0.92);
+  -webkit-transform: scale(0.92);
+  transform: scale(0.92);
+}
+
+.navbar-map-list{
+  position: absolute;
+  z-index: 100;
+  -webkit-transition: all .5s;
+
+}
+
+.list-small{
+  top: 65%;
+  zoom: 0.95; /* Old IE only */
+  -moz-transform: scale(0.92);
+  -webkit-transform: scale(0.92);
+  transform: scale(0.92);
+}
+
+.list-full{
+  top: 0;
+  zoom: 1; /* Old IE only */
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.list-full-nav{
+  top: 10%;
+  zoom: 1; /* Old IE only */
+  -moz-transform: scale(1);
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+
+.seach-navbar-mapsearch {
+  height: 68px;
+  display: flex;
+  border: none;
+  z-index: 100000000;;
+  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
 }

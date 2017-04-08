@@ -92,7 +92,7 @@ export default class SearchList extends Component {
       return robj;
     });
     this.setState({
-      places: reformedPlaces,
+      places: reformedPlaces
     });
   }
 
