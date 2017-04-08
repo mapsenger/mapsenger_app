@@ -205,6 +205,7 @@ export default class GoogleMap extends Component {
           style={{color:'black'}}
           >{this.state.newMessage}</p>
         </div>
+        <div id="notiGradient"></div>
       </div>
     );
   }

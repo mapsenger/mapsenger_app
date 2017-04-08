@@ -9,12 +9,12 @@
 }
 
 .current-user-div-icon {
-  width: 12px;
-  height: 12px;
+  width: 18px !important;
+  height: 18px !important;
   background-color: #5a43c8;
-  border-radius: 25px;
+  border-radius: 16px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
-  border: solid 1px #ffffff;
+  border: solid 2px #ffffff;
 }
 
 .friend-div-icon {
@@ -69,6 +69,7 @@ footer .input-field input {
 }
 .blackFooter{
   background-color: #505050;
+  height:4.5em
 }
 
 .chip {
@@ -275,9 +276,10 @@ body {
   background-image: url('http://i.imgur.com/kVE8DIZ.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 50px;
-  height: 50px;
+  width: 1.8em;
+  height: 1.8em;
   background-color: transparent;
+  background-size:1.8em;
 }
 
 .search-button-div-list {
@@ -286,9 +288,10 @@ body {
   background-image: url('http://i.imgur.com/Ji6wdWH.png');
   background-repeat: no-repeat;
   background-position: center;
-  width: 50px;
-  height: 50px;
+  width: 1.6em;
+  height: 1.6em;
   background-color: transparent;
+  background-size:1.6em;
 }
 
 .textSearch {
@@ -348,7 +351,6 @@ body {
   position: relative;
   height: auto;
   padding: 10px;
-  margin-bottom:10px;
   background-color: #505050;
   color:white
 }
@@ -358,7 +360,6 @@ body {
   float:right;
   clear : right;
   display: inline-block;
-  margin-bottom:10px;
   height: auto;
   padding: 10px;
   background-color: #6359df;
@@ -482,14 +483,63 @@ body {
 }
 
 .map-chat-notif{
-  background-color: white;
-  width: 200px;
-  height: 40px;
-  border-radius: 2%;
+  background-color: rgba(20,20,20,0.8);
+  width: 90%;
+  height: 50px;
+  border-radius: 5px ;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
   position: absolute;
-  top: 85%;
-  left: 22%;
+  bottom: 12px;
+  text-align: center;
+  left:5%;
   z-index: 99;
+  box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
+}
+
+.map-chat-notif p{
+  padding: 10px;
+  vertical-align: middle;
+  font-size: 12pt;
+  font-weight:400;
+  color:#fff !important;
+}
+
+#notiGradient{
+  height:100px;
+  width:100%;
+  bottom:0%;
+  position:absolute;
+  z-index:90;
+  background: rgba(93,118,240,0);
+background: -moz-linear-gradient(top, rgba(93,118,240,0) 0%, rgba(82,52,247,0) 0%, rgba(127,93,240,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(93,118,240,0)), color-stop(0%, rgba(82,52,247,0)), color-stop(100%, rgba(127,93,240,1)));
+background: -webkit-linear-gradient(top, rgba(93,118,240,0) 0%, rgba(82,52,247,0) 0%, rgba(127,93,240,1) 100%);
+background: -o-linear-gradient(top, rgba(93,118,240,0) 0%, rgba(82,52,247,0) 0%, rgba(127,93,240,1) 100%);
+background: -ms-linear-gradient(top, rgba(93,118,240,0) 0%, rgba(82,52,247,0) 0%, rgba(127,93,240,1) 100%);
+background: linear-gradient(to bottom, rgba(93,118,240,0) 0%, rgba(82,52,247,0) 0%, rgba(127,93,240,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5d76f0', endColorstr='#7f5df0', GradientType=0 );
+}
+
+.leaflet-popup-content-wrapper {
+  background: #3c268d;
+  color: #fff;
+
+}
+
+.leaflet-popup-close-button {
+  color:rgba(255,255,255,0.3);
+}
+
+.leaflet-popup-tip-container{
+  display:none;
+}
+
+.markername{
+  font-size:1.4em;
+  font-weight:bold;
+  line-height:0;
+  margin-bottom:0em;
 }
 
 .navbar-map-search{
