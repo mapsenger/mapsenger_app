@@ -32,11 +32,11 @@ class SearchNavBar extends React.Component {
       const listSet = '#SearchNavBar';
       const inputNav = '#textInputSearchNav';
       $(listSet).addClass('navbar-transition-search');
-      $(inputNav).addClass('textSearch-search-nav-transition');
+      // $(inputNav).addClass('textSearch-search-nav-transition');
       setTimeout(function () {
           this.props.backButton();
         }.bind(this),
-        500);
+        200);
     } else {
       this.props.backButton();
     }

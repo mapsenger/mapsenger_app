@@ -15,7 +15,7 @@ export default class ChatHistory extends React.Component {
   };
 
   componentDidUpdate() {
-     scroll.scrollToBottom();
+    scroll.scrollToBottom();
   }
 
   _onClickButton(location) {
@@ -28,7 +28,7 @@ export default class ChatHistory extends React.Component {
 
   render() {
     const { props } = this;
-    return (<ul className="collection" ref="messageList">
+    return (<ul id="chatHistory" className="collection" ref="messageList">
     { props.history.map((messageObj) => {
         const imgURL = 'https://api.adorable.io/avatars/92/' + messageObj.Who;
         return (

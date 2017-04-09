@@ -39,7 +39,7 @@ export default class GoogleMap extends Component {
       lng: -122.313782,
       zoom: 15,
       POI: '',
-      newMessage: 'fuck'
+      newMessage: ''
     };
   }
 
@@ -119,14 +119,22 @@ export default class GoogleMap extends Component {
   componentDidMount() {
     console.log('new message app', this.props.newMessage);
     console.log(this.state.POI);
+    const toggleButton = '#button_toggle';
+    $(toggleButton).addClass('transition');
   }
 
   componentDidUpdate() {
     console.log('map app', this.props.newMessage);
     if (this.props.newMessage !== this.state.newMessage) {
-        this.setState({
-          newMessage: this.props.newMessage
-        });
+      $('#chatNotif').addClass('transition');
+      $('#notiGradient').addClass('transition');
+      this.setState({
+        newMessage: this.props.newMessage
+      });
+      setTimeout(function () {
+        $('#notiGradient').removeClass('transition');
+        $('#chatNotif').removeClass('transition');
+        }, 2500);
     }
   }
 
@@ -140,6 +148,7 @@ export default class GoogleMap extends Component {
 
   render() {
     const position = this.state.center;
+    const newMessage = this.state.newMessage;
     return (
       <div className="wrapper-map">
         <Map
@@ -195,17 +204,21 @@ export default class GoogleMap extends Component {
                      placeholder="Search"/>
             </div>
             <div className="toggle-button-col mui-col-md-1 mui-col-xs-1 mui-col-lg-1">
-              <button className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
+              <button id="button_toggle" className="toggle-button-div-chat" onClick={this._onClickButton.bind(this)}>
               </button>
             </div>
           </div>
         </div>
-        <div id="chatNotif" className="map-chat-notif">
-          <p
-          style={{color:'black'}}
-          >{this.state.newMessage}</p>
-        </div>
-        <div id="notiGradient"></div>
+        {newMessage !== '' ? (
+          <div id="wholeChatNoti">
+            <div id="chatNotif" className="map-chat-notif">
+              <p
+                style={{color:'black'}}
+              >{this.state.newMessage}</p>
+            </div>
+            <div id="notiGradient" className="notiGradient"></div>
+          </div>
+        ) : null}
       </div>
     );
   }

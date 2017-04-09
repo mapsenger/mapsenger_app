@@ -202,7 +202,6 @@ export default class SearchMap extends Component {
                 <h3 className="markername">{marker.name}</h3><br/>
                 {marker.address}<br/>
                 {marker.distance} away<br/>
-                
               </span>
               </Popup>
             </Marker>
