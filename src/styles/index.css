@@ -237,6 +237,7 @@ body {
    background-image: url('http://i.imgur.com/kVE8DIZ.png');
    background-repeat: no-repeat;
    background-position: center;
+   background-size:1.7em;
    border-radius: 50%;
    width: 44px;
    height: 44px;
@@ -244,11 +245,27 @@ body {
    background-color: #6359df;
    border: none;
    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
-   -webkit-transition: all .5s;
-   transform: scale(0.01);
-   -ms-transform: scale(0.01);
-   -webkit-transform: scale(0.01);
+   -webkit-transition: CHANGE .5s;
+   transform: CHANGE .5s;
+   -ms-transform: CHANGE .5s;
+   -webkit-transform: CHANGE .5s;
  }
+ @-webkit-keyframes CHANGE {
+  0%   { backgrond-size: 0em; }
+  100% { opacity: 1.7em; }
+}
+@-moz-keyframes CHANGE {
+  0%   { opacity: 0em; }
+  100% { opacity: 1.7em; }
+}
+@-o-keyframes CHANGE {
+  0%   { opacity: 0em; }
+  100% { opacity: 1.7em; }
+}
+@keyframes CHANGE {
+  0%   { opacity: 0em; }
+  100% { opacity: 1.7em; }
+}
 
 
 
@@ -262,6 +279,7 @@ body {
   background-image: url('http://i.imgur.com/xI1lvXE.png');
   background-repeat: no-repeat;
   background-position: center;
+  background-size:1.7em;
   border-radius: 50%;
   width: 44px;
   height: 44px;
