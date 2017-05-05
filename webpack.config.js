@@ -71,6 +71,8 @@ module.exports = {
   devServer: {
     historyApiFallback: {index: '/'},
     proxy: proxy(),
+    disableHostCheck: true,
+    host: '0.0.0.0'
   },
 
   module: {
