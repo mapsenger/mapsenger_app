@@ -14,7 +14,7 @@ const nodeAppServer = require('./node-app-server');
 const app = express();
 // const server = http.createServer(app);
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
 
 // Enable various security helpers.
 app.use(helmet());
@@ -31,7 +31,7 @@ app.get('/yelp', function(req, res) {
 nodeAppServer(app);
 
 // Start up the server.
-app.listen(PORT, '10.18.217.126', (err) => {
+app.listen(PORT, '0.0.0.0', (err) => {
   if (err) {
     winston.error(err);
     return;
