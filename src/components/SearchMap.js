@@ -20,7 +20,8 @@ export default class SearchMap extends Component {
     allPOI: React.PropTypes.array,
     currentLoc: React.PropTypes.array,
     sendMessage: React.PropTypes.func,
-    toggleFunction: React.PropTypes.func
+    toggleFunction: React.PropTypes.func,
+    handleAnimation: React.PropTypes.string
   };
 
   _shareMarker(marker) {
@@ -176,6 +177,15 @@ export default class SearchMap extends Component {
     $(listSet).addClass('list-small');
   }
 
+  componentDidUpdate() {
+    if (this.props.handleAnimation === true) {
+      console.log(this.props.handleAnimation);
+      const listSet = '#listOnMap';
+      $(listSet).removeClass('list-small');
+      $(listSet).addClass('list-full-nav');
+    }
+  }
+
   render() {
     const position = this.state.center;
     return (
@@ -199,7 +209,7 @@ export default class SearchMap extends Component {
           { this.state.othersMarkers.map((marker, index) =>
             <Marker
               icon={marker.markerIcon}
-              position={[0.01 * (index + 1) + marker.lat, marker.lng]}/>
+              position={[marker.lat, marker.lng]}/>
           )}
           { this.state.poiMarkers.map((marker, index) =>
             <Marker

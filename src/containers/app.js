@@ -72,6 +72,7 @@ class App extends React.Component {
       goToMarker: '',
       fromWhereToMap: '',
       newMessage: '',
+      forMapAnimation: false
     };
   }
 
@@ -86,16 +87,30 @@ class App extends React.Component {
     console.log('did mount', this.props.history);
     // No geo location here you said?
     this.props.setUserID(ID);
+    //  pubnub.subscribe({
+    //    channel: 'ReactChat',
+    //    message: this.props.addMessage,
+    //    presence: this.onPresenceChange,
+    //    state: {
+    //      id: ID,
+    //      lat: 47.6553,
+    //      lng: -122.3035,
+    //    },
+    // });
+
+    navigator.geolocation.getCurrentPosition((position) => {
       pubnub.subscribe({
         channel: 'ReactChat',
         message: this.props.addMessage,
         presence: this.onPresenceChange,
         state: {
           id: ID,
-          lat: 47.6553,
-          lng: -122.3035,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
         },
+      });
     });
+
     const self = this;
     pubnub.here_now({
       channel: 'ReactChat',
@@ -159,28 +174,23 @@ class App extends React.Component {
   getText(infoSearch) {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
-     this.setState({
+      // this.setState({
+      //  searchBar: infoSearch,
+      //  active: 'SEARCH_ENTER',
+      //  searchedPOI: places.thai
+      // });
+     const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
+     fetch(url, {method: 'GET'}).then(function (response) {
+      return response.json();
+     }).then(json => {
+      this.setState({
+        searchedPOI: json.results,
         searchBar: infoSearch,
-        active: 'SEARCH_ENTER',
-        searchedPOI: places.thai
+        active: 'SEARCH_ENTER'
+      });
+     }).catch(function (error) {
+      console.log('Error:', error);
      });
-    // const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
-    // fetch(url, {method: 'GET'}).then(function (response) {
-    //  return response.json();
-    // }).then(json => {
-    //  this.setState({
-    //    searchedPOI: json.results,
-    //    searchBar: infoSearch,
-    //    active: 'SEARCH_ENTER'
-    //  });
-    // }).catch(function (error) {
-    //  console.log('Error:', error);
-    // });
-    console.log(infoSearch);
-    //  this.setState({
-    //    searchBar: infoSearch,
-    //    active: 'SEARCH_ENTER'
-    // });
   }
 
   getMarker(marker) {
@@ -217,6 +227,7 @@ class App extends React.Component {
                               searchText={this.getText.bind(this)}
                               focusModal={this.openModal.bind(this)}
                               currentPage={active}
+                              handleAnimation={this.handleMapAnimation.bind(this)}
                               toggleFunction={this.handleClick.bind(this)}
                 />
               ) : null}
@@ -284,6 +295,7 @@ class App extends React.Component {
                 sendMessage={ sendMessage }
                 allPOI={props.history}
                 sendMarker={ this.sendMarker.bind(this)}
+                handleAnimation={state.forMapAnimation}
                 toggleFunction={this.handleClick.bind(this)}
               />
             </div>
@@ -332,7 +344,6 @@ class App extends React.Component {
         newActive = 'FIRST';
         break; // it encounters this break so will not continue into 'case 2:'
       case 'SEARCH_ENTER':
-        console.log('ok search enter');
         newActive = 'SEARCH_MAP';
         break;
       case 'SEARCH_MAP':
@@ -344,9 +355,16 @@ class App extends React.Component {
     }
     this.setState({
       active: newActive,
-      fromWhereToMap: 'main'
+      fromWhereToMap: 'main',
+      forMapAnimation: false
     });
   }
+
+  handleMapAnimation = () => {
+    this.setState({
+      forMapAnimation: true
+    });
+  };
 
   leaveChat = () => {
     pubnub.unsubscribe({channel: 'ReactChat'});

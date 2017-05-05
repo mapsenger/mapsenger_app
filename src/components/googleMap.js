@@ -176,7 +176,7 @@ export default class GoogleMap extends Component {
           { this.state.friendsCustomMarkers.map((marker, index) =>
             <Marker
               icon={marker.markerIcon}
-              position={[0.01 * (index + 1) + marker.lat, marker.lng]}/>
+              position={[marker.lat, marker.lng]}/>
           )}
           { this.state.POI.map((marker, index) =>
             <Marker
