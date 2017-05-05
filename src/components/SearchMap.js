@@ -7,6 +7,7 @@ import { divIcon } from 'leaflet';
 import geolib from 'geolib';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import Control from 'react-leaflet-control';
 import FlatButton from 'material-ui/FlatButton';
 
 
@@ -43,6 +44,13 @@ export default class SearchMap extends Component {
       this.props.toggleFunction('SEARCH_MAP');
     }.bind(this),
       700);
+  }
+
+  _currentLocation() {
+    const currentLocation = this.state.center;
+    this.setState({
+      center: [currentLocation[0] + 0.000001, currentLocation[1] + 0.000001]
+    });
   }
 
 
@@ -173,6 +181,7 @@ export default class SearchMap extends Component {
     return (
       <div className="wrapper-map">
         <Map
+          zoomControl={false}
           style={{height: '100vh'}}
           center={position}
           zoom={this.state.zoom}>
@@ -206,6 +215,11 @@ export default class SearchMap extends Component {
               </Popup>
             </Marker>
           )}
+          <Control position="topleft">
+            <i
+              onClick={this._currentLocation.bind(this)}
+              className="fa fa-location-arrow map-current-location" aria-hidden="true"/>
+          </Control>
         </Map>
         <div id="listOnMap" className="navbar-map-list list-full">
           <MuiThemeProvider>

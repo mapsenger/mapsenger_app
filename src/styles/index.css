@@ -50,7 +50,7 @@
 }
 
 .leaflet-left {
-  margin-top: 70px;
+  /*margin-top: 70px;*/
 }
 
 /* Chat Input*/
@@ -199,6 +199,11 @@ body {
   z-index: 10;
   background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
   -webkit-transition: all .2s;
+  -webkit-animation: all .2s;
+  -moz-animation: all .2s;
+  -o-animation: all .2s;
+  -ms-animation: all .2s;
+  animation: all .2s;
 }
 
 .navbar-transition-search {
@@ -234,7 +239,8 @@ body {
 /*}*/
 
 .toggle-button-div-chat {
-   background-image: url('http://i.imgur.com/kVE8DIZ.png');
+  background-image: url('http://i.imgur.com/xI1lvXE.png');
+   background-size: 1.7em;
    background-repeat: no-repeat;
    background-position: center;
    background-size:1.7em;
@@ -267,16 +273,32 @@ body {
   100% { opacity: 1.7em; }
 }
 
-
-
-.toggle-button-div-chat.transition {
-  transform: scale(1);
-  -ms-transform: scale(1);
-  -webkit-transform: scale(1);
+@-webkit-keyframes MyAnimation {
+  0% { margin-top: 200px; }
+  50% { left: 0px; }
+  100% { left: 200px; }
+}
+@keyframes MyAnimation {
+  0% { margin-top: 200px; }
+  50% { left: 0px; }
+  100% { left: 200px; }
 }
 
+
+.toggle-button-div-chat.animate{
+  animation: toggleanimation .5s;
+}
+
+
+  /*.toggle-button-div-chat.transition {*/
+  /*transform: scale(1);*/
+  /*-ms-transform: scale(1);*/
+  /*-webkit-transform: scale(1);*/
+/*}*/
+
 .toggle-button-div-map {
-  background-image: url('http://i.imgur.com/xI1lvXE.png');
+  background-image: url('http://i.imgur.com/kVE8DIZ.png');
+  background-size: 1.7em;
   background-repeat: no-repeat;
   background-position: center;
   background-size:1.7em;
@@ -287,6 +309,11 @@ body {
   margin-top: 4px;
   background-color: #6359df;
   -webkit-transition: all .5s;
+  -webkit-animation: all .5s;
+  -moz-animation: all .5s;
+  -o-animation: all .5s;
+  -ms-animation: all .5s;
+  animation: all .5s;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -296,14 +323,10 @@ body {
 
 @keyframes toggleanimation {
   0% {
-    transform: scale(0.01);
-    -ms-transform: scale(0.01);
-    -webkit-transform: scale(0.01);
+    background-size: 0;
   }
   100% {
-    transform: scale(1);
-    -ms-transform: scale(1);
-    -webkit-transform: scale(1);
+    background-size: 1.7em;
   }
 }
 
@@ -380,6 +403,11 @@ body {
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
   padding: -20px;
   -webkit-transition: all .5s;
+  -webkit-animation: all .5s;
+  -moz-animation: all .5s;
+  -o-animation: all .5s;
+  -ms-animation: all .5s;
+  animation: all .5s;
 }
 
 .movetext {
@@ -419,8 +447,27 @@ body {
   border-radius: 30px;
   background-color: #ffffff;
   height: 44px;
-  padding: -20px;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
+  padding: -20px;
+  -webkit-transition: all .5s;
+  -webkit-animation: all .5s;
+  -moz-animation: all .5s;
+  -o-animation: all .5s;
+  -ms-animation: all .5s;
+  animation: all .5s;
+}
+
+.textSearch-map-transition{
+  border-radius: 0;
+  margin-left: -15%;
+  height: 68px;
+  width: 150%;
+  display: flex;
+  align-items: center;
+  border: none;
+  position: fixed;
+  z-index: 11;;
+  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
 }
 
 /* For Chat Message*/
@@ -553,12 +600,18 @@ body {
 
 .map-current-location {
   text-align: center;
-  font-size: 22px;
+  margin-top: 70px;
+
+  margin-left:20px;
+  vertical-align: middle;
+  font-size: 20px;
   width: 30px;
   height: 30px;
-  color: black;
-  background-color: lightgrey;
-  border-radius: 95%;
+  line-height: 30px;
+  color: white;
+  background-color: #6359df;
+  border-radius: 99%;
+  z-index: 999;
 }
 
 .map-chat-notif {
@@ -576,6 +629,11 @@ body {
   opacity: 0;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
   -webkit-transition: all 2s; /* Safari */
+  -webkit-animation: all .2s;
+  -moz-animation: all .2s;
+  -o-animation: all .2s;
+  -ms-animation: all .2s;
+  animation: all .2s;
   transition: all 2s;
 }
 
@@ -590,8 +648,12 @@ body {
   font-weight: 400;
   color: #fff !important;
   -webkit-transition: all .1s; /* Safari */
-  -webkit-animation-duration: 3s;
+  -webkit-animation: all .1s;
+  -moz-animation: all .1s;
+  -o-animation: all .1s;
+  -ms-animation: all .1s;
   animation: fontbulger 3s infinite;
+  -webkit-animation-duration: 3s;
 }
 
 @keyframes fontbulger {
@@ -628,6 +690,11 @@ body {
   background: linear-gradient(to bottom, rgba(93, 118, 240, 0) 0%, rgba(82, 52, 247, 0) 0%, rgba(127, 93, 240, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d76f0', endColorstr='#7f5df0', GradientType=0);
   -webkit-transition: all 2s; /* Safari */
+  -webkit-animation: all .2s;
+  -moz-animation: all .2s;
+  -o-animation: all .2s;
+  -ms-animation: all .2s;
+  animation: all .2s;
   opacity: 0;
 }
 
@@ -666,12 +733,23 @@ body {
   -moz-transform: scale(0.92);
   -webkit-transform: scale(0.92);
   transform: scale(0.92);
+  -webkit-animation: all 3s;
+  -moz-animation: all 3s;
+  -o-animation: all 3s;
+  -ms-animation: all 3s;
+  animation: all 3s;
 }
 
 .navbar-map-list {
   position: absolute;
   z-index: 100;
-  -webkit-transition: all .5s;
+  -webkit-transition: all 0.5s;
+  -webkit-animation: all 0.5s;
+  -moz-animation: all 0.5s;
+  -o-animation: all 0.5s;
+  -ms-animation: all 0.5s;
+  animation: all 0.5s;
+
 
 }
 

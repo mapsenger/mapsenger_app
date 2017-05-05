@@ -120,7 +120,7 @@ export default class GoogleMap extends Component {
     console.log('new message app', this.props.newMessage);
     console.log(this.state.POI);
     const toggleButton = '#button_toggle';
-    $(toggleButton).addClass('transition');
+    $(toggleButton).addClass('animate');
   }
 
   componentDidUpdate() {
@@ -143,7 +143,13 @@ export default class GoogleMap extends Component {
   }
 
   _onFocus() {
-    this.props.focusModal('DESTINATION');
+    $('#navbarTextSearch :input').hide();
+    const listSet = '#navbarTextSearch';
+    $(listSet).removeClass('notransition');
+    $(listSet).addClass('textSearch-map-transition');
+    setTimeout(function () {
+      this.props.focusModal('DESTINATION');
+    }.bind(this), 500);
   }
 
   render() {
@@ -152,6 +158,7 @@ export default class GoogleMap extends Component {
     return (
       <div className="wrapper-map">
         <Map
+          zoomControl={false}
           style={{height: '100vh'}}
           center={position}
           zoom={this.state.zoom}>
@@ -188,17 +195,19 @@ export default class GoogleMap extends Component {
               </Popup>
             </Marker>
           )}
-          <Control position="topleft">
+          <Control position="topleft" }
+            >
             <i
               onClick={this._currentLocation.bind(this)}
-              className="fa fa-street-view map-current-location" aria-hidden="true"/>
+              className="fa fa-location-arrow map-current-location" aria-hidden="true"/>
           </Control>
         </Map>
         <div className="mui-container-fluid">
           <div className="navbar-map mui-row online-user-map">
-            <div
+            <div id="navbarTextSearch"
               className="textSearch-map mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
-              <input ref="txtMessage"
+              <input
+                ref="txtMessage"
                      type="text"
                      onFocus={ this._onFocus.bind(this) }
                      placeholder="Search"/>
