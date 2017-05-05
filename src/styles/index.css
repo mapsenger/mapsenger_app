@@ -50,7 +50,7 @@
 }
 
 .leaflet-left {
-  /*margin-top: 70px;*/
+  margin-top: 70px;
 }
 
 /* Chat Input*/
@@ -317,8 +317,23 @@ body {
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
 }
 
+
 .toggle-button-div-map.animate{
+  -webkit-transition: toggleanimation .5s;
+  -webkit-animation: toggleanimation .5s;
+  -moz-animation: toggleanimation .5s;
+  -o-animation: toggleanimation .5s;
+  -ms-animation: toggleanimation .5s;
   animation: toggleanimation .5s;
+}
+
+@-webkit-keyframes toggleanimation {
+  0% {
+    background-size: 0;
+  }
+  100% {
+    background-size: 1.7em;
+  }
 }
 
 @keyframes toggleanimation {
@@ -634,7 +649,7 @@ body {
   -o-animation: all .2s;
   -ms-animation: all .2s;
   animation: all .2s;
-  transition: all 2s;
+  transition: all .2s;
 }
 
 .map-chat-notif.transition{
@@ -689,7 +704,7 @@ body {
   background: -ms-linear-gradient(top, rgba(93, 118, 240, 0) 0%, rgba(82, 52, 247, 0) 0%, rgba(127, 93, 240, 1) 100%);
   background: linear-gradient(to bottom, rgba(93, 118, 240, 0) 0%, rgba(82, 52, 247, 0) 0%, rgba(127, 93, 240, 1) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5d76f0', endColorstr='#7f5df0', GradientType=0);
-  -webkit-transition: all 2s; /* Safari */
+  -webkit-transition: all .2s; /* Safari */
   -webkit-animation: all .2s;
   -moz-animation: all .2s;
   -o-animation: all .2s;
@@ -729,26 +744,26 @@ body {
   z-index: 100;
   top: 65%;
   zoom: 0.95; /* Old IE only */
-  -webkit-transition: -webkit-transform 3s;
+  -webkit-transition: -webkit-transform .3s;
   -moz-transform: scale(0.92);
   -webkit-transform: scale(0.92);
   transform: scale(0.92);
-  -webkit-animation: all 3s;
-  -moz-animation: all 3s;
-  -o-animation: all 3s;
-  -ms-animation: all 3s;
-  animation: all 3s;
+  -webkit-animation: all .3s;
+  -moz-animation: all .3s;
+  -o-animation: all .3s;
+  -ms-animation: all .3s;
+  animation: all .3s;
 }
 
 .navbar-map-list {
   position: absolute;
   z-index: 100;
-  -webkit-transition: all 0.5s;
-  -webkit-animation: all 0.5s;
-  -moz-animation: all 0.5s;
-  -o-animation: all 0.5s;
-  -ms-animation: all 0.5s;
-  animation: all 0.5s;
+  -webkit-transition: all 0.3s;
+  -webkit-animation: all 0.3s;
+  -moz-animation: all 0.3s;
+  -o-animation: all 0.3s;
+  -ms-animation: all 0.3s;
+  animation: all 0.3s;
 
 
 }
@@ -762,7 +777,7 @@ body {
 }
 
 .list-full {
-  top: 0;
+  top: 10%;
   zoom: 1; /* Old IE only */
   -moz-transform: scale(1);
   -webkit-transform: scale(1);
@@ -770,7 +785,7 @@ body {
 }
 
 .list-full-nav {
-  top: 10%;
+  top: 11%;
   zoom: 1; /* Old IE only */
   -moz-transform: scale(1);
   -webkit-transform: scale(1);

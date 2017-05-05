@@ -12,8 +12,9 @@ class SearchNavBar extends React.Component {
     toggleFunction: React.PropTypes.func,
     focusModal: React.PropTypes.func,
     searchText: React.PropTypes.func,
-    currentPage: React.PropTypes.string
-  }
+    currentPage: React.PropTypes.string,
+    handleAnimation: React.PropTypes.func
+  };
 
   constructor(props) {
     super(props);
@@ -24,7 +25,15 @@ class SearchNavBar extends React.Component {
   }
 
   _onClickButton() {
-    this.props.toggleFunction('SEARCH_ENTER');
+    if (this.props.currentPage === 'SEARCH_MAP') {
+      this.props.handleAnimation(true);
+      setTimeout(function() {
+          this.props.toggleFunction('SEARCH_ENTER');
+        }.bind(this),
+        700);
+    } else if (this.props.currentPage === 'SEARCH_ENTER') {
+      this.props.toggleFunction('SEARCH_ENTER');
+    }
   }
 
   _onClickBackButton() {
