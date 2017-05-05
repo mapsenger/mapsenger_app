@@ -195,7 +195,7 @@ export default class GoogleMap extends Component {
               </Popup>
             </Marker>
           )}
-          <Control position="topleft" }
+          <Control position="topleft"
             >
             <i
               onClick={this._currentLocation.bind(this)}

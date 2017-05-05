@@ -251,27 +251,18 @@ body {
    background-color: #6359df;
    border: none;
    box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.3);
-   -webkit-transition: CHANGE .5s;
-   transform: CHANGE .5s;
-   -ms-transform: CHANGE .5s;
-   -webkit-transform: CHANGE .5s;
+  -webkit-transition: all 2s;
+  /*-webkit-transition: -webkit-animation 2s;*/
+  /*-webkit-animation: MyAnimation 2s !important;*/
+  /*-moz-animation: all .5s;*/
+  /*-o-animation: all .5s;*/
+  /*-ms-animation: all .5s;*/
+  /*animation: MyAnimation 2s !important;*/
+
+   /*transform: scale(0.01);*/
+   /*-ms-transform: scale(0.01);*/
+   /*-webkit-transform: scale(0.01);*/
  }
- @-webkit-keyframes CHANGE {
-  0%   { backgrond-size: 0em; }
-  100% { opacity: 1.7em; }
-}
-@-moz-keyframes CHANGE {
-  0%   { opacity: 0em; }
-  100% { opacity: 1.7em; }
-}
-@-o-keyframes CHANGE {
-  0%   { opacity: 0em; }
-  100% { opacity: 1.7em; }
-}
-@keyframes CHANGE {
-  0%   { opacity: 0em; }
-  100% { opacity: 1.7em; }
-}
 
 @-webkit-keyframes MyAnimation {
   0% { margin-top: 200px; }

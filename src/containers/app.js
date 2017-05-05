@@ -4,7 +4,7 @@ import {setCurrentUserID, addMessage, addUser, removeUser, addMarker} from '../a
 import ChatInput from '../components/ChatInput';
 import ChatHistory from '../components/ChatHistory';
 import ChatUsers from '../components/ChatUsers';
-import GoogleMap from '../components/googleMap';
+import GoogleMap from '../components/GoogleMap';
 import SearchFunction from '../components/SearchFunction';
 import SearchCard from '../components/SearchCard';
 import SearchNavBar from '../components/SearchNavBar';
