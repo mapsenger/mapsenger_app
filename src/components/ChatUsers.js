@@ -38,7 +38,7 @@ class ChatUsers extends React.Component {
   componentDidMount() {
     const listSet = '#navbarTextSearch';
     const toggleButton = '#chatToggleButton';
-    $(listSet).removeClass('initial');
+    $(listSet).addClass('initial');
     $(toggleButton).removeClass('initial');
     $(toggleButton).addClass('transition');
   }
@@ -48,7 +48,7 @@ class ChatUsers extends React.Component {
     const toggleButton = '#chatToggleButton';
     $(listSet).addClass('notransition');
     $(toggleButton).addClass('notransition');
-    $(listSet).removeClass('initial');
+    $(listSet).addClass('initial');
     // For toggle button
     $(toggleButton).removeClass('initial');
     $(toggleButton).addClass('transition');
@@ -62,7 +62,7 @@ class ChatUsers extends React.Component {
         {currentPage === 'FIRST' ? (
           <div className="mui-row online-user-list">
             <div id="navbarTextSearch"
-                 className="textSearch initial mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
+                 className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
               <input
                 ref="txtMessage"
                 type="text"

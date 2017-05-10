@@ -194,7 +194,8 @@ export default class GoogleMap extends Component {
               </Popup>
             </Marker>
           )}
-          <Control position="topleft">
+          <Control position="topleft"
+            >
             <i
               onClick={this._currentLocation.bind(this)}
               className="fa fa-location-arrow map-current-location" aria-hidden="true"/>

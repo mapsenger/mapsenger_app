@@ -309,6 +309,7 @@ body {
   background-size: 1.7em;
   background-repeat: no-repeat;
   background-position: center;
+  background-size:1.7em;
   border-radius: 50%;
   width: 44px;
   height: 44px;
@@ -404,22 +405,33 @@ body {
 }
 
 .textSearch.initial {
-  border-radius: 0;
-  margin-left: 0;
-  height: 68px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  border: none;
-  position: fixed;
-  z-index: 11;
-  background-color: #ffffff;
-  /*-webkit-transition: all .5s;*/
-  /*-webkit-animation: all .5s;*/
-  /*-moz-animation: all .5s;*/
-  /*-o-animation: all .5s;*/
-  /*-ms-animation: all .5s;*/
-  /*animation: all .5s;*/
+  -webkit-animation: text-search-initial-animation .5s;
+  -moz-animation: text-search-initial-animation .5s;
+  -o-animation: text-search-initial-animation .5s;
+  -ms-animation: text-search-initial-animation .5s;
+  animation: text-search-initial-animation .5s;
+}
+
+@keyframes text-search-initial-animation {
+  0%{
+    border-radius: 0;
+    margin-left: 0;
+    height: 68px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: none;
+    position: fixed;
+    z-index: 11;
+    background-color: #ffffff;
+  }
+  100%{
+    border-radius: 30px;
+    background-color: #000000 !important;
+    height: 44px;
+    box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
+    padding: -20px;
+  }
 }
 
 .textSearch {
@@ -428,7 +440,10 @@ body {
   height: 44px;
   box-shadow: 0 0 5px 0 rgba(54, 54, 54, 0.24);
   padding: -20px;
-  /*-webkit-transition: all .5s;*/
+  display: flex;
+  align-items: center;
+  border: none;
+  z-index: 11;
 }
 
 .textSearch.textSearch-transition-navbar {
@@ -639,6 +654,9 @@ body {
 
 .map-current-location {
   text-align: center;
+  margin-top: 70px;
+
+  margin-left:20px;
   vertical-align: middle;
   font-size: 20px;
   width: 30px;
@@ -647,6 +665,7 @@ body {
   color: white;
   background-color: #6359df;
   border-radius: 99%;
+  z-index: 999;
 }
 
 .map-chat-notif {
