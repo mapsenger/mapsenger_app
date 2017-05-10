@@ -118,7 +118,6 @@ export default class GoogleMap extends Component {
 
   componentDidMount() {
     console.log('new message app', this.props.newMessage);
-    console.log(this.state.POI);
     const toggleButton = '#button_toggle';
     $(toggleButton).addClass('animate');
   }
