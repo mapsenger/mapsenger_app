@@ -8,6 +8,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import Avatar from 'material-ui/Avatar';
 
 const styles = {
   root: {
@@ -20,6 +21,9 @@ const styles = {
     height: 'auto',
     overflowY: 'auto',
   },
+  empty:{
+    backgroundColor: 'transparent'
+  }
 };
 
 const tilesData = [
@@ -88,7 +92,7 @@ export default class SearchCard extends Component {
             mozBorderRadius: '10px',
             boxShadow:'none',
             backgroundColor: 'none',
-            border: '2px solid white',
+            border: '2.5px solid white',
             margin: '6px 12px',
             width: '100%'
           }}
@@ -99,7 +103,9 @@ export default class SearchCard extends Component {
           titleColor="white"
           titleStyle={{
             fontWeight:'600',
-            fontSize:'2em'
+            fontSize:'2em',
+            lineHeight:1,
+            paddingTop:'1em'
           }}
           subtitle="Subtitle"
           subtitleColor="white"
@@ -108,9 +114,19 @@ export default class SearchCard extends Component {
             fontSize:'1.2em'
           }}
           style={{
+            padding:'0px'
 
           }}
-          avatar="../img/fastfood.png"
+          avatar={
+            <Avatar
+              src="../img/fastfood.png"
+              backgroundColor={'transparent'}
+              size={100}
+              style={{
+                marginLeft: '16px'
+              }}
+            />
+      }
         />
       </Card>
 
@@ -121,94 +137,130 @@ export default class SearchCard extends Component {
           mozBorderRadius: '10px',
           boxShadow:'none',
           backgroundColor: 'none',
-          border: '2px solid white',
+          border: '2.5px solid white',
           margin: '6px 12px',
           width: '100%'
         }}
         >
+
+      <CardHeader
+        title="Cafe"
+        titleColor="white"
+        titleStyle={{
+          fontWeight:'600',
+          fontSize:'2em',
+          lineHeight:1,
+          paddingTop:'1em'
+        }}
+        subtitle="Subtitle"
+        subtitleColor="white"
+        subtitleStyle={{
+          fontWeight:'400',
+          fontSize:'1.2em'
+        }}
+        style={{
+          padding:'0px'
+
+        }}
+        avatar={
+          <Avatar
+            src="../img/cafe.png"
+            backgroundColor={'transparent'}
+            size={100}
+            style={{
+              marginLeft: '16px'
+            }}
+          />
+    }
+      />
+    </Card>
+
+    <Card
+      style={{
+        borderRadius:'10px',
+        webkitBorderRadius: '10px',
+        mozBorderRadius: '10px',
+        boxShadow:'none',
+        backgroundColor: 'none',
+        border: '2.5px solid white',
+        margin: '6px 12px',
+        width: '100%'
+      }}
+      >
+
+      <CardHeader
+        title="Food"
+        titleColor="white"
+        titleStyle={{
+            fontWeight:'600',
+            fontSize:'2em',
+            lineHeight:1,
+            paddingTop:'1em'
+          }}
+        subtitle="Subtitle"
+        subtitleColor="white"
+        subtitleStyle={{
+            fontWeight:'400',
+            fontSize:'1.2em'
+          }}
+        style={{
+            padding:'0px'
+          }}
+        avatar={
+          <Avatar
+            src="../img/food.png"
+            backgroundColor={'transparent'}
+            size={100}
+            style={{
+              marginLeft: '16px'
+            }}
+          />
+    }
+      />
+      </Card>
+      <Card
+          style={{
+            borderRadius:'10px',
+            webkitBorderRadius: '10px',
+            mozBorderRadius: '10px',
+            boxShadow:'none',
+            backgroundColor: 'none',
+            border: '2.5px solid white',
+            margin: '6px 12px',
+            width: '100%'
+          }}
+          >
+
         <CardHeader
-          title="Cafe"
+          title="Bars"
           titleColor="white"
           titleStyle={{
             fontWeight:'600',
-            fontSize:'2em'
+            fontSize:'2em',
+            lineHeight:1,
+            paddingTop:'1em'
           }}
-          subtitle="loading"
+          subtitle="Subtitle"
           subtitleColor="white"
           subtitleStyle={{
             fontWeight:'400',
             fontSize:'1.2em'
           }}
           style={{
-
+            padding:'0px'
           }}
-          avatar="../img/cafe.png"
+          avatar={
+            <Avatar
+              src="../img/bar.png"
+              backgroundColor={'transparent'}
+              size={100}
+              style={{
+                marginLeft: '16px'
+              }}
+            />
+      }
         />
       </Card>
-
-      <Card
-        style={{
-          borderRadius:'10px',
-          webkitBorderRadius: '10px',
-          mozBorderRadius: '10px',
-          boxShadow:'none',
-          backgroundColor: 'none',
-          border: '2px solid white',
-          margin: '6px 12px',
-          width: '100%'
-        }}
-        >
-        <CardHeader
-          title="Restaurant"
-          titleColor="white"
-          titleStyle={{
-            fontWeight:'600',
-            fontSize:'2em'
-          }}
-          subtitle="loading"
-          subtitleColor="white"
-          subtitleStyle={{
-            fontWeight:'400',
-            fontSize:'1.2em'
-          }}
-          style={{
-
-          }}
-          avatar="../img/food.png"
-        />
-      </Card>
-
-      <Card
-        style={{
-          borderRadius:'10px',
-          webkitBorderRadius: '10px',
-          mozBorderRadius: '10px',
-          boxShadow:'none',
-          backgroundColor: 'none',
-          border: '2px solid white',
-          margin: '6px 12px',
-          width: '100%'
-        }}
-        >
-          <CardHeader
-          title="Bar"
-          titleColor="white"
-          titleStyle={{
-            fontWeight:'600',
-            fontSize:'2em'
-          }}
-          subtitle="loading"
-          subtitleColor="white"
-          subtitleStyle={{
-            fontWeight:'400',
-            fontSize:'1.2em'
-          }}
-          style={{
-
-          }}
-          avatar="../img/bar.png"
-        />
-        </Card>
 
       </div>
         </MuiThemeProvider>
