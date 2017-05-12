@@ -228,16 +228,22 @@ export default class SearchMap extends Component {
         </Map>
         <div id="listOnMap" className="navbar-map-list list-full">
           <MuiThemeProvider>
-            <div>
+            <div className="listroot"
+              style={{
+                borderRadius:'20px',
+                backgroundColor: '#363636',
+              }}>
               {this.state.poiMarkers.map((place, i) =>
+
                 <Card
                   onClick={this._moveList.bind(this)}
                   style={{
-                  backgroundColor: '#363636',
+                  backgroundColor: 'transparent',
                   boxShadow:'none',
                   borderRadius:'none',
                   borderBottom:'1px #4a4a4a solid',
-                  paddingRight:'none'
+                  paddingRight:'none',
+
                 }}
                 >
 
