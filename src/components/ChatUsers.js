@@ -7,7 +7,8 @@ class ChatUsers extends React.Component {
     users: React.PropTypes.array,
     toggleFunction: React.PropTypes.func,
     focusModal: React.PropTypes.func,
-    currentPage: React.PropTypes.string
+    currentPage: React.PropTypes.string,
+    previousPage: React.PropTypes.string
   }
 
   constructor(props) {
@@ -32,7 +33,7 @@ class ChatUsers extends React.Component {
     $(toggleButton).addClass('fade-out');
     setTimeout(function () {
       this.props.focusModal('DESTINATION');
-    }.bind(this), 500);
+    }.bind(this), 400);
   }
 
   componentDidMount() {
@@ -48,7 +49,7 @@ class ChatUsers extends React.Component {
     const toggleButton = '#chatToggleButton';
     $(listSet).addClass('notransition');
     $(toggleButton).addClass('notransition');
-    $(listSet).addClass('initial');
+    // $(listSet).addClass('initial');
     // For toggle button
     $(toggleButton).removeClass('initial');
     $(toggleButton).addClass('transition');

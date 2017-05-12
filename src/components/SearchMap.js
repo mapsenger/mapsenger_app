@@ -225,11 +225,6 @@ export default class SearchMap extends Component {
               </Popup>
             </Marker>
           )}
-          <Control position="topleft">
-            <i
-              onClick={this._currentLocation.bind(this)}
-              className="fa fa-location-arrow map-current-location" aria-hidden="true"/>
-          </Control>
         </Map>
         <div id="listOnMap" className="navbar-map-list list-full">
           <MuiThemeProvider>

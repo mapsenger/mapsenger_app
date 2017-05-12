@@ -72,6 +72,7 @@ class App extends React.Component {
       goToMarker: '',
       fromWhereToMap: '',
       newMessage: '',
+      previousPage: '',
       forMapAnimation: false
     };
   }
@@ -174,23 +175,23 @@ class App extends React.Component {
   getText(infoSearch) {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
-       this.setState({
+       // this.setState({
+       // searchBar: infoSearch,
+       // active: 'SEARCH_ENTER',
+       // searchedPOI: places.thai
+       // });
+      const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
+      fetch(url, {method: 'GET'}).then(function (response) {
+      return response.json();
+      }).then(json => {
+      this.setState({
+        searchedPOI: json.results,
         searchBar: infoSearch,
-        active: 'SEARCH_ENTER',
-        searchedPOI: places.thai
-       });
-     // const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
-     // fetch(url, {method: 'GET'}).then(function (response) {
-     // return response.json();
-     // }).then(json => {
-     // this.setState({
-     //   searchedPOI: json.results,
-     //   searchBar: infoSearch,
-     //   active: 'SEARCH_ENTER'
-     // });
-     // }).catch(function (error) {
-     // console.log('Error:', error);
-     // });
+        active: 'SEARCH_ENTER'
+      });
+      }).catch(function (error) {
+      console.log('Error:', error);
+      });
   }
 
   getMarker(marker) {
@@ -218,6 +219,7 @@ class App extends React.Component {
                 <ChatUsers users={ props.users }
                            focusModal={this.onToggleNav.bind(this)}
                            currentPage={active}
+                           previousPage={state.previousPage}
                            toggleFunction={this.handleClick.bind(this)}
                 />
                   </div>
@@ -332,6 +334,7 @@ class App extends React.Component {
   }
 
   handleClick() {
+    let whatIspreviousPage = this.state.previousPage;
     const active = this.state.active;
     console.log('handle toggle', active);
     // Switch case here
@@ -342,6 +345,7 @@ class App extends React.Component {
         break;
       case 'SECOND': // no break statement in 'case 0:' so this case will run as well
         newActive = 'FIRST';
+        whatIspreviousPage = 'MAP';
         break; // it encounters this break so will not continue into 'case 2:'
       case 'SEARCH_ENTER':
         newActive = 'SEARCH_MAP';
@@ -350,13 +354,13 @@ class App extends React.Component {
         newActive = 'SEARCH_ENTER';
         break;
       default:
-        console.log('default');
         newActive = 'SECOND';
     }
     this.setState({
       active: newActive,
       fromWhereToMap: 'main',
-      forMapAnimation: false
+      forMapAnimation: false,
+      previousPage: whatIspreviousPage
     });
   }
 

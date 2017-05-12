@@ -77,6 +77,7 @@ class SearchNavBar extends React.Component {
             </div>
             <div className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
               <input autoFocus
+                     className="change"
                      id="input_search_bar"
                      ref="txtMessage"
                      type="text"
@@ -100,6 +101,7 @@ class SearchNavBar extends React.Component {
               </div>
               <div id="textInputSearchNav" className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
                 <input autoFocus
+                       className="change"
                        ref="txtMessage"
                        type="text"
                        id="input_search_bar"
@@ -118,6 +120,7 @@ class SearchNavBar extends React.Component {
               </div>
               <div className="textSearch-search-nav mui-col-md-8 mui-col-xs-8 mui-col-lg-8">
                 <input autoFocus
+                       className="change"
                        id="input_search_bar"
                        ref="txtMessage"
                        type="text"

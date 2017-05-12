@@ -148,7 +148,7 @@ export default class GoogleMap extends Component {
     $(listSet).addClass('textSearch-map-transition');
     setTimeout(function () {
       this.props.focusModal('DESTINATION');
-    }.bind(this), 500);
+    }.bind(this), 400);
   }
 
   render() {
@@ -194,12 +194,6 @@ export default class GoogleMap extends Component {
               </Popup>
             </Marker>
           )}
-          <Control position="topleft"
-            >
-            <i
-              onClick={this._currentLocation.bind(this)}
-              className="fa fa-location-arrow map-current-location" aria-hidden="true"/>
-          </Control>
         </Map>
         <div className="mui-container-fluid">
           <div className="navbar-map mui-row online-user-map">

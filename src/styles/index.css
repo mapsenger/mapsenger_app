@@ -512,16 +512,11 @@ body {
 }
 
 .textSearch-map-transition {
-  border-radius: 0;
-  margin-left: -15%;
-  height: 68px;
-  width: 150%;
-  display: flex;
-  align-items: center;
-  border: none;
-  position: fixed;
-  z-index: 11;;
-  background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;
+  -webkit-animation: text-search-on-focus .5s;
+  -moz-animation: text-search-on-focus .5s;
+  -o-animation: text-search-on-focus .5s;
+  -ms-animation: text-search-on-focus .5s;
+  animation: text-search-on-focus .5s;
 }
 
 /* For Chat Message*/
@@ -795,6 +790,7 @@ body {
 }
 
 .navbar-map-list {
+  border-radius: 15px;
   position: absolute;
   z-index: 100;
   -webkit-transition: all 0.3s;
@@ -809,13 +805,17 @@ body {
 .list-small {
   top: 65%;
   zoom: 0.95; /* Old IE only */
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
   -moz-transform: scale(0.92);
   -webkit-transform: scale(0.92);
   transform: scale(0.92);
 }
 
 .list-full {
-  top: 10%;
+  top: 9%;
   zoom: 1; /* Old IE only */
   -moz-transform: scale(1);
   -webkit-transform: scale(1);
@@ -843,4 +843,24 @@ body {
   -moz-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
+}
+
+/*input text*/
+.change::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #9e79e2;
+}
+.change:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #9e79e2;
+  opacity: 1;
+}
+.change::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #9e79e2;
+  opacity: 1;
+}
+.change:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #9e79e2;
 }
