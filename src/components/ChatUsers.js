@@ -7,7 +7,8 @@ class ChatUsers extends React.Component {
     users: React.PropTypes.array,
     toggleFunction: React.PropTypes.func,
     focusModal: React.PropTypes.func,
-    currentPage: React.PropTypes.string
+    currentPage: React.PropTypes.string,
+    previousPage: React.PropTypes.string
   }
 
   constructor(props) {
@@ -32,13 +33,13 @@ class ChatUsers extends React.Component {
     $(toggleButton).addClass('fade-out');
     setTimeout(function () {
       this.props.focusModal('DESTINATION');
-    }.bind(this), 500);
+    }.bind(this), 400);
   }
 
   componentDidMount() {
     const listSet = '#navbarTextSearch';
     const toggleButton = '#chatToggleButton';
-    $(listSet).removeClass('initial');
+    $(listSet).addClass('initial');
     $(toggleButton).removeClass('initial');
     $(toggleButton).addClass('transition');
   }
@@ -48,7 +49,7 @@ class ChatUsers extends React.Component {
     const toggleButton = '#chatToggleButton';
     $(listSet).addClass('notransition');
     $(toggleButton).addClass('notransition');
-    $(listSet).removeClass('initial');
+    // $(listSet).addClass('initial');
     // For toggle button
     $(toggleButton).removeClass('initial');
     $(toggleButton).addClass('transition');
@@ -62,7 +63,7 @@ class ChatUsers extends React.Component {
         {currentPage === 'FIRST' ? (
           <div className="mui-row online-user-list">
             <div id="navbarTextSearch"
-                 className="textSearch initial mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
+                 className="textSearch mui-col-md-8 mui-col-xs-8 mui-col-lg-8 mui-col-md-offset-1 mui-col-xs-offset-1 mui-col-lg-offset-1">
               <input
                 ref="txtMessage"
                 type="text"

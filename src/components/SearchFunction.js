@@ -67,6 +67,7 @@ export default class SearchCard extends Component {
   }
 
   _onClickButton(message) {
+    console.log(message);
     this.props.searchText(message);
   }
 
@@ -86,6 +87,7 @@ export default class SearchCard extends Component {
           Type keywords above or browse through recommendations</h3>
 
         <Card
+          onClick={() => this._onClickButton('fast food')}
           style={{
             borderRadius:'10px',
             webkitBorderRadius: '10px',
@@ -107,7 +109,7 @@ export default class SearchCard extends Component {
             lineHeight:1,
             paddingTop:'1em'
           }}
-          subtitle="Subtitle"
+          subtitle="12 fast food nearby"
           subtitleColor="white"
           subtitleStyle={{
             fontWeight:'400',
@@ -131,6 +133,7 @@ export default class SearchCard extends Component {
       </Card>
 
       <Card
+        onClick={() => this._onClickButton('cafe')}
         style={{
           borderRadius:'10px',
           webkitBorderRadius: '10px',
@@ -152,7 +155,7 @@ export default class SearchCard extends Component {
           lineHeight:1,
           paddingTop:'1em'
         }}
-        subtitle="Subtitle"
+        subtitle="20 cafes nearby"
         subtitleColor="white"
         subtitleStyle={{
           fontWeight:'400',
@@ -176,6 +179,7 @@ export default class SearchCard extends Component {
     </Card>
 
     <Card
+      onClick={() => this._onClickButton('restaurant')}
       style={{
         borderRadius:'10px',
         webkitBorderRadius: '10px',
@@ -189,24 +193,23 @@ export default class SearchCard extends Component {
       >
 
       <CardHeader
-        title="Restaurants"
+        title="Food"
         titleColor="white"
         titleStyle={{
-          fontWeight:'600',
-          fontSize:'2em',
-          lineHeight:1,
-          paddingTop:'1em'
-        }}
-        subtitle="Subtitle"
+            fontWeight:'600',
+            fontSize:'2em',
+            lineHeight:1,
+            paddingTop:'1em'
+          }}
+        subtitle="20 restaurants nearby"
         subtitleColor="white"
         subtitleStyle={{
-          fontWeight:'400',
-          fontSize:'1.2em'
-        }}
+            fontWeight:'400',
+            fontSize:'1.2em'
+          }}
         style={{
-          padding:'0px'
-
-        }}
+            padding:'0px'
+          }}
         avatar={
           <Avatar
             src="../img/food.png"
@@ -220,7 +223,8 @@ export default class SearchCard extends Component {
       />
       </Card>
       <Card
-          style={{
+        onClick={() => this._onClickButton('bar')}
+        style={{
             borderRadius:'10px',
             webkitBorderRadius: '10px',
             mozBorderRadius: '10px',
@@ -241,7 +245,7 @@ export default class SearchCard extends Component {
             lineHeight:1,
             paddingTop:'1em'
           }}
-          subtitle="Subtitle"
+          subtitle="20 bars nearby"
           subtitleColor="white"
           subtitleStyle={{
             fontWeight:'400',
@@ -249,7 +253,6 @@ export default class SearchCard extends Component {
           }}
           style={{
             padding:'0px'
-
           }}
           avatar={
             <Avatar

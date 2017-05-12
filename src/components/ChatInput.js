@@ -15,7 +15,7 @@ export default class ChatInput extends React.Component {
   };
 
   componentDidMount() {
-    this.refs.txtMessage.focus();
+    // this.refs.txtMessage.focus();
   }
 
   onSubmit = (e) => {
