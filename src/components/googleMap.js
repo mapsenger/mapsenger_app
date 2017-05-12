@@ -85,7 +85,7 @@ export default class GoogleMap extends Component {
         markerID: obj.Where.markerID,
         markerIcon: divIcon({
           className: 'my-div-icon',
-          html: '<img src="http://i.imgur.com/fSL4zE3.png"/>',
+          html: '<img src="http://i.imgur.com/76rcbCP.png"/>',
           iconSize: [30, 30]
         }),
         lat: obj.Where.lat,

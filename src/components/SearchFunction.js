@@ -201,7 +201,7 @@ export default class SearchCard extends Component {
             lineHeight:1,
             paddingTop:'1em'
           }}
-        subtitle="20 restaurants nearby"
+        subtitle="20 foods nearby"
         subtitleColor="white"
         subtitleStyle={{
             fontWeight:'400',

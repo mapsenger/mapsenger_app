@@ -79,38 +79,38 @@ class App extends React.Component {
 
   componentWillMount() {
     this.fetchData();
-      this.setState({
-        currentLoc: [47.6553, -122.3035]
-      });
+    this.setState({
+      currentLoc: [47.6553, -122.3035]
+    });
   }
 
   componentDidMount() {
     console.log('did mount', this.props.history);
     // No geo location here you said?
     this.props.setUserID(ID);
+    // pubnub.subscribe({
+    //  channel: 'ReactChat',
+    //  message: this.props.addMessage,
+    //  presence: this.onPresenceChange,
+    //  state: {
+    //    id: ID,
+    //    lat: 47.6553,
+    //    lng: -122.3035,
+    //  },
+    // });
+
+    navigator.geolocation.getCurrentPosition((position) => {
       pubnub.subscribe({
         channel: 'ReactChat',
         message: this.props.addMessage,
         presence: this.onPresenceChange,
         state: {
           id: ID,
-          lat: 47.6553,
-          lng: -122.3035,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
         },
-     });
-
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //  pubnub.subscribe({
-    //    channel: 'ReactChat',
-    //    message: this.props.addMessage,
-    //    presence: this.onPresenceChange,
-    //    state: {
-    //      id: ID,
-    //      lat: position.coords.latitude,
-    //      lng: position.coords.longitude
-    //    },
-    //  });
-    // });
+      });
+    });
 
     const self = this;
     pubnub.here_now({
@@ -125,6 +125,7 @@ class App extends React.Component {
     });
     window.addEventListener('beforeunload', this.leaveChat);
   }
+
   componentWillUnmount() {
     this.leaveChat();
   }
@@ -175,23 +176,24 @@ class App extends React.Component {
   getText(infoSearch) {
     const lat = this.state.currentLoc[0];
     const lng = this.state.currentLoc[1];
-       // this.setState({
-       // searchBar: infoSearch,
-       // active: 'SEARCH_ENTER',
-       // searchedPOI: places.thai
-       // });
-      const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
-      fetch(url, {method: 'GET'}).then(function (response) {
+    // this.setState({
+    // searchBar: infoSearch,
+    // active: 'SEARCH_ENTER',
+    // searchedPOI: places.thai
+    // });
+    // const url = '/yelp' + '&query=' + infoSearch + '+Seattle+University+District&location=' + lat + "," + lng + '&radius=3000';
+    const url = '/yelp' + '&query=' + infoSearch + '&location=' + lat + "," + lng + '&radius=3000';
+    fetch(url, {method: 'GET'}).then(function (response) {
       return response.json();
-      }).then(json => {
+    }).then(json => {
       this.setState({
         searchedPOI: json.results,
         searchBar: infoSearch,
         active: 'SEARCH_ENTER'
       });
-      }).catch(function (error) {
+    }).catch(function (error) {
       console.log('Error:', error);
-      });
+    });
   }
 
   getMarker(marker) {
@@ -211,105 +213,105 @@ class App extends React.Component {
     const userRecog = state.userLoading;
     const searchPOI = state.searchBar;
     return (
-        <div>
-          {userRecog ? (
-            <div>
-              {mainNav === 'ORIGIN' ? (
-                <div>
+      <div>
+        {userRecog ? (
+          <div>
+            {mainNav === 'ORIGIN' ? (
+              <div>
                 <ChatUsers users={ props.users }
                            focusModal={this.onToggleNav.bind(this)}
                            currentPage={active}
                            previousPage={state.previousPage}
                            toggleFunction={this.handleClick.bind(this)}
                 />
-                  </div>
-              ) : mainNav === 'DESTINATION' ? (
-                <SearchNavBar users={ props.users }
-                              backButton={this.goBackButton.bind(this)}
-                              searchText={this.getText.bind(this)}
-                              focusModal={this.openModal.bind(this)}
-                              currentPage={active}
-                              handleAnimation={this.handleMapAnimation.bind(this)}
-                              toggleFunction={this.handleClick.bind(this)}
+              </div>
+            ) : mainNav === 'DESTINATION' ? (
+              <SearchNavBar users={ props.users }
+                            backButton={this.goBackButton.bind(this)}
+                            searchText={this.getText.bind(this)}
+                            focusModal={this.openModal.bind(this)}
+                            currentPage={active}
+                            handleAnimation={this.handleMapAnimation.bind(this)}
+                            toggleFunction={this.handleClick.bind(this)}
+              />
+            ) : null}
+            {active === 'FIRST' ? (
+              <div>
+                <div className="empty-div"></div>
+                <ChatHistory
+                  history={ props.history }
+                  getMarker={this.getMarker.bind(this)}
+                  me={ props.userID }
                 />
-              ) : null}
-          {active === 'FIRST' ? (
-            <div>
-              <div className="empty-div"></div>
-              <ChatHistory
-                history={ props.history }
-                getMarker={this.getMarker.bind(this)}
-                me={ props.userID }
-              />
-              <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
-            </div>
-          ) : active === 'SECOND' ? (
-            <div>
-              <GoogleMap
-                focusModal={this.onToggleNav.bind(this)}
-                toggleFunction={this.handleClick.bind(this)}
-                markers={ props.markers }
-                userID={ props.userID }
-                newMessage={state.newMessage}
-                sendMarker={ this.sendMarker.bind(this) }
-                allPOI={props.history}
-                fromWHere={state.fromWhereToMap}
-                markerFromHistory={state.goToMarker}
-              />
-            </div>
-          ) : active === 'SEARCH' ? (
-            <div>
-              <div
-                className="add-height"
-              >
+                <ChatInput userID={ props.userID } sendMessage={ sendMessage }/>
               </div>
-              <SearchFunction
-                searchText={this.getText.bind(this)}
-              />
-            </div>
-          )
-            : active === 'SEARCH_ENTER' ? (
-            <div>
-              <div
-                className="add-height"
-              >
+            ) : active === 'SECOND' ? (
+              <div>
+                <GoogleMap
+                  focusModal={this.onToggleNav.bind(this)}
+                  toggleFunction={this.handleClick.bind(this)}
+                  markers={ props.markers }
+                  userID={ props.userID }
+                  newMessage={state.newMessage}
+                  sendMarker={ this.sendMarker.bind(this) }
+                  allPOI={props.history}
+                  fromWHere={state.fromWhereToMap}
+                  markerFromHistory={state.goToMarker}
+                />
               </div>
-              <SearchList
-                textSearch={searchPOI}
-                POI={state.searchedPOI}
-                sendMessage={ sendMessage }
-                allPOI={props.history}
-                userID={ props.userID }
-              />
-            </div>
-          )
-            : active === 'SEARCH_MAP' ? (
-            <div>
-              <div
-                className="add-height"
-              >
+            ) : active === 'SEARCH' ? (
+              <div>
+                <div
+                  className="add-height"
+                >
+                </div>
+                <SearchFunction
+                  searchText={this.getText.bind(this)}
+                />
               </div>
-              <SearchMap
-                markers={ props.markers }
-                POI={state.searchedPOI}
-                userID={ props.userID }
-                currentLoc={state.currentLoc}
-                sendMessage={ sendMessage }
-                allPOI={props.history}
-                sendMarker={ this.sendMarker.bind(this)}
-                handleAnimation={state.forMapAnimation}
-                toggleFunction={this.handleClick.bind(this)}
-              />
-            </div>
-          )
-            : null}
-        </div>
-          ) : (
-            <div>
-              <Spinner className="loading" spinnerName="wandering-cubes" />
-            </div>
-          )}
-        </div>
+            )
+              : active === 'SEARCH_ENTER' ? (
+              <div>
+                <div
+                  className="add-height"
+                >
+                </div>
+                <SearchList
+                  textSearch={searchPOI}
+                  POI={state.searchedPOI}
+                  sendMessage={ sendMessage }
+                  allPOI={props.history}
+                  userID={ props.userID }
+                />
+              </div>
+            )
+              : active === 'SEARCH_MAP' ? (
+              <div>
+                <div
+                  className="add-height"
+                >
+                </div>
+                <SearchMap
+                  markers={ props.markers }
+                  POI={state.searchedPOI}
+                  userID={ props.userID }
+                  currentLoc={state.currentLoc}
+                  sendMessage={ sendMessage }
+                  allPOI={props.history}
+                  sendMarker={ this.sendMarker.bind(this)}
+                  handleAnimation={state.forMapAnimation}
+                  toggleFunction={this.handleClick.bind(this)}
+                />
+              </div>
+            )
+              : null}
+          </div>
+        ) : (
+          <div>
+            <Spinner className="loading" spinnerName="wandering-cubes"/>
+          </div>
+        )}
+      </div>
     );
   }
 

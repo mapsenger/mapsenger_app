@@ -20,11 +20,14 @@
 <body>
 <div id="root"></div>
 <div id="myModal" class="modal-bg">
+</div>
+<div id="myModalNotBlur" class="modal-notblur">
   <!-- Modal content -->
   <div class="modal-overlay">
-    <p>Please Resize the screen to be smaller.</p>
+    <img src="http://i.imgur.com/m0RU2su.png" class="img-modal"/>
   </div>
 </div>
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
@@ -32,23 +35,28 @@
 <script src="https://cdn.muicss.com/mui-0.9.9-rc2/js/mui.min.js"></script>
 <script>
   var modal = document.getElementById('myModal');
+  var modalNB = document.getElementById('myModalNotBlur');
   window.onresize = function() {
     console.log('screen size :', screen.width, window.innerWidth);
     if (window.innerWidth > 400) {
-      $('#root').hide();
       modal.style.display = "block";
+      modalNB.style.display = "block";
+      $('#root').hide();
     }
     else {
       modal.style.display = "none";
+      modalNB.style.display = "none";
       $('#root').show();
     }
   };
-  if (window.innerWidth > 500 ) {
-    $('#root').hide();
+  if (window.innerWidth > 400 ) {
     modal.style.display = "block";
+    modalNB.style.display = "block";
+    $('#root').hide();
   }
   else {
     modal.style.display = "none";
+    modalNB.style.display = "none";
     $('#root').show();
   }
 </script>
