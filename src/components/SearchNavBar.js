@@ -30,7 +30,7 @@ class SearchNavBar extends React.Component {
       setTimeout(function() {
           this.props.toggleFunction('SEARCH_ENTER');
         }.bind(this),
-        700);
+        250);
     } else if (this.props.currentPage === 'SEARCH_ENTER') {
       this.props.toggleFunction('SEARCH_ENTER');
     }

@@ -282,6 +282,7 @@ class App extends React.Component {
                   sendMessage={ sendMessage }
                   allPOI={props.history}
                   userID={ props.userID }
+                  currentLoc={state.currentLoc}
                 />
               </div>
             )

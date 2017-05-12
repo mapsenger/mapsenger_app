@@ -41,10 +41,10 @@ export default class SearchMap extends Component {
     const listSet = '#listOnMap';
     $(listSet).removeClass('list-small');
     $(listSet).addClass('list-full-nav');
-    setTimeout(function() {
-      this.props.toggleFunction('SEARCH_MAP');
-    }.bind(this),
-      700);
+    setTimeout(function () {
+        this.props.toggleFunction('SEARCH_MAP');
+      }.bind(this),
+      250);
   }
 
   _currentLocation() {
@@ -229,7 +229,7 @@ export default class SearchMap extends Component {
         <div id="listOnMap" className="navbar-map-list list-full">
           <MuiThemeProvider>
             <div className="listroot"
-              style={{
+                 style={{
                 borderRadius:'20px',
                 backgroundColor: '#363636',
               }}>
@@ -257,9 +257,9 @@ export default class SearchMap extends Component {
                     subtitleColor="#fff"
                     subtitle={
                   <div>
-                  <div style={{fontWeight:'100'}}>{"Rating: " + place.rating}</div>
-                  <div style={{fontWeight:'100'}}>{"Address: " + place.address}</div>
-                  <div style={{fontWeight:'100'}}>{"Distance: " + place.distance}</div>
+                   <div style={{fontWeight:'100'}}>{<br> place.distance </br> + " away"}</div>
+                    <div style={{fontWeight:'100'}}>{place.address}</div>
+                  <div style={{fontWeight:'100'}}>{"Rating :" + " " + place.rating}</div>
                   <img id={place.id} className={place.existing} src="http://i.imgur.com/76rcbCP.png"/>
                   </div>
                   }

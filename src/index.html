@@ -34,11 +34,23 @@
 <script src="https://cdn.pubnub.com/pubnub-3.14.5.min.js"></script>
 <script src="https://cdn.muicss.com/mui-0.9.9-rc2/js/mui.min.js"></script>
 <script>
-  var modal = document.getElementById('myModal');
-  var modalNB = document.getElementById('myModalNotBlur');
-  window.onresize = function() {
-    console.log('screen size :', screen.width, window.innerWidth);
-    if (window.innerWidth > 400) {
+  if (screen.width >= 800) {
+    var modal = document.getElementById('myModal');
+    var modalNB = document.getElementById('myModalNotBlur');
+    window.onresize = function () {
+      console.log('screen size :', screen.width, window.innerWidth);
+      if (window.innerWidth > 800) {
+        modal.style.display = "block";
+        modalNB.style.display = "block";
+        $('#root').hide();
+      }
+      else {
+        modal.style.display = "none";
+        modalNB.style.display = "none";
+        $('#root').show();
+      }
+    };
+    if (window.innerWidth > 800) {
       modal.style.display = "block";
       modalNB.style.display = "block";
       $('#root').hide();
@@ -48,16 +60,6 @@
       modalNB.style.display = "none";
       $('#root').show();
     }
-  };
-  if (window.innerWidth > 400 ) {
-    modal.style.display = "block";
-    modalNB.style.display = "block";
-    $('#root').hide();
-  }
-  else {
-    modal.style.display = "none";
-    modalNB.style.display = "none";
-    $('#root').show();
   }
 </script>
 <!-- Hotjar Tracking Code for www.junethanaon.com -->

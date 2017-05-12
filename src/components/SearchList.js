@@ -14,6 +14,7 @@ export default class SearchList extends Component {
     sendMessage: React.PropTypes.func,
     allPOI: React.PropTypes.array,
     userID: React.PropTypes.number,
+    currentLoc: React.PropTypes.array
   };
 
   _shareMarker(marker, e) {
@@ -42,6 +43,7 @@ export default class SearchList extends Component {
   }
 
   componentWillMount() {
+    const userCurrentLoc = this.props.currentLoc;
     const allExistingID = [];
     let robj;
     const markerHistory = this.props.allPOI;
@@ -57,7 +59,7 @@ export default class SearchList extends Component {
       const disLng = obj.geometry.location.lng;
       const totalDistance = geolib.getDistance(
         {latitude: disLat, longitude: disLng},
-        {latitude: 47.658350, longitude: -122.313782}
+        {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
       const distanceInMiles = totalDistance / 6000;
       if (allExistingID.includes(obj.id)) {
@@ -66,7 +68,7 @@ export default class SearchList extends Component {
           name: obj.name,
           pic: obj.icon,
           rating: obj.rating,
-          address: obj.formatted_address.split(",")[0],
+          address: obj.formatted_address,
           background: '#ffffff',
           imgBorderColor: 'black',
           distance: String(distanceInMiles.toFixed(2)) + ' Miles',
@@ -80,7 +82,7 @@ export default class SearchList extends Component {
           name: obj.name,
           pic: obj.icon,
           rating: obj.rating,
-          address: obj.formatted_address.split(",")[0],
+          address: obj.formatted_address,
           background: '#ffffff',
           imgBorderColor: 'black',
           distance: String(distanceInMiles.toFixed(2)) + ' Miles',
@@ -126,9 +128,9 @@ export default class SearchList extends Component {
                   subtitleColor="#fff"
                   subtitle={
                   <div>
-                  <div style={{fontWeight:'100'}}>{"Rating: " + place.rating}</div>
-                  <div style={{fontWeight:'100'}}>{"Address: " + place.address}</div>
-                  <div style={{fontWeight:'100'}}>{"Distance: " + place.distance}</div>
+                  <div style={{fontWeight:'100'}}>{place.distance + " away"}</div>
+                  <div style={{fontWeight:'100'}}>{place.address}</div>
+                  <div style={{fontWeight:'100'}}>{"Rating :" + " " + place.rating}</div>
                   <img id={place.id} className={place.existing} src="http://i.imgur.com/76rcbCP.png"/>
                   </div>
                   }
