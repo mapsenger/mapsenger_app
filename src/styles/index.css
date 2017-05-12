@@ -765,6 +765,9 @@ body {
   -moz-transform: scale(0.92);
   -webkit-transform: scale(0.92);
   transform: scale(0.92);
+  -webkit-box-shadow: 0px 0px 68px -10px rgba(0,0,0,0.76);
+  -moz-box-shadow: 0px 0px 68px -10px rgba(0,0,0,0.76);
+  box-shadow: 0px 0px 68px -10px rgba(0,0,0,0.76);
 }
 
 .list-full {
