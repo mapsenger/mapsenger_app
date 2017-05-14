@@ -34,12 +34,12 @@
 <script src="https://cdn.pubnub.com/pubnub-3.14.5.min.js"></script>
 <script src="https://cdn.muicss.com/mui-0.9.9-rc2/js/mui.min.js"></script>
 <script>
-  if (screen.width >= 1000) {
+  if (window.devicePixelRatio > 2.1) {
     var modal = document.getElementById('myModal');
     var modalNB = document.getElementById('myModalNotBlur');
     window.onresize = function () {
       console.log('screen size :', screen.width, window.innerWidth);
-      if (window.innerWidth > 800) {
+      if (window.innerWidth > 400) {
         modal.style.display = "block";
         modalNB.style.display = "block";
         $('#root').hide();
@@ -50,7 +50,7 @@
         $('#root').show();
       }
     };
-    if (window.innerWidth > 800) {
+    if (window.innerWidth > 400) {
       modal.style.display = "block";
       modalNB.style.display = "block";
       $('#root').hide();
