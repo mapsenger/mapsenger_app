@@ -63,7 +63,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLoading: true,
+      userLoading: false,
       active: 'FIRST',
       searchBar: '',
       searchedPOI: '',
@@ -162,7 +162,7 @@ class App extends React.Component {
       default:
         console.error('unknown action: ' + presenceData.action);
     }
-  }
+  };
 
   //  Toggle Nav Bar
   onToggleNav(dat) {

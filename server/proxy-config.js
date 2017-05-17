@@ -14,10 +14,6 @@
 module.exports = {
   // Calls to /api/foo will get routed to
   // http://jsonplaceholder.typicode.com/foo.
-  '/api/': {
-    target: 'http://jsonplaceholder.typicode.com',
-    changeOrigin: true,
-  },
   '/yelp': {
     target: 'https://maps.googleapis.com/maps/api/place/textsearch/json?key=AIzaSyBE3jdNsLmUq78SkdSLpDj8FhDr7oEXF2c&',
     changeOrigin: true,

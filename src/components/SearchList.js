@@ -133,7 +133,7 @@ export default class SearchList extends Component {
                   <div style={{fontWeight:'100'}}>{place.distance + " away"}</div>
                   <div style={{fontWeight:'100'}}>{place.address}</div>
                   <div style={{fontWeight:'100'}}>{"Rating :" + " " + place.rating}</div>
-                  <img id={place.id} className={place.existing} src="http://i.imgur.com/76rcbCP.png"/>
+                  <img id={place.id} className={place.existing} src="https://i.imgur.com/76rcbCP.png"/>
                   </div>
                   }
                   actAsExpander={true}

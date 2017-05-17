@@ -26,7 +26,7 @@ export default class SearchMap extends Component {
 
   _shareMarker(marker) {
     const currentMarkerID = '#' + marker.id;
-    $(currentMarkerID).attr('src', 'http://i.imgur.com/76rcbCP.png');
+    $(currentMarkerID).attr('src', 'https://i.imgur.com/76rcbCP.png');
     const messageObj = {
       Who: this.props.userID,
       When: new Date().valueOf(),
@@ -127,7 +127,7 @@ export default class SearchMap extends Component {
           id: obj.id,
           markerIcon: divIcon({
             className: 'my-div-icon',
-            html: '<img id=' + obj.id + ' src="http://i.imgur.com/76rcbCP.png"/>',
+            html: '<img id=' + obj.id + ' src="https://i.imgur.com/76rcbCP.png"/>',
             iconSize: [15, 15]
           }),
           lat: disLat,
@@ -146,7 +146,7 @@ export default class SearchMap extends Component {
           id: obj.id,
           markerIcon: divIcon({
             className: 'my-div-icon',
-            html: '<img id=' + obj.id + ' src="http://i.imgur.com/fSL4zE3.png"/>',
+            html: '<img id=' + obj.id + ' src="https://i.imgur.com/fSL4zE3.png"/>',
             iconSize: [25, 25]
           }),
           lat: disLat,
@@ -260,7 +260,7 @@ export default class SearchMap extends Component {
                    <div style={{fontWeight:'100'}}>{<br> place.distance </br> + " away"}</div>
                     <div style={{fontWeight:'100'}}>{place.address}</div>
                   <div style={{fontWeight:'100'}}>{"Rating :" + " " + place.rating}</div>
-                  <img id={place.id} className={place.existing} src="http://i.imgur.com/76rcbCP.png"/>
+                  <img id={place.id} className={place.existing} src="https://i.imgur.com/76rcbCP.png"/>
                   </div>
                   }
                     actAsExpander={true}
