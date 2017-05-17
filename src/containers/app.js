@@ -4,7 +4,7 @@ import {setCurrentUserID, addMessage, addUser, removeUser, addMarker} from '../a
 import ChatInput from '../components/ChatInput';
 import ChatHistory from '../components/ChatHistory';
 import ChatUsers from '../components/ChatUsers';
-import GoogleMap from '../components/GoogleMap';
+import GoogleMap from '../components/googleMap';
 import SearchFunction from '../components/SearchFunction';
 import SearchCard from '../components/SearchCard';
 import SearchNavBar from '../components/SearchNavBar';
@@ -63,7 +63,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userLoading: false,
+      userLoading: true,
       active: 'FIRST',
       searchBar: '',
       searchedPOI: '',
