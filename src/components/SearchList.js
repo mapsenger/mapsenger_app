@@ -19,6 +19,8 @@ export default class SearchList extends Component {
 
   _shareMarker(marker, e) {
     const markerId = '#' + marker.id;
+    const markerIdButton = '#' + marker.id + "button";
+    $(markerIdButton).hide();
     $(markerId).removeClass('item-share');
     $(markerId).addClass('item-shared');
     const messageObj = {
@@ -137,16 +139,19 @@ export default class SearchList extends Component {
                   actAsExpander={true}
 
                 />
+                { place.existing === "item-share" ? (
                 <CardActions>
                   <FlatButton
                     style={{
                       color:'#fff'
                     }}
-                    className="active"
+                    id={place.id + "button"}
+                    className="active sharebutton"
                     label="Share"
                     onClick={this._shareMarker.bind(this, place)}
                   />
                 </CardActions>
+                ) : null }
               </Card>
             )}
           </div>
