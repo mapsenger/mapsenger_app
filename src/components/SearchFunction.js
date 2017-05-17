@@ -109,7 +109,7 @@ export default class SearchCard extends Component {
             lineHeight:1,
             paddingTop:'1em'
           }}
-          subtitle="12 fast food nearby"
+          subtitle="20 fast food nearby"
           subtitleColor="white"
           subtitleStyle={{
             fontWeight:'400',
