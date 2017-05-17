@@ -88,29 +88,29 @@ class App extends React.Component {
     console.log('did mount', this.props.history);
     // No geo location here you said?
     this.props.setUserID(ID);
-     pubnub.subscribe({
-      channel: 'ReactChat',
-      message: this.props.addMessage,
-      presence: this.onPresenceChange,
-      state: {
-        id: ID,
-        lat: 47.6553,
-        lng: -122.3035,
-      }
-     });
+     // pubnub.subscribe({
+     // channel: 'ReactChat',
+     // message: this.props.addMessage,
+     // presence: this.onPresenceChange,
+     // state: {
+     //   id: ID,
+     //   lat: 47.6553,
+     //   lng: -122.3035,
+     // }
+     // });
 
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //  pubnub.subscribe({
-    //    channel: 'ReactChat',
-    //    message: this.props.addMessage,
-    //    presence: this.onPresenceChange,
-    //    state: {
-    //      id: ID,
-    //      lat: position.coords.latitude,
-    //      lng: position.coords.longitude
-    //    },
-    //  });
-    // });
+     navigator.geolocation.getCurrentPosition((position) => {
+      pubnub.subscribe({
+        channel: 'ReactChat',
+        message: this.props.addMessage,
+        presence: this.onPresenceChange,
+        state: {
+          id: ID,
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        },
+      });
+     });
 
     const self = this;
     pubnub.here_now({
