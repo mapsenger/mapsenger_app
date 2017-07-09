@@ -218,9 +218,14 @@ export default class SearchMap extends Component {
               icon={marker.markerIcon}
               position={[marker.lat, marker.lng]}>
               <Popup>
-              <span>
-                <h3 className="markername">{marker.name}</h3><br/>
-                {marker.distance} away<br/>
+                <span>
+                Name: <b>{marker.name}</b><br/>
+                Rating: <b>{marker.rating}</b><br/>
+                <button
+                  onClick={() => this._shareMarker(marker)}
+                >
+                  Share
+                </button>
               </span>
               </Popup>
             </Marker>
