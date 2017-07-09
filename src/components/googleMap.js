@@ -18,6 +18,7 @@ export default class GoogleMap extends Component {
     newMessage: React.PropTypes.string,
     toggleFunction: React.PropTypes.func,
     focusModal: React.PropTypes.func,
+    currentLoc: React.PropTypes.array
   };
 
   _currentLocation() {
@@ -34,9 +35,9 @@ export default class GoogleMap extends Component {
       myMarkerCSS: '',
       friendsCustomMarkers: '',
       othersMarkers: props.markers,
-      center: [47.6553, -122.3035],
-      lat: 47.658350,
-      lng: -122.313782,
+      center: props.currentLoc,
+      lat: props.currentLoc[0],
+      lng: props.currentLoc[1],
       zoom: 15,
       POI: '',
       newMessage: ''

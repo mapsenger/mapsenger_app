@@ -63,8 +63,8 @@ export default class SearchMap extends Component {
       othersMarkers: props.markers,
       poiMarkers: props.POI,
       center: props.currentLoc,
-      lat: 47.658350,
-      lng: -122.313782,
+      lat: props.currentLoc[0],
+      lng: props.currentLoc[1],
       zoom: 14,
       active: false,
       class: 'album',
@@ -172,6 +172,7 @@ export default class SearchMap extends Component {
   }
 
   componentDidMount() {
+    console.log(this.state.poiMarkers);
     const listSet = '#listOnMap';
     $(listSet).removeClass('list-full');
     $(listSet).addClass('list-small');
@@ -219,7 +220,6 @@ export default class SearchMap extends Component {
               <Popup>
               <span>
                 <h3 className="markername">{marker.name}</h3><br/>
-                {marker.address}<br/>
                 {marker.distance} away<br/>
               </span>
               </Popup>
@@ -257,7 +257,7 @@ export default class SearchMap extends Component {
                     subtitleColor="#fff"
                     subtitle={
                   <div>
-                   <div style={{fontWeight:'100'}}>{<br> place.distance </br> + " away"}</div>
+                   <div style={{fontWeight:'100'}}>{<br>{place.distance}</br> + " away"}</div>
                     <div style={{fontWeight:'100'}}>{place.address}</div>
                   <div style={{fontWeight:'100'}}>{"Rating :" + " " + place.rating}</div>
                   <img id={place.id} className={place.existing} src="https://i.imgur.com/76rcbCP.png"/>

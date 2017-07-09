@@ -79,8 +79,10 @@ class App extends React.Component {
 
   componentWillMount() {
     this.fetchData();
-    this.setState({
-      currentLoc: [47.6553, -122.3035]
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.setState({
+        currentLoc: [position.coords.latitude, position.coords.longitude]
+      });
     });
   }
 
@@ -88,18 +90,18 @@ class App extends React.Component {
     console.log('did mount', this.props.history);
     // No geo location here you said?
     this.props.setUserID(ID);
-     // pubnub.subscribe({
-     // channel: 'ReactChat',
-     // message: this.props.addMessage,
-     // presence: this.onPresenceChange,
-     // state: {
-     //   id: ID,
-     //   lat: 47.6553,
-     //   lng: -122.3035,
-     // }
-     // });
+    // pubnub.subscribe({
+    // channel: 'ReactChat',
+    // message: this.props.addMessage,
+    // presence: this.onPresenceChange,
+    // state: {
+    //   id: ID,
+    //   lat: 47.6553,
+    //   lng: -122.3035,
+    // }
+    // });
 
-     navigator.geolocation.getCurrentPosition((position) => {
+    navigator.geolocation.getCurrentPosition((position) => {
       pubnub.subscribe({
         channel: 'ReactChat',
         message: this.props.addMessage,
@@ -110,7 +112,7 @@ class App extends React.Component {
           lng: position.coords.longitude
         },
       });
-     });
+    });
 
     const self = this;
     pubnub.here_now({
@@ -257,6 +259,7 @@ class App extends React.Component {
                   allPOI={props.history}
                   fromWHere={state.fromWhereToMap}
                   markerFromHistory={state.goToMarker}
+                  currentLoc={state.currentLoc}
                 />
               </div>
             ) : active === 'SEARCH' ? (
