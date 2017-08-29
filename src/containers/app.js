@@ -13,6 +13,10 @@ import SearchList from '../components/SearchList';
 import places from '../components/places';
 const Spinner = require('react-spinkit');
 
+const min = -0.05;
+const  max = 0.05;
+const highlightedNumber = Math.random() * (max - min) + min;
+console.log(highlightedNumber);
 
 const ID = Math.round(Math.random() * 1000000);
 const pubnub = PUBNUB.init({
@@ -23,7 +27,6 @@ const pubnub = PUBNUB.init({
 });
 
 function mapStateToProps(state) {
-  console.log(state.app.get('markers').toJS());
   return {
     history: state.app.get('messages').toJS(),
     userID: state.app.get('userID'),
@@ -68,7 +71,7 @@ class App extends React.Component {
       searchBar: '',
       searchedPOI: '',
       mainNav: 'ORIGIN',
-      currentLoc: '',
+      currentLoc: [47.617911 + highlightedNumber ,-122.315301 + highlightedNumber],
       goToMarker: '',
       fromWhereToMap: '',
       newMessage: '',
@@ -79,40 +82,43 @@ class App extends React.Component {
 
   componentWillMount() {
     this.fetchData();
-    navigator.geolocation.getCurrentPosition((position) => {
-      this.setState({
-        currentLoc: [position.coords.latitude, position.coords.longitude]
-      });
+    this.setState({
+      currentLoc: [47.617911 + highlightedNumber, -122.315301 + highlightedNumber]
     });
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //  this.setState({
+    //    currentLoc: [position.coords.latitude, position.coords.longitude]
+    //  });
+    // });
   }
 
   componentDidMount() {
     console.log('did mount', this.props.history);
     // No geo location here you said?
     this.props.setUserID(ID);
-    // pubnub.subscribe({
-    // channel: 'ReactChat',
-    // message: this.props.addMessage,
-    // presence: this.onPresenceChange,
-    // state: {
-    //   id: ID,
-    //   lat: 47.6553,
-    //   lng: -122.3035,
-    // }
-    // });
+     pubnub.subscribe({
+     channel: 'ReactChat',
+     message: this.props.addMessage,
+     presence: this.onPresenceChange,
+     state: {
+       id: ID,
+       lat: this.state.currentLoc[0],
+       lng: this.state.currentLoc[1]
+     }
+     });
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      pubnub.subscribe({
-        channel: 'ReactChat',
-        message: this.props.addMessage,
-        presence: this.onPresenceChange,
-        state: {
-          id: ID,
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        },
-      });
-    });
+    // navigator.geolocation.getCurrentPosition((position) => {
+    //  pubnub.subscribe({
+    //    channel: 'ReactChat',
+    //    message: this.props.addMessage,
+    //    presence: this.onPresenceChange,
+    //    state: {
+    //      id: ID,
+    //      lat: position.coords.latitude,
+    //      lng: position.coords.longitude
+    //    },
+    //  });
+    // });
 
     const self = this;
     pubnub.here_now({

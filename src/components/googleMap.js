@@ -38,7 +38,7 @@ export default class GoogleMap extends Component {
       center: props.currentLoc,
       lat: props.currentLoc[0],
       lng: props.currentLoc[1],
-      zoom: 15,
+      zoom: 14,
       POI: '',
       newMessage: ''
     };
