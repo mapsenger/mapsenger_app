@@ -55,7 +55,6 @@ export default class SearchList extends Component {
     getMarker.map(function (existingMarker) {
       allExistingID.push(existingMarker.Where.id);
     });
-    console.log(allExistingID);
     const reformedPlaces = this.state.places.map(function (obj) {
       const disLat = obj.geometry.location.lat;
       const disLng = obj.geometry.location.lng;
@@ -64,13 +63,16 @@ export default class SearchList extends Component {
         {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
       const distanceInMiles = totalDistance / 6000;
+      const formattedAddress = obj.formatted_address.split(",").splice(0,2);
+      const joinnedAddress = formattedAddress.join(",");
+
       if (allExistingID.includes(obj.id)) {
         robj = {
           id: obj.id,
           name: obj.name,
           pic: obj.icon,
           rating: obj.rating,
-          address: obj.formatted_address,
+          address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
           distance: String(distanceInMiles.toFixed(2)) + ' Miles',
@@ -84,7 +86,7 @@ export default class SearchList extends Component {
           name: obj.name,
           pic: obj.icon,
           rating: obj.rating,
-          address: obj.formatted_address,
+          address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
           distance: String(distanceInMiles.toFixed(2)) + ' Miles',

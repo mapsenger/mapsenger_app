@@ -26,7 +26,9 @@ export default class SearchMap extends Component {
 
   _shareMarker(marker) {
     const currentMarkerID = '#' + marker.id;
+    const buttonID = '#marker' + marker.id;
     $(currentMarkerID).attr('src', 'https://i.imgur.com/76rcbCP.png');
+    $(buttonID).addClass('pressed');
     const messageObj = {
       Who: this.props.userID,
       When: new Date().valueOf(),
@@ -91,6 +93,7 @@ export default class SearchMap extends Component {
       return el.id === me;
     });
     const userCurrentLoc = this.props.currentLoc;
+    console.log(userCurrentLoc);
     // User Marker
     const mIcon = divIcon({
       className: 'current-user-div-icon',
@@ -115,12 +118,14 @@ export default class SearchMap extends Component {
 
     // POIs Marker
     const reformedPlaces = this.state.poiMarkers.map(function (obj) {
+      console.log(obj);
       const disLat = obj.geometry.location.lat;
       const disLng = obj.geometry.location.lng;
       const totalDistance = geolib.getDistance(
         {latitude: disLat, longitude: disLng},
         {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
+      console.log(totalDistance);
       const distanceInMiles = totalDistance / 6000;
       if (allExistingID.includes(obj.id)) {
         robj = {
@@ -138,8 +143,9 @@ export default class SearchMap extends Component {
           address: obj.formatted_address,
           background: '#ffffff',
           imgBorderColor: 'black',
-          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
-          existing: 'item-shared'
+          distance: distanceInMiles.toFixed(2) + ' Miles',
+          existing: 'item-shared',
+          buttonColor: 'button-shared'
         };
       } else {
         robj = {
@@ -157,8 +163,9 @@ export default class SearchMap extends Component {
           address: obj.formatted_address,
           background: '#ffffff',
           imgBorderColor: 'black',
-          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
-          existing: 'item-share'
+          distance: distanceInMiles.toFixed(2) + ' Miles',
+          existing: 'item-share',
+          buttonColor: 'button-share'
         };
       }
       return robj;
@@ -172,7 +179,6 @@ export default class SearchMap extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.poiMarkers);
     const listSet = '#listOnMap';
     $(listSet).removeClass('list-full');
     $(listSet).addClass('list-small');
@@ -180,7 +186,6 @@ export default class SearchMap extends Component {
 
   componentDidUpdate() {
     if (this.props.handleAnimation === true) {
-      console.log(this.props.handleAnimation);
       const listSet = '#listOnMap';
       $(listSet).removeClass('list-small');
       $(listSet).addClass('list-full-nav');
@@ -222,6 +227,8 @@ export default class SearchMap extends Component {
                 Name: <b>{marker.name}</b><br/>
                 Rating: <b>{marker.rating}</b><br/>
                 <button
+                  id={"marker" + marker.id}
+                  className={marker.buttonColor}
                   onClick={() => this._shareMarker(marker)}
                 >
                   Share
@@ -262,7 +269,7 @@ export default class SearchMap extends Component {
                     subtitleColor="#fff"
                     subtitle={
                   <div>
-                   <div style={{fontWeight:'100'}}>{<br>{place.distance}</br> + " away"}</div>
+                   <div style={{fontWeight:'100'}}>{place.distance} away</div>
                     <div style={{fontWeight:'100'}}>{place.address}</div>
                   <div style={{fontWeight:'100'}}>{"Rating :" + " " + place.rating}</div>
                   <img id={place.id} className={place.existing} src="https://i.imgur.com/76rcbCP.png"/>

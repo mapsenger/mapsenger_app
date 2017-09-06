@@ -680,6 +680,28 @@ body {
   right: 10%;
 }
 
+.button-share {
+  background-color: #6359df;
+  border: none;
+  color: white;
+  border-radius: 2px;
+}
+
+.button-share:active {
+  background-color: #00CE9A;
+  border: none;
+  color: white;
+  border-radius: 2px;
+}
+
+
+.button-share.pressed {
+  background-color: #00CE9A;
+  border: none;
+  color: white;
+  border-radius: 2px;
+}
+
 /*this is for searched lists and cards*/
 
 .subhead {

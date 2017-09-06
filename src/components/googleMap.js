@@ -186,11 +186,6 @@ export default class GoogleMap extends Component {
               <span>
                 Name: <b>{marker.name}</b><br/>
                 Rating: <b>{marker.rating}</b><br/>
-                <button
-                  onClick={() => this._shareMarker(marker)}
-                >
-                  Share
-                </button>
               </span>
               </Popup>
             </Marker>
