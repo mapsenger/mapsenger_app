@@ -4,7 +4,6 @@
 import React, {Component} from 'react';
 import { CardStack, Card } from 'react-cardstack';
 import geolib from 'geolib';
-import people from './people';
 
 export default class SearchCard extends Component {
   static propTypes = {

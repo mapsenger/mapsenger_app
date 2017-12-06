@@ -118,15 +118,15 @@ export default class SearchMap extends Component {
 
     // POIs Marker
     const reformedPlaces = this.state.poiMarkers.map(function (obj) {
-      console.log(obj);
       const disLat = obj.geometry.location.lat;
       const disLng = obj.geometry.location.lng;
       const totalDistance = geolib.getDistance(
         {latitude: disLat, longitude: disLng},
         {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
-      console.log(totalDistance);
       const distanceInMiles = totalDistance / 6000;
+      const formattedAddress = obj.formatted_address.split(",").splice(0, 2);
+      const joinnedAddress = formattedAddress.join(",");
       if (allExistingID.includes(obj.id)) {
         robj = {
           id: obj.id,
@@ -140,7 +140,7 @@ export default class SearchMap extends Component {
           name: obj.name,
           pic: obj.icon,
           rating: obj.rating,
-          address: obj.formatted_address,
+          address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
           distance: distanceInMiles.toFixed(2) + ' Miles',
@@ -160,7 +160,7 @@ export default class SearchMap extends Component {
           name: obj.name,
           pic: obj.icon,
           rating: obj.rating,
-          address: obj.formatted_address,
+          address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
           distance: distanceInMiles.toFixed(2) + ' Miles',
@@ -261,7 +261,7 @@ export default class SearchMap extends Component {
 
                   <CardHeader
                     style={{
-                    padding: '16px 16px 0px 16px',
+                    padding: '16px 16px 16px 16px',
                   }}
                     titleColor="#fff"
                     title={place.name}
@@ -278,16 +278,6 @@ export default class SearchMap extends Component {
                     actAsExpander={true}
 
                   />
-                  <CardActions>
-                    <FlatButton
-                      style={{
-                      color:'#fff'
-                    }}
-                      className="active"
-                      label="Share"
-                      onClick={this._shareMarker.bind(this, place)}
-                    />
-                  </CardActions>
                 </Card>
               )}
             </div>

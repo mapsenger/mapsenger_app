@@ -63,7 +63,7 @@ export default class SearchList extends Component {
         {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
       const distanceInMiles = totalDistance / 6000;
-      const formattedAddress = obj.formatted_address.split(",").splice(0,2);
+      const formattedAddress = obj.formatted_address.split(",").splice(0, 2);
       const joinnedAddress = formattedAddress.join(",");
 
       if (allExistingID.includes(obj.id)) {

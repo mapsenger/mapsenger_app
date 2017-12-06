@@ -883,7 +883,7 @@ body {
 
 .list-small {
   top: 65%;
-  zoom: 0.95; /* Old IE only */
+  zoom: 1.05; /* Old IE only */
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
   -webkit-border-radius: 16px;
   border-radius: 16px;

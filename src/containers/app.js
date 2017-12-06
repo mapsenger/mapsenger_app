@@ -16,7 +16,6 @@ const Spinner = require('react-spinkit');
 const min = -0.05;
 const  max = 0.05;
 const highlightedNumber = Math.random() * (max - min) + min;
-console.log(highlightedNumber);
 
 const ID = Math.round(Math.random() * 1000000);
 const pubnub = PUBNUB.init({
@@ -71,7 +70,7 @@ class App extends React.Component {
       searchBar: '',
       searchedPOI: '',
       mainNav: 'ORIGIN',
-      currentLoc: [47.617911 + highlightedNumber ,-122.315301 + highlightedNumber],
+      currentLoc: [47.617911 + highlightedNumber, -122.315301 + highlightedNumber],
       goToMarker: '',
       fromWhereToMap: '',
       newMessage: '',
@@ -93,7 +92,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('did mount', this.props.history);
     // No geo location here you said?
     this.props.setUserID(ID);
      pubnub.subscribe({
