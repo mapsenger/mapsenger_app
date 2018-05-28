@@ -62,7 +62,8 @@ export default class SearchList extends Component {
         {latitude: disLat, longitude: disLng},
         {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
-      const distanceInMiles = totalDistance / 6000;
+      //const distanceInMiles = totalDistance / 6000;
+      const distanceInMiles = Math.floor(Math.random() * Math.floor(30)) + 1;
       const formattedAddress = obj.formatted_address.split(",").splice(0, 2);
       const joinnedAddress = formattedAddress.join(",");
 
@@ -75,7 +76,7 @@ export default class SearchList extends Component {
           address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
-          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
+          distance: distanceInMiles + ' Minutes',
           lat: disLat,
           lng: disLng,
           existing: 'item-shared'
@@ -89,7 +90,7 @@ export default class SearchList extends Component {
           address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
-          distance: String(distanceInMiles.toFixed(2)) + ' Miles',
+          distance: distanceInMiles + ' Minutes',
           lat: disLat,
           lng: disLng,
           existing: 'item-share'

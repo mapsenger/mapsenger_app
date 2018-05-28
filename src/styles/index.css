@@ -1,8 +1,16 @@
-.sharebutton{
-  z-index: 100;
-  position: absolute !important;
-  right: -5px;
-  top: -68px !important;
+/* -------- General Style ---------- */
+
+body {
+  background-color: #363636;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.wrapper {
+  height: 100%;
+}
+
+.mui-row {
+  width: 100%;
 }
 
 .modal-bg{
@@ -20,8 +28,6 @@
    -o-filter: blur(5px);
    -ms-filter: blur(5px);
    filter: blur(5px);
-   /*background-color: rgb(0,0,0); !* Fallback color *!*/
-   /*background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
  }
 
 .modal-notblur{
@@ -35,14 +41,11 @@
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background: transparent;
-  /*background-color: rgb(0,0,0); !* Fallback color *!*/
-  /*background-color: rgba(0,0,0,0.4); !* Black w/ opacity *!*/
 }
 
 .modal-overlay {
   margin: auto;
   padding: 20px;
-  /*border: 1px solid #888;*/
   width: 80%;
   z-index: 10010
 }
@@ -54,14 +57,19 @@
   max-width:300px;
 }
 
-/* Application specific CSS */
-/* Map Component */
+/* -------- Each Component ---------- */
+
+/********* Map **********/
 .leaflet-container {
   position: absolute;
   height: 100%;
   width: 100%;
   margin: 0 auto;
   z-index: -1;
+}
+
+.leaflet-left {
+  margin-top: 70px;
 }
 
 .current-user-div-icon {
@@ -95,25 +103,20 @@
   vertical-align: middle;
 }
 
-.wrapper {
-  height: 100%;
-}
-
 .navbar-map {
-  /*position: relative;*/
   height: 100%;
   z-index: 0;
 }
 
-.my-div-icon {
-  /*background:url('https://i.imgur.com/fSL4zE3.png') center no-repeat;*/
+.sharebutton{
+  z-index: 100;
+  position: absolute !important;
+  right: -5px;
+  top: -68px !important;
 }
 
-.leaflet-left {
-  margin-top: 70px;
-}
+/********* Chat Input **********/
 
-/* Chat Input*/
 footer {
   color: white;
   position: fixed;
@@ -137,7 +140,8 @@ footer .input-field input {
   font-style: italic;
 }
 
-/* Css for Navigation Bar*/
+/********* Search Page **********/
+
 input[type=text] {
   border-bottom: none;
   margin: 0;
@@ -158,15 +162,10 @@ button:focus {
   background-color: transparent;
 }
 
-/* ChatHistory styles */
+/********* Chat History **********/
 
-.mui-row {
-  width: 100%;
-}
-
-body {
-  background-color: #363636;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+.chip {
+  font-style: italic;
 }
 
 .collection {
@@ -206,10 +205,6 @@ body {
   border-color: #FFFFFF;
 }
 
-.chip {
-  font-style: italic;
-}
-
 .mdi-communication-chat {
   color: white;
 }
@@ -218,19 +213,14 @@ body {
   border-color: #EEEEEE
 }
 
-/*.collection .collection-item.avatar{*/
-/*min-height: !important;*/
-/*!*overflow:auto;*!*/
-/*}*/
-
 .group:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* -------- Online user list ---------- */
-/* For Chat User*/
+/********* Nav Bar **********/
+
 .empty-div {
   height: 80px;
 }
@@ -243,12 +233,6 @@ body {
   border: none;
   position: fixed;
   z-index: 100;
-  /*-webkit-backdrop-filter: blur(5px);*/
-  /*-moz-filter: blur(5px);*/
-  /*-o-filter: blur(5px);*/
-  /*-ms-filter: blur(5px);*/
-  /*filter: blur(5px);*/
-  /*background: -webkit-gradient(linear, 0% 100%, 100% 24%, from(#771BD3), to(#6AA3F7)) !important;*/
 }
 
 .seach-navbar {
@@ -293,11 +277,6 @@ body {
   font-size: 50px;
   padding-right: 10px;
 }
-
-/*Button for Navbar*/
-/*.toggle-button-col {*/
-/*margin-left: 5%;*/
-/*}*/
 
 .toggle-button-div-chat {
   background-image: url('https://i.imgur.com/xI1lvXE.png');
@@ -354,12 +333,6 @@ body {
   -ms-animation: toggleanimation .5s;
   animation: toggleanimation .5s;
 }
-
-/*.toggle-button-div-chat.transition {*/
-/*transform: scale(1);*/
-/*-ms-transform: scale(1);*/
-/*-webkit-transform: scale(1);*/
-/*}*/
 
 .toggle-button-div-map {
   background-image: url('https://i.imgur.com/kVE8DIZ.png');
@@ -423,19 +396,6 @@ body {
 .toggle-button-div-map.fade-out {
   opacity: 0;
 }
-
-/*.toggle-button-div-chat {*/
-/*background-image: url('https://i.imgur.com/xI1lvXE.png');*/
-/*background-repeat: no-repeat;*/
-/*background-position: center;*/
-/*border-radius: 50%;*/
-/*width: 44px;*/
-/*height: 44px;*/
-/*margin-top: 2px;*/
-
-/*background-color: #6359df;*/
-/*box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);*/
-/*}*/
 
 .search-button-div-map {
   margin-left: 15px;
@@ -638,7 +598,7 @@ body {
 
 }
 
-/* talk bubble contents */
+/********* Chat History: Talk Bubble **********/
 .talktext {
   padding: 1em;
   text-align: left;
@@ -646,7 +606,6 @@ body {
 }
 
 .talktext p {
-  /* remove webkit p margins */
   -webkit-margin-before: 0em;
   -webkit-margin-after: 0em;
 }
@@ -702,8 +661,7 @@ body {
   border-radius: 2px;
 }
 
-/*this is for searched lists and cards*/
-
+/********* Search List **********/
 .subhead {
   color: white;
   font-weight: 100;
@@ -888,9 +846,9 @@ body {
   -webkit-border-radius: 16px;
   border-radius: 16px;
   -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
-  -moz-transform: scale(0.92);
-  -webkit-transform: scale(0.92);
-  transform: scale(0.92);
+  -moz-transform: scale(0.94);
+  -webkit-transform: scale(0.94);
+  transform: scale(0.94);
   -webkit-box-shadow: 0px 0px 68px -10px rgba(0,0,0,0.76);
   -moz-box-shadow: 0px 0px 68px -10px rgba(0,0,0,0.76);
   box-shadow: 0px 0px 68px -10px rgba(0,0,0,0.76);

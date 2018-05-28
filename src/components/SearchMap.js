@@ -15,7 +15,7 @@ export default class SearchMap extends Component {
   static propTypes = {
     markers: React.PropTypes.array,
     userID: React.PropTypes.number,
-    sendMarker: React.PropTypes.func,
+    //sendMarker: React.PropTypes.func,
     POI: React.PropTypes.array,
     allPOI: React.PropTypes.array,
     currentLoc: React.PropTypes.array,
@@ -39,7 +39,6 @@ export default class SearchMap extends Component {
   }
 
   _moveList() {
-    console.log('moved');
     const listSet = '#listOnMap';
     $(listSet).removeClass('list-small');
     $(listSet).addClass('list-full-nav');
@@ -124,7 +123,8 @@ export default class SearchMap extends Component {
         {latitude: disLat, longitude: disLng},
         {latitude: userCurrentLoc[0], longitude: userCurrentLoc[1]}
       );
-      const distanceInMiles = totalDistance / 6000;
+      /*const distanceInMiles = totalDistance / 6000;*/
+      const distanceInMiles = Math.floor(Math.random() * Math.floor(30)) + 1;
       const formattedAddress = obj.formatted_address.split(",").splice(0, 2);
       const joinnedAddress = formattedAddress.join(",");
       if (allExistingID.includes(obj.id)) {
@@ -143,7 +143,7 @@ export default class SearchMap extends Component {
           address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
-          distance: distanceInMiles.toFixed(2) + ' Miles',
+          distance: distanceInMiles + ' Minutes',
           existing: 'item-shared',
           buttonColor: 'button-shared'
         };
@@ -163,7 +163,7 @@ export default class SearchMap extends Component {
           address: joinnedAddress,
           background: '#ffffff',
           imgBorderColor: 'black',
-          distance: distanceInMiles.toFixed(2) + ' Miles',
+          distance: distanceInMiles + ' Minutes',
           existing: 'item-share',
           buttonColor: 'button-share'
         };
@@ -269,7 +269,7 @@ export default class SearchMap extends Component {
                     subtitleColor="#fff"
                     subtitle={
                   <div>
-                   <div style={{fontWeight:'100'}}>{place.distance} away</div>
+                   <div style={{fontWeight:'100'}}>{place.distance}</div>
                     <div style={{fontWeight:'100'}}>{place.address}</div>
                   <div style={{fontWeight:'100'}}>{"Rating :" + " " + place.rating}</div>
                   <img id={place.id} className={place.existing} src="https://i.imgur.com/76rcbCP.png"/>

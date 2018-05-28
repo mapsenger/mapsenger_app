@@ -49,21 +49,14 @@ const tilesData = [
   },
 ];
 
+
+
 export default class SearchCard extends Component {
   static propTypes = {
     searchText: React.PropTypes.func,
   };
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
-  }
-
-  componentWillMount() {
-  }
-
-  componentDidMount() {
   }
 
   _onClickButton(message) {

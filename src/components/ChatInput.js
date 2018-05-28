@@ -4,8 +4,6 @@
 import * as React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-const style = {
-};
 
 export default class ChatInput extends React.Component {
 
@@ -14,9 +12,6 @@ export default class ChatInput extends React.Component {
     sendMessage: React.PropTypes.func,
   };
 
-  componentDidMount() {
-    // this.refs.txtMessage.focus();
-  }
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -36,9 +31,7 @@ export default class ChatInput extends React.Component {
   };
 
   render() {
-    const {props, onSubmit} = this;
-    const imgURL = 'https://api.adorable.io/avatars/92/' + props.userID;
-    // Check if the message is empty
+    const {onSubmit} = this;
     return (
   <MuiThemeProvider>
       <footer className="blackFooter">

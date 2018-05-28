@@ -10,6 +10,10 @@ const INITIAL_STATE = fromJS({
   users: [],
   markers: [],
 });
+// อันนี้ควรย้ายไปอยู่ที่ state change not in reducer
+// ควรเป็น solid
+
+// default INITIAL_STATE -> แต่หลังจาก pass in เข้ามา
 
 function appReducer(state = INITIAL_STATE, action = {}) {
   switch (action.type) {
@@ -22,15 +26,10 @@ function appReducer(state = INITIAL_STATE, action = {}) {
     case ADD_USER:
       return state.update('users', (users) =>
         (users.indexOf(action.payload) >= 0 ?
-          users : users.push(action.payload))
-        //  (users.map((el) => el[0]).indexOf(action.payload[0]) >= 0 ?
-        // users : users.push(action.payload))
-        // (users.findIndex(el => el[0] === action.payload[0]) >= 0 ?
-        // users : users.push(action.payload))
-        // Original
+          users : users.concat(action.payload))
       );
     case ADD_MARKER:
-      return state.update('markers', (markers) => markers.push(action.payload));
+      return state.update('markers', (markers) => markers.concat(action.payload));
     case REMOVE_USER:
       return state.update('users', (users) =>
         users.filter(element => element !== action.payload)

@@ -49,11 +49,9 @@ class ChatUsers extends React.Component {
     const toggleButton = '#chatToggleButton';
     $(listSet).addClass('notransition');
     $(toggleButton).addClass('notransition');
-    // $(listSet).addClass('initial');
     // For toggle button
     $(toggleButton).removeClass('initial');
-    $(toggleButton).addClass('transition');
-    $(toggleButton).addClass('animate');
+    $(toggleButton).addClass('transition animate');
   }
 
   render() {

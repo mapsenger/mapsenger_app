@@ -22,18 +22,6 @@ export default class MapView extends Component {
     sendMarker: React.PropTypes.func,
   };
 
-  _markerClick() {
-    console.log('Marker clicked');
-  }
-
-  _markerMouseEnter() {
-    console.log('Marker mouse enter');
-  }
-
-  _markerMouseLeave() {
-    console.log('Marker mouse leave');
-  }
-
   constructor(props) {
     super(props);
     this.state = {
@@ -53,10 +41,6 @@ export default class MapView extends Component {
         marker: [position.coords.longitude, position.coords.latitude],
       });
     });
-    console.log(this.state.center);
-  }
-
-  componentDidMount() {
   }
 
   _onClickMarker = ({feature}) => {
@@ -123,7 +107,6 @@ export default class MapView extends Component {
             anchor="bottom"
           >
             <img src={'https://api.adorable.io/avatars/92/666'}/>
-            <p>WTF</p>
           </Marker>);
         })}
 

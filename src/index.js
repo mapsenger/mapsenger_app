@@ -17,6 +17,7 @@ import './styles/index.css';
 
 const store = configureStore({});
 const history = syncHistoryWithStore(browserHistory, store);
+// provider store={store} -> inject store
 
 ReactDOM.render(
   <div>

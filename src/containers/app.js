@@ -4,7 +4,7 @@ import {setCurrentUserID, addMessage, addUser, removeUser, addMarker} from '../a
 import ChatInput from '../components/ChatInput';
 import ChatHistory from '../components/ChatHistory';
 import ChatUsers from '../components/ChatUsers';
-import GoogleMap from '../components/googleMap';
+import ArchivedMap from '../components/ArchivedMap';
 import SearchFunction from '../components/SearchFunction';
 import SearchCard from '../components/SearchCard';
 import SearchNavBar from '../components/SearchNavBar';
@@ -43,7 +43,7 @@ function mapDispatchToProps(dispatch) {
     addUser: (userID) => dispatch(addUser(userID)),
     removeUser: (userID) => dispatch(removeUser(userID)),
     addMarker: (userData) => dispatch(addMarker(userData)),
-    // sendMarker: (marker) => dispatch(sendMarker(marker)),
+     sendMarker: (marker) => dispatch(sendMarker(marker)),
   };
 }
 
@@ -84,11 +84,6 @@ class App extends React.Component {
     this.setState({
       currentLoc: [47.617911 + highlightedNumber, -122.315301 + highlightedNumber]
     });
-    // navigator.geolocation.getCurrentPosition((position) => {
-    //  this.setState({
-    //    currentLoc: [position.coords.latitude, position.coords.longitude]
-    //  });
-    // });
   }
 
   componentDidMount() {
@@ -253,13 +248,13 @@ class App extends React.Component {
               </div>
             ) : active === 'SECOND' ? (
               <div>
-                <GoogleMap
+                <ArchivedMap
                   focusModal={this.onToggleNav.bind(this)}
                   toggleFunction={this.handleClick.bind(this)}
                   markers={ props.markers }
                   userID={ props.userID }
                   newMessage={state.newMessage}
-                  sendMarker={ this.sendMarker.bind(this) }
+                  //sendMarker={ this.sendMarker.bind(this) }
                   allPOI={props.history}
                   fromWHere={state.fromWhereToMap}
                   markerFromHistory={state.goToMarker}
@@ -306,7 +301,7 @@ class App extends React.Component {
                   currentLoc={state.currentLoc}
                   sendMessage={ sendMessage }
                   allPOI={props.history}
-                  sendMarker={ this.sendMarker.bind(this)}
+                  //sendMarker={ this.sendMarker.bind(this)}
                   handleAnimation={state.forMapAnimation}
                   toggleFunction={this.handleClick.bind(this)}
                 />
@@ -339,12 +334,8 @@ class App extends React.Component {
     // });
   }
 
-  sendMarker(marker) {
-    console.log(marker);
-  }
-
   handleClick() {
-    let whatIspreviousPage = this.state.previousPage;
+    let previousPage = this.state.previousPage;
     const active = this.state.active;
     console.log('handle toggle', active);
     // Switch case here
@@ -355,7 +346,7 @@ class App extends React.Component {
         break;
       case 'SECOND': // no break statement in 'case 0:' so this case will run as well
         newActive = 'FIRST';
-        whatIspreviousPage = 'MAP';
+        previousPage = 'MAP';
         break; // it encounters this break so will not continue into 'case 2:'
       case 'SEARCH_ENTER':
         newActive = 'SEARCH_MAP';
@@ -370,7 +361,7 @@ class App extends React.Component {
       active: newActive,
       fromWhereToMap: 'main',
       forMapAnimation: false,
-      previousPage: whatIspreviousPage
+      previousPage: previousPage
     });
   }
 

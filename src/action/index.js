@@ -34,10 +34,3 @@ export function addMarker(userData) {
     payload: userData,
   };
 }
-
-// export function sendMarker(marker) {
-//  return {
-//    type: SEND_MARKER,
-//    payload: marker
-//  }
-// }

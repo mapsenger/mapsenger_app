@@ -7,7 +7,7 @@ import Control from 'react-leaflet-control';
 import { divIcon } from 'leaflet';
 
 
-export default class GoogleMap extends Component {
+export default class ArchivedMap extends Component {
   static propTypes = {
     markers: React.PropTypes.array,
     userID: React.PropTypes.number,
@@ -118,13 +118,11 @@ export default class GoogleMap extends Component {
   }
 
   componentDidMount() {
-    console.log('new message app', this.props.newMessage);
     const toggleButton = '#button_toggle';
     $(toggleButton).addClass('animate');
   }
 
   componentDidUpdate() {
-    console.log('map app', this.props.newMessage);
     if (this.props.newMessage !== this.state.newMessage) {
       $('#chatNotif').addClass('transition');
       $('#notiGradient').addClass('transition');
