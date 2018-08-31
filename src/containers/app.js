@@ -71,7 +71,7 @@ class App extends React.Component {
       searchedPOI: '',
       mainNav: 'ORIGIN',
       currentLoc: [47.617911 + highlightedNumber, -122.315301 + highlightedNumber],
-      goToMarker: '',
+      goToMarker: [47.617911 + highlightedNumber, -122.315301 + highlightedNumber],
       fromWhereToMap: '',
       newMessage: '',
       previousPage: '',
